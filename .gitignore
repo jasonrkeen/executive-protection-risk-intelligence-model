@@ -1,0 +1,72 @@
+# =========================
+# Python
+# =========================
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+
+# =========================
+# Virtual environments
+# =========================
+.venv/
+.venv-1/
+venv/
+env/
+ENV/
+
+# =========================
+# Environment variables / secrets
+# =========================
+.env
+.env.*
+!.env.example
+
+# =========================
+# OS / editor files
+# =========================
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# =========================
+# Jupyter / cache
+# =========================
+.ipynb_checkpoints/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# =========================
+# Raw and processed data
+# Avoid committing restricted/large data files
+# =========================
+data/raw/
+data/processed/
+
+# =========================
+# Generated tables
+# =========================
+outputs/tables/
+
+# =========================
+# Optional generated local files
+# =========================
+*.log
+*.tmp
+
+# =========================
+# Keep portfolio-facing outputs
+# =========================
+!outputs/
+!outputs/charts/
+!outputs/charts/*.png
+!outputs/reports/
+!outputs/reports/*.pdf
+!outputs/screenshots/
+!outputs/screenshots/*.png
+!outputs/country_profiles/
+!outputs/country_profiles/*.md
+!outputs/country_profiles/*.csv
