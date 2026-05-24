@@ -99,6 +99,14 @@ outputs/screenshots/
 
 ![Country Risk Rankings](outputs/screenshots/dashboard_rankings.png)
 
+### Country Intelligence Profile
+
+![Country Intelligence Profile](outputs/screenshots/dashboard_country_profile.png)
+
+### Executive Protection Intelligence Signal
+
+![Executive Protection Intelligence Signal](outputs/screenshots/dashboard_intelligence_signal.png)
+
 ### 2026 Forward Risk Update
 
 ![2026 Forward Risk Update](outputs/screenshots/dashboard_forward_risk.png)
@@ -114,10 +122,6 @@ outputs/screenshots/
 ### Model Governance and Data Coverage
 
 ![Model Governance](outputs/screenshots/dashboard_governance.png)
-
-### Country Intelligence Profile
-
-![Country Intelligence Profile](outputs/screenshots/dashboard_country_profile.png)
 
 ---
 
@@ -696,13 +700,14 @@ The project includes a Streamlit dashboard for interactive review.
 Run it with:
 
 ```powershell
-streamlit run app.py
+python -m streamlit run app.py
 ```
 
 Dashboard tabs include:
 
 - Rankings
 - Country Profile
+- Intelligence Signal
 - Forward Risk
 - Monitoring
 - Sensitivity
