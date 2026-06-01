@@ -19,6 +19,17 @@ from src.model_diagnostics import run_model_diagnostics
 from src.model_governance import run_model_governance
 from src.report_generator import generate_report
 
+# Phase 2: City-Level Protective Intelligence Module
+from src.acled_city_processing import build_city_ep_risk_features
+from src.city_visualization import run_city_visualizations
+from src.city_map_generator import create_city_risk_map
+
+# Phase 3: Access and Support Proxy Layer
+from src.access_proxy_layer import build_access_proxy_layer
+
+# Phase 4: Protective Intelligence Exposure and Decision-Support Layer
+from src.protective_intelligence_score import build_protective_intelligence_scores
+
 
 def main():
     """
@@ -41,77 +52,103 @@ def main():
         14. Calculate 2026 forward-risk scores
         15. Build executive protection intelligence signals
         16. Generate country intelligence profiles
-        17. Generate charts
-        18. Run diagnostics
-        19. Build model governance documentation
-        20. Generate PDF report
+        17. Generate country-level charts
+        18. Run city-level ACLED protective intelligence processing
+        19. Generate city-level protective intelligence charts
+        20. Generate city-level geospatial risk map
+        21. Build airport and medical access proxy layer
+        22. Build protective intelligence exposure and posture scores
+        23. Run diagnostics
+        24. Build model governance documentation
+        25. Generate PDF report
     """
+
+    total_steps = 25
 
     print("=" * 70)
     print("Starting Executive Protection Risk Intelligence pipeline...")
     print("=" * 70)
 
-    print("\n[1/20] Building World Bank dataset...")
+    print(f"\n[1/{total_steps}] Building World Bank dataset...")
     build_worldbank_dataset()
 
-    print("\n[2/20] Loading or downloading ACLED event data...")
+    print(f"\n[2/{total_steps}] Loading or downloading ACLED event data...")
     fetch_acled_events(use_existing=True, force_refresh=False)
 
-    print("\n[3/20] Processing ACLED country-year features...")
+    print(f"\n[3/{total_steps}] Processing ACLED country-year features...")
     build_acled_country_features()
 
-    print("\n[4/20] Building energy exposure features...")
+    print(f"\n[4/{total_steps}] Building energy exposure features...")
     build_energy_exposure_features()
 
-    print("\n[5/20] Building violent-crime proxy features...")
+    print(f"\n[5/{total_steps}] Building violent-crime proxy features...")
     build_crime_features()
 
-    print("\n[6/20] Building master model dataset...")
+    print(f"\n[6/{total_steps}] Building master model dataset...")
     build_master_dataset()
 
-    print("\n[7/20] Calculating executive protection risk scores...")
+    print(f"\n[7/{total_steps}] Calculating executive protection risk scores...")
     calculate_risk_scores()
 
-    print("\n[8/20] Running run-to-run change detection...")
+    print(f"\n[8/{total_steps}] Running run-to-run change detection...")
     run_change_detection(update_snapshot=True)
 
-    print("\n[9/20] Running scenario analysis...")
+    print(f"\n[9/{total_steps}] Running scenario analysis...")
     run_scenario_analysis()
 
-    print("\n[10/20] Running sensitivity analysis...")
+    print(f"\n[10/{total_steps}] Running sensitivity analysis...")
     run_sensitivity_analysis()
 
-    print("\n[11/20] Running Monte Carlo risk simulation...")
+    print(f"\n[11/{total_steps}] Running Monte Carlo risk simulation...")
     run_monte_carlo_risk_simulation()
 
-    print("\n[12/20] Running regional spillover analysis...")
+    print(f"\n[12/{total_steps}] Running regional spillover analysis...")
     run_regional_spillover_analysis()
 
-    print("\n[13/20] Building ACLED forward-risk trend features...")
+    print(f"\n[13/{total_steps}] Building ACLED forward-risk trend features...")
     build_acled_forward_trends(
         use_existing=True,
         force_refresh=False,
     )
 
-    print("\n[14/20] Calculating 2026 forward-risk scores...")
+    print(f"\n[14/{total_steps}] Calculating 2026 forward-risk scores...")
     run_forward_2026_risk_model()
 
-    print("\n[15/20] Building executive protection intelligence signals...")
+    print(f"\n[15/{total_steps}] Building executive protection intelligence signals...")
     build_intelligence_signals()
 
-    print("\n[16/20] Generating country intelligence profiles...")
+    print(f"\n[16/{total_steps}] Generating country intelligence profiles...")
     generate_country_profiles()
 
-    print("\n[17/20] Saving charts...")
+    print(f"\n[17/{total_steps}] Saving country-level charts...")
     save_all_charts()
 
-    print("\n[18/20] Running model diagnostics...")
+    print(
+        f"\n[18/{total_steps}] Running Phase 2 city-level ACLED protective intelligence processing..."
+    )
+    build_city_ep_risk_features()
+
+    print(f"\n[19/{total_steps}] Saving city-level protective intelligence charts...")
+    run_city_visualizations()
+
+    print(f"\n[20/{total_steps}] Creating city-level EP risk map...")
+    create_city_risk_map()
+
+    print(f"\n[21/{total_steps}] Building airport and medical access proxy layer...")
+    build_access_proxy_layer()
+
+    print(
+        f"\n[22/{total_steps}] Building protective intelligence exposure and posture scores..."
+    )
+    build_protective_intelligence_scores()
+
+    print(f"\n[23/{total_steps}] Running model diagnostics...")
     run_model_diagnostics()
 
-    print("\n[19/20] Building model governance documentation...")
+    print(f"\n[24/{total_steps}] Building model governance documentation...")
     run_model_governance()
 
-    print("\n[20/20] Generating PDF report...")
+    print(f"\n[25/{total_steps}] Generating PDF report...")
     generate_report()
 
     print("\n" + "=" * 70)

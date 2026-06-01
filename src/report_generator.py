@@ -53,6 +53,60 @@ from src.config import (
     INTELLIGENCE_SIGNAL_CHART,
 )
 
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+
+CITY_EP_RISK_FEATURES_FILE = (
+    PROJECT_ROOT / "data" / "processed" / "city_ep_risk_features.csv"
+)
+
+TOP_CITY_EP_RISK_RANKINGS_FILE = (
+    PROJECT_ROOT / "outputs" / "tables" / "top_25_city_ep_risk_rankings.csv"
+)
+
+CITY_ACCESS_PROXY_FILE = (
+    PROJECT_ROOT / "data" / "processed" / "city_access_proxy_features.csv"
+)
+
+TOP_OPERATIONAL_RISK_FILE = (
+    PROJECT_ROOT / "outputs" / "tables" / "top_25_city_operational_risk_rankings.csv"
+)
+
+CITY_TOP_20_CHART = (
+    PROJECT_ROOT / "outputs" / "charts" / "top_20_city_ep_risk_rankings.png"
+)
+
+CITY_COMPONENT_BREAKDOWN_CHART = (
+    PROJECT_ROOT / "outputs" / "charts" / "top_15_city_risk_component_breakdown.png"
+)
+
+CITY_RISK_MAP_FILE = (
+    PROJECT_ROOT / "outputs" / "maps" / "city_ep_risk_map.html"
+)
+
+PROTECTIVE_INTELLIGENCE_TRIP_SCORES_FILE = (
+    PROJECT_ROOT / "data" / "processed" / "protective_intelligence_trip_scores.csv"
+)
+
+TOP_PROTECTIVE_INTELLIGENCE_PRIORITIES_FILE = (
+    PROJECT_ROOT / "outputs" / "tables" / "top_protective_intelligence_priorities.csv"
+)
+
+
+REPORT_SUBTITLE = (
+    "Country, city, support-access, and protective intelligence posture modeling "
+    "for executive travel, site visits, corporate events, and energy-sector "
+    "security planning"
+)
+
+
+OPERATIONAL_SIGNAL_SHORT_LABELS = {
+    "Severe Operational Concern": "Severe Op. Concern",
+    "High Operational Concern": "High Op. Concern",
+    "Elevated Operational Concern": "Elevated Op. Concern",
+    "Moderate Operational Concern": "Moderate Op. Concern",
+    "Lower Operational Concern": "Lower Op. Concern",
+}
+
 
 def read_csv_if_exists(path: Path) -> pd.DataFrame:
     """
@@ -81,6 +135,18 @@ def format_value(value):
         return round(value, 2)
 
     return value
+
+
+def shorten_operational_signal(value) -> str:
+    """
+    Shorten long operational signal labels for narrow PDF tables.
+    """
+
+    if pd.isna(value):
+        return ""
+
+    value = str(value)
+    return OPERATIONAL_SIGNAL_SHORT_LABELS.get(value, value)
 
 
 def safe_paragraph(value, font_size: int = 6):
@@ -173,6 +239,88 @@ def build_table(
 
     return table
 
+
+
+def build_key_findings_table(findings: list, font_size: int = 7):
+    """
+    Build a polished two-column key findings table for the executive summary.
+    """
+
+    if not findings:
+        return Paragraph("No key findings available.", getSampleStyleSheet()["BodyText"])
+
+    styles = getSampleStyleSheet()
+
+    header_style = ParagraphStyle(
+        "KeyFindingHeader",
+        parent=styles["BodyText"],
+        fontSize=font_size,
+        leading=font_size + 2,
+        textColor=colors.white,
+        fontName="Helvetica-Bold",
+    )
+
+    cell_style = ParagraphStyle(
+        "KeyFindingCell",
+        parent=styles["BodyText"],
+        fontSize=font_size,
+        leading=font_size + 2,
+        textColor=colors.HexColor("#111827"),
+    )
+
+    label_style = ParagraphStyle(
+        "KeyFindingLabel",
+        parent=styles["BodyText"],
+        fontSize=font_size,
+        leading=font_size + 2,
+        textColor=colors.HexColor("#111827"),
+        fontName="Helvetica-Bold",
+    )
+
+    table_data = [
+        [
+            Paragraph("Finding", header_style),
+            Paragraph("Current Output", header_style),
+        ]
+    ]
+
+    for label, detail in findings:
+        table_data.append(
+            [
+                Paragraph(escape(str(label)), label_style),
+                Paragraph(escape(str(detail)), cell_style),
+            ]
+        )
+
+    table = Table(
+        table_data,
+        colWidths=[150, 360],
+        repeatRows=1,
+        hAlign="LEFT",
+    )
+
+    table.setStyle(
+        TableStyle(
+            [
+                ("BACKGROUND", (0, 0), (-1, 0), colors.HexColor("#111827")),
+                ("TEXTCOLOR", (0, 0), (-1, 0), colors.white),
+                ("GRID", (0, 0), (-1, -1), 0.25, colors.HexColor("#d1d5db")),
+                ("VALIGN", (0, 0), (-1, -1), "TOP"),
+                ("LEFTPADDING", (0, 0), (-1, -1), 6),
+                ("RIGHTPADDING", (0, 0), (-1, -1), 6),
+                ("TOPPADDING", (0, 0), (-1, -1), 5),
+                ("BOTTOMPADDING", (0, 0), (-1, -1), 5),
+                (
+                    "ROWBACKGROUNDS",
+                    (0, 1),
+                    (-1, -1),
+                    [colors.HexColor("#ffffff"), colors.HexColor("#f9fafb")],
+                ),
+            ]
+        )
+    )
+
+    return table
 
 def add_chart(story, chart_path: Path, width: int = 500, height: int = 320):
     """
@@ -377,7 +525,7 @@ def get_forward_status_text(forward_scores: pd.DataFrame) -> str:
 
 def add_title_section(story, styles):
     story.append(Paragraph(PROJECT_TITLE, styles["title"]))
-    story.append(Paragraph(PROJECT_SUBTITLE, styles["subtitle"]))
+    story.append(Paragraph(REPORT_SUBTITLE, styles["subtitle"]))
     story.append(
         Paragraph(
             f"{AUTHOR_NAME} | {AUTHOR_EMAIL} | Generated "
@@ -469,10 +617,13 @@ def add_executive_summary(
             "protection risk in global energy operations. The model combines ACLED "
             "event data, World Bank governance and macro indicators, a homicide-rate "
             "violent-crime proxy, energy-sector exposure indicators, recent risk "
-            "momentum features, regional spillover analysis, Monte Carlo robustness "
-            "testing, and an executive-facing intelligence signal layer. The output is "
+            "momentum features, city/location-level protective intelligence, airport "
+            "and medical support-access proxies, regional spillover analysis, Monte "
+            "Carlo robustness testing, an executive-facing intelligence signal layer, "
+            "and a trip-level Protective Intelligence posture model. The output is "
             "designed to support strategic thinking around executive travel, site visits, "
-            "public events, and operating-environment risk. "
+            "public events, operating-environment risk, and intelligence-led protective "
+            "planning. "
             + top_country_text
             + intelligence_text
             + maturity_text
@@ -492,9 +643,10 @@ def add_key_findings_section(
     sensitivity_summary,
     monte_carlo_top20,
     spillover_top,
+    top_pi_priorities=None,
 ):
     """
-    Add concise key findings box near the front of the report.
+    Add polished key findings table near the front of the report.
     """
 
     story.append(Paragraph("Key Findings", styles["heading"]))
@@ -504,17 +656,26 @@ def add_key_findings_section(
     if not rankings.empty:
         top = rankings.iloc[0]
         findings.append(
-            f"Highest baseline EP risk country: {top['country']} "
-            f"({round(top['executive_protection_risk_score'], 2)}, "
-            f"{top.get('risk_bucket', 'N/A')})."
+            (
+                "Highest baseline EP risk country",
+                f"{top['country']} "
+                f"({round(top['executive_protection_risk_score'], 2)}, "
+                f"{top.get('risk_bucket', 'N/A')})",
+            )
         )
 
-    if not intelligence_signals.empty and "ep_intelligence_signal" in intelligence_signals.columns:
+    if (
+        not intelligence_signals.empty
+        and "ep_intelligence_signal" in intelligence_signals.columns
+    ):
         signal_top = intelligence_signals.iloc[0]
         findings.append(
-            f"Top intelligence signal: {signal_top['country']} "
-            f"({signal_top['ep_intelligence_signal']}, "
-            f"{round(signal_top['ep_intelligence_signal_score'], 2)})."
+            (
+                "Top intelligence signal",
+                f"{signal_top['country']} "
+                f"({signal_top['ep_intelligence_signal']}, "
+                f"{round(signal_top['ep_intelligence_signal_score'], 2)})",
+            )
         )
 
     if not monte_carlo_top20.empty and "top20_probability" in monte_carlo_top20.columns:
@@ -525,28 +686,71 @@ def add_key_findings_section(
             .sum()
         )
         findings.append(
-            f"Monte Carlo robustness: {stable_count} countries show at least "
-            f"90% simulated top-20 probability."
+            (
+                "Monte Carlo robustness",
+                f"{stable_count} countries show at least 90% simulated top-20 probability",
+            )
         )
 
     if not spillover_top.empty:
         spillover_top_row = spillover_top.iloc[0]
         findings.append(
-            f"Highest regional spillover exposure: {spillover_top_row['country']} "
-            f"({round(spillover_top_row['regional_spillover_score'], 2)})."
+            (
+                "Highest regional spillover exposure",
+                f"{spillover_top_row['country']} "
+                f"({round(spillover_top_row['regional_spillover_score'], 2)})",
+            )
         )
 
-    if not sensitivity_summary.empty and "stability_interpretation" in sensitivity_summary.columns:
-        findings.append(str(sensitivity_summary.iloc[0]["stability_interpretation"]))
+    if (
+        not sensitivity_summary.empty
+        and "stability_interpretation" in sensitivity_summary.columns
+    ):
+        findings.append(
+            (
+                "Sensitivity interpretation",
+                str(sensitivity_summary.iloc[0]["stability_interpretation"]),
+            )
+        )
 
     if is_forward_data_unavailable(forward_scores):
         findings.append(
-            "2026 forward layer: target-year ACLED data unavailable; "
-            "forward scores are baseline-retained."
+            (
+                "2026 forward layer",
+                "Target-year ACLED data unavailable; forward scores are baseline-retained",
+            )
         )
 
-    for finding in findings:
-        story.append(Paragraph(f"• {finding}", styles["key_finding"]))
+    if top_pi_priorities is not None and not top_pi_priorities.empty:
+        if "protective_intelligence_risk_score" in top_pi_priorities.columns:
+            top_pi = top_pi_priorities.sort_values(
+                "protective_intelligence_risk_score",
+                ascending=False,
+            ).iloc[0]
+
+            findings.append(
+                (
+                    "Top Protective Intelligence posture priority",
+                    f"{top_pi.get('trip_id', 'N/A')} / "
+                    f"{top_pi.get('city', 'N/A')}, "
+                    f"{top_pi.get('country', 'N/A')} "
+                    f"({round(float(top_pi.get('protective_intelligence_risk_score', 0)), 2)}, "
+                    f"{top_pi.get('protective_intelligence_signal', 'N/A')})",
+                )
+            )
+
+    story.append(build_key_findings_table(findings))
+
+    story.append(
+        Paragraph(
+            "These findings should be interpreted as strategic screening outputs "
+            "rather than tactical protective decisions.",
+            styles["small"],
+        )
+    )
+
+    story.append(Spacer(1, 10))
+
 
 
 def add_model_framework(story, styles):
@@ -1255,6 +1459,465 @@ def add_acled_section(story, styles, rankings):
     add_chart(story, CHARTS_DIR / "top_acled_fatality_countries.png", width=500, height=330)
 
 
+
+def add_city_level_protective_intelligence_section(
+    story,
+    styles,
+    city_features,
+    top_city_rankings,
+):
+    """
+    Add city/location-level ACLED protective intelligence section.
+    """
+
+    if city_features.empty and top_city_rankings.empty:
+        return
+
+    story.append(PageBreak())
+    story.append(Paragraph("City-Level Protective Intelligence Layer", styles["heading"]))
+
+    story.append(
+        Paragraph(
+            "The city-level protective intelligence layer extends the baseline "
+            "country model by ranking ACLED city/location records according to recent "
+            "civil unrest, political violence, severity, event momentum, and "
+            "EP-relevant exposure. This layer is designed for strategic screening "
+            "and travel-intelligence prioritization, not tactical route planning.",
+            styles["body"],
+        )
+    )
+
+    if not city_features.empty and "city_ep_risk_score" in city_features.columns:
+        top_city = city_features.sort_values(
+            "city_ep_risk_score",
+            ascending=False,
+        ).iloc[0]
+
+        story.append(
+            Paragraph(
+                f"The highest-ranked city/location in the current ACLED city layer is "
+                f"{top_city.get('city', 'N/A')}, {top_city.get('country', 'N/A')}, "
+                f"with a City EP Risk Score of "
+                f"{round(float(top_city.get('city_ep_risk_score', 0)), 2)} and a "
+                f"signal of {top_city.get('signal', 'N/A')}.",
+                styles["body"],
+            )
+        )
+
+    table_df = top_city_rankings if not top_city_rankings.empty else city_features
+
+    story.append(Paragraph("Top City/Location EP Risk Rankings", styles["subheading"]))
+    story.append(
+        build_table(
+            table_df,
+            [
+                "rank",
+                "city",
+                "country",
+                "admin1",
+                "events_90d",
+                "fatalities_90d",
+                "civil_unrest_score",
+                "political_violence_score",
+                "severity_score",
+                "momentum_score",
+                "ep_relevance_score",
+                "city_ep_risk_score",
+                "signal",
+                "primary_driver",
+            ],
+            max_rows=12,
+            font_size=5,
+            header_labels={
+                "rank": "Rank",
+                "city": "City/Location",
+                "country": "Country",
+                "admin1": "Admin1",
+                "events_90d": "90d Events",
+                "fatalities_90d": "90d Fatal.",
+                "civil_unrest_score": "Unrest",
+                "political_violence_score": "Violence",
+                "severity_score": "Severity",
+                "momentum_score": "Momentum",
+                "ep_relevance_score": "EP Rel.",
+                "city_ep_risk_score": "City EP",
+                "signal": "Signal",
+                "primary_driver": "Driver",
+            },
+        )
+    )
+
+    add_chart(
+        story,
+        CITY_TOP_20_CHART,
+        width=500,
+        height=330,
+    )
+
+    add_chart(
+        story,
+        CITY_COMPONENT_BREAKDOWN_CHART,
+        width=500,
+        height=330,
+    )
+
+    if CITY_RISK_MAP_FILE.exists():
+        story.append(
+            Paragraph(
+                "An interactive geospatial city-risk map is generated separately as "
+                f"an HTML dashboard artifact: {CITY_RISK_MAP_FILE.name}. The PDF "
+                "summarizes the ranked output and chart views, while the Streamlit "
+                "dashboard provides the interactive map experience.",
+                styles["small"],
+            )
+        )
+
+    story.append(
+        Paragraph(
+            "Methodology note: ACLED location names are treated as city/location-level "
+            "records. Some entries may represent neighborhoods, towns, villages, "
+            "districts, or event locations rather than formal city boundaries.",
+            styles["small"],
+        )
+    )
+
+
+def add_access_support_proxy_section(
+    story,
+    styles,
+    city_access,
+    top_operational_city_rankings,
+):
+    """
+    Add airport and medical access proxy section.
+    """
+
+    if city_access.empty and top_operational_city_rankings.empty:
+        return
+
+    story.append(PageBreak())
+    story.append(Paragraph("Airport and Medical Access Proxy Layer", styles["heading"]))
+
+    story.append(
+        Paragraph(
+            "The access-support proxy layer adds a planning-support view to the "
+            "city-level model. It combines airport access, country-level medical "
+            "capacity proxies, support access scoring, and support gap scoring to "
+            "estimate where protective planning may face greater operating constraints. "
+            "This layer is not a medical assessment, evacuation plan, or tactical "
+            "protective operations product.",
+            styles["body"],
+        )
+    )
+
+    table_df = (
+        top_operational_city_rankings
+        if not top_operational_city_rankings.empty
+        else city_access
+    )
+
+    if not table_df.empty and "city_operational_ep_risk_score" in table_df.columns:
+        top_operational = table_df.sort_values(
+            "city_operational_ep_risk_score",
+            ascending=False,
+        ).iloc[0]
+
+        story.append(
+            Paragraph(
+                f"The highest access-adjusted operational EP risk location is "
+                f"{top_operational.get('city', 'N/A')}, "
+                f"{top_operational.get('country', 'N/A')}, with an operational EP "
+                f"risk score of "
+                f"{round(float(top_operational.get('city_operational_ep_risk_score', 0)), 2)}. "
+                f"The support gap score is "
+                f"{round(float(top_operational.get('support_gap_score', 0)), 2)}.",
+                styles["body"],
+            )
+        )
+
+    story.append(Paragraph("Top Access-Adjusted Operational City Rankings", styles["subheading"]))
+
+    table_display = table_df.copy()
+    if "operational_ep_signal" in table_display.columns:
+        table_display["operational_signal_short"] = table_display[
+            "operational_ep_signal"
+        ].apply(shorten_operational_signal)
+
+    story.append(
+        build_table(
+            table_display,
+            [
+                "operational_rank",
+                "city",
+                "country",
+                "admin1",
+                "city_ep_risk_score",
+                "nearest_airport_iata",
+                "nearest_airport_km",
+                "airport_access_score",
+                "medical_capacity_score",
+                "support_gap_score",
+                "city_operational_ep_risk_score",
+                "operational_signal_short",
+            ],
+            max_rows=12,
+            font_size=5,
+            header_labels={
+                "operational_rank": "Rank",
+                "city": "City",
+                "country": "Country",
+                "admin1": "Admin1",
+                "city_ep_risk_score": "City EP",
+                "nearest_airport_iata": "IATA",
+                "nearest_airport_km": "Airport km",
+                "airport_access_score": "Airport",
+                "medical_capacity_score": "Medical",
+                "support_gap_score": "Gap",
+                "city_operational_ep_risk_score": "Operational",
+                "operational_signal_short": "Signal",
+            },
+        )
+    )
+
+    story.append(
+        Paragraph(
+            "Note: the summary table uses IATA code and shortened operational signal "
+            "labels to preserve PDF readability. Full airport names and status labels "
+            "are provided in the access proxy detail table below.",
+            styles["small"],
+        )
+    )
+
+    if not city_access.empty and "city_operational_ep_risk_score" in city_access.columns:
+        story.append(Paragraph("Access Proxy Detail", styles["subheading"]))
+
+        detail_df = city_access.sort_values(
+            "city_operational_ep_risk_score",
+            ascending=False,
+        ).head(10)
+
+        if "operational_ep_signal" in detail_df.columns:
+            detail_df["operational_signal_short"] = detail_df[
+                "operational_ep_signal"
+            ].apply(shorten_operational_signal)
+
+        story.append(
+            build_table(
+                detail_df,
+                [
+                    "city",
+                    "country",
+                    "nearest_airport_iata",
+                    "airport_access_status",
+                    "hospital_beds_per_1000",
+                    "physicians_per_1000",
+                    "medical_capacity_status",
+                    "operational_signal_short",
+                ],
+                max_rows=10,
+                font_size=5,
+                header_labels={
+                    "city": "City",
+                    "country": "Country",
+                    "nearest_airport_iata": "IATA",
+                    "airport_access_status": "Airport Status",
+                    "hospital_beds_per_1000": "Beds/1k",
+                    "physicians_per_1000": "Phys./1k",
+                    "medical_capacity_status": "Medical Status",
+                    "operational_signal_short": "Operational Signal",
+                },
+            )
+        )
+
+    story.append(
+        Paragraph(
+            "Interpretation note: the access-adjusted operational EP score increases "
+            "when city-level risk is high and support access is constrained. Airport "
+            "access is based on distance to large and medium airports where reference "
+            "data is available. Medical capacity uses country-level World Bank proxy "
+            "indicators and should not be interpreted as local hospital capability.",
+            styles["small"],
+        )
+    )
+
+
+def add_protective_intelligence_posture_section(
+    story,
+    styles,
+    pi_trip_scores,
+    top_pi_priorities,
+):
+    """
+    Add the Protective Intelligence Exposure and Decision-Support Layer.
+    """
+
+    if pi_trip_scores.empty and top_pi_priorities.empty:
+        return
+
+    story.append(PageBreak())
+    story.append(
+        Paragraph(
+            "Protective Intelligence Exposure and Decision-Support Layer",
+            styles["heading"],
+        )
+    )
+
+    story.append(
+        Paragraph(
+            "The Protective Intelligence layer translates the project's country, city, "
+            "access, and exposure indicators into a movement-level decision-support "
+            "score. This layer is designed to reflect an intelligence-led executive "
+            "protection approach: identify exposure before movement, evaluate local "
+            "threat context, assess predictability and venue risk, and convert those "
+            "inputs into a protective posture recommendation.",
+            styles["body"],
+        )
+    )
+
+    table_df = top_pi_priorities if not top_pi_priorities.empty else pi_trip_scores
+
+    if not table_df.empty and "protective_intelligence_risk_score" in table_df.columns:
+        top_pi = table_df.sort_values(
+            "protective_intelligence_risk_score",
+            ascending=False,
+        ).iloc[0]
+
+        story.append(
+            Paragraph(
+                f"The highest Protective Intelligence priority in the current trip "
+                f"input set is {top_pi.get('trip_id', 'N/A')} for "
+                f"{top_pi.get('principal', 'N/A')} in "
+                f"{top_pi.get('city', 'N/A')}, {top_pi.get('country', 'N/A')}. "
+                f"The PI Risk Score is "
+                f"{round(float(top_pi.get('protective_intelligence_risk_score', 0)), 2)}, "
+                f"with a signal of {top_pi.get('protective_intelligence_signal', 'N/A')} "
+                f"and posture recommendation: "
+                f"{top_pi.get('protective_posture_recommendation', 'N/A')}.",
+                styles["body"],
+            )
+        )
+
+    story.append(Paragraph("Top Protective Intelligence Priorities", styles["subheading"]))
+    story.append(
+        build_table(
+            table_df,
+            [
+                "pi_priority_rank",
+                "trip_id",
+                "principal",
+                "city",
+                "country",
+                "scenario",
+                "protective_intelligence_risk_score",
+                "protective_intelligence_signal",
+                "protective_posture_recommendation",
+                "city_context_match_flag",
+            ],
+            max_rows=12,
+            font_size=5,
+            header_labels={
+                "pi_priority_rank": "Rank",
+                "trip_id": "Trip",
+                "principal": "Principal",
+                "city": "City",
+                "country": "Country",
+                "scenario": "Scenario",
+                "protective_intelligence_risk_score": "PI Score",
+                "protective_intelligence_signal": "PI Signal",
+                "protective_posture_recommendation": "Posture",
+                "city_context_match_flag": "Context",
+            },
+        )
+    )
+
+    if not table_df.empty:
+        story.append(Paragraph("Protective Intelligence Component Scores", styles["subheading"]))
+        story.append(
+            build_table(
+                table_df,
+                [
+                    "trip_id",
+                    "local_threat_environment_score",
+                    "principal_exposure_score",
+                    "movement_predictability_score",
+                    "venue_airport_hotel_exposure_score",
+                    "online_information_leakage_score",
+                    "support_gap_score",
+                    "reputational_business_sensitivity_score",
+                    "protective_intelligence_base_score",
+                    "scenario_multiplier",
+                    "protective_intelligence_risk_score",
+                ],
+                max_rows=10,
+                font_size=5,
+                header_labels={
+                    "trip_id": "Trip",
+                    "local_threat_environment_score": "Local Threat",
+                    "principal_exposure_score": "Principal",
+                    "movement_predictability_score": "Predictability",
+                    "venue_airport_hotel_exposure_score": "Venue/Airport",
+                    "online_information_leakage_score": "Online Leak",
+                    "support_gap_score": "Support Gap",
+                    "reputational_business_sensitivity_score": "Rep./Sector",
+                    "protective_intelligence_base_score": "Base",
+                    "scenario_multiplier": "Multiplier",
+                    "protective_intelligence_risk_score": "PI Score",
+                },
+            )
+        )
+
+    if not table_df.empty and "analyst_priority_note" in table_df.columns:
+        story.append(Paragraph("Analyst Priority Notes", styles["subheading"]))
+        note_df = table_df[
+            [
+                column
+                for column in [
+                    "trip_id",
+                    "principal",
+                    "city",
+                    "country",
+                    "analyst_priority_note",
+                ]
+                if column in table_df.columns
+            ]
+        ].head(8)
+
+        story.append(
+            build_table(
+                note_df,
+                [
+                    "trip_id",
+                    "principal",
+                    "city",
+                    "country",
+                    "analyst_priority_note",
+                ],
+                max_rows=8,
+                font_size=5,
+                header_labels={
+                    "trip_id": "Trip",
+                    "principal": "Principal",
+                    "city": "City",
+                    "country": "Country",
+                    "analyst_priority_note": "Priority Note",
+                },
+            )
+        )
+
+    story.append(
+        Paragraph(
+            "Interpretation note: the Protective Intelligence score is a planning "
+            "and triage indicator. It combines local threat environment, principal "
+            "visibility, movement predictability, venue/airport/hotel exposure, online "
+            "or itinerary exposure, support-access constraints, and reputational or "
+            "business sensitivity. It does not replace protective advances, itinerary-"
+            "specific threat assessment, law-enforcement liaison, venue security review, "
+            "or real-time protective intelligence.",
+            styles["small"],
+        )
+    )
+
+
 def add_energy_governance_crime_section(story, styles, rankings):
     story.append(Paragraph("Energy Exposure, Governance, and Crime Risk", styles["heading"]))
     story.append(
@@ -1860,6 +2523,27 @@ def add_limitations(story, styles):
         )
     )
 
+    story.append(
+        Paragraph(
+            "The airport and medical access layer uses public proxy data. Airport "
+            "distance is based on reference airport locations, and medical capacity is "
+            "based on country-level World Bank indicators. These features should be "
+            "interpreted as planning-support context, not as a medical, evacuation, "
+            "logistics, or tactical security assessment.",
+            styles["body"],
+        )
+    )
+
+    story.append(
+        Paragraph(
+            "The Protective Intelligence posture layer uses user-supplied trip and "
+            "exposure assumptions. Its recommendations should be interpreted as a "
+            "decision-support prioritization aid, not as a final travel approval, "
+            "route plan, venue advance, family exposure review, or no-go determination.",
+            styles["body"],
+        )
+    )
+
 
 def generate_report():
     print("Generating PDF report...")
@@ -1896,6 +2580,15 @@ def generate_report():
     sensitivity_summary = read_csv_if_exists(SENSITIVITY_SUMMARY_FILE)
     sensitivity_overlap = read_csv_if_exists(SENSITIVITY_OVERLAP_FILE)
     _ = read_csv_if_exists(SENSITIVITY_TOP20_FILE)
+
+    city_features = read_csv_if_exists(CITY_EP_RISK_FEATURES_FILE)
+    top_city_rankings = read_csv_if_exists(TOP_CITY_EP_RISK_RANKINGS_FILE)
+
+    city_access = read_csv_if_exists(CITY_ACCESS_PROXY_FILE)
+    top_operational_city_rankings = read_csv_if_exists(TOP_OPERATIONAL_RISK_FILE)
+
+    pi_trip_scores = read_csv_if_exists(PROTECTIVE_INTELLIGENCE_TRIP_SCORES_FILE)
+    top_pi_priorities = read_csv_if_exists(TOP_PROTECTIVE_INTELLIGENCE_PRIORITIES_FILE)
 
     if rankings.empty:
         raise FileNotFoundError(
@@ -1936,6 +2629,7 @@ def generate_report():
         sensitivity_summary,
         monte_carlo_top20,
         spillover_top,
+        top_pi_priorities,
     )
     add_model_framework(story, styles)
     add_top_risk_section(story, styles, rankings)
@@ -1961,6 +2655,24 @@ def generate_report():
         top_rank_movers,
     )
     add_acled_section(story, styles, rankings)
+    add_city_level_protective_intelligence_section(
+        story,
+        styles,
+        city_features,
+        top_city_rankings,
+    )
+    add_access_support_proxy_section(
+        story,
+        styles,
+        city_access,
+        top_operational_city_rankings,
+    )
+    add_protective_intelligence_posture_section(
+        story,
+        styles,
+        pi_trip_scores,
+        top_pi_priorities,
+    )
     add_energy_governance_crime_section(story, styles, rankings)
     add_scenario_section(story, styles, scenarios, scenario_top, scenario_summary)
     add_sensitivity_section(story, styles, sensitivity_summary, sensitivity_overlap)

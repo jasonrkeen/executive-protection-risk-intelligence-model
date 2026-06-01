@@ -2,7 +2,9 @@
 
 ## A Quantitative OSINT Model for Executive Protection Risk in Global Energy Operations
 
-This project builds a data-driven, open-source intelligence (OSINT) model for estimating country-level executive protection risk in global energy operations. The model is designed to support strategic thinking around executive travel, site visits, corporate events, public appearances, high-visibility leadership movement, and operating-environment risk in countries where energy-sector exposure intersects with civil unrest, political violence, governance weakness, violent-crime exposure, regional instability, scenario pressure, and recent risk momentum.
+This project builds a data-driven, open-source intelligence (OSINT) model for estimating executive protection risk in global energy operations. The model combines country-level operating-environment risk scoring, city/location-level ACLED event analysis, geospatial risk visualization, airport access proxies, medical capacity proxies, protective intelligence exposure scoring, scenario analysis, Monte Carlo robustness testing, regional spillover analysis, and executive-facing intelligence signal scoring.
+
+The project is designed to support strategic thinking around executive travel, site visits, corporate events, public appearances, high-visibility leadership movement, and operating-environment risk in countries and cities where energy-sector exposure intersects with civil unrest, political violence, governance weakness, violent-crime exposure, regional instability, support-access constraints, principal exposure, movement predictability, online visibility, and recent risk momentum.
 
 The project is intended for portfolio, research, and strategic risk-intelligence purposes. It does **not** represent any company’s internal executive protection methodology, proprietary risk process, or operational security planning.
 
@@ -14,7 +16,7 @@ Executive protection is often discussed through a tactical lens, and many practi
 
 This project asks:
 
-> Can public OSINT datasets be combined into a quantitative model that identifies countries where executive protection planning may require elevated attention for global energy operations?
+> Can public OSINT datasets and structured trip-exposure assumptions be combined into a quantitative model that identifies countries, cities, planned movements, and operating environments where executive protection planning may require elevated attention for global energy operations?
 
 The model combines public data on:
 
@@ -32,9 +34,16 @@ The model combines public data on:
 - Monte Carlo model robustness
 - Run-to-run change detection
 - Forward-looking ACLED nowcast signals where available
+- City/location-level ACLED event patterns
+- Airport access and support-environment constraints
+- Country-level medical capacity proxies
+- Principal / executive exposure assumptions
+- Movement predictability and venue exposure assumptions
+- Online / information leakage indicators
+- Protective intelligence posture recommendations
 - Executive-facing intelligence signal scoring
 
-The result is a country-level **Executive Protection Risk Score**, scenario-adjusted risk framework, sensitivity analysis, Monte Carlo robustness layer, regional spillover model, intelligence signal layer, diagnostics framework, Streamlit dashboard, country intelligence profiles, and PDF report suitable for portfolio presentation.
+The result is a country-level **Executive Protection Risk Score**, city-level **City EP Risk Score**, access-adjusted **Operational EP Risk Score**, trip-level **Protective Intelligence Risk Score**, protective posture recommendation layer, scenario-adjusted risk framework, sensitivity analysis, Monte Carlo robustness layer, regional spillover model, intelligence signal layer, diagnostics framework, Streamlit dashboard, country intelligence profiles, geospatial city risk map, and PDF report suitable for portfolio presentation.
 
 ---
 
@@ -54,6 +63,13 @@ For multinational energy companies, executive protection extends beyond the prot
 - Geopolitical and public-sentiment risk awareness
 - Regional instability monitoring
 - Data-driven protective intelligence triage
+- City/location-level event monitoring
+- Airport access and support-environment awareness
+- Medical-capacity proxy review for planning context
+- Principal exposure and itinerary predictability screening
+- Venue, hotel, airport, and public-space exposure review
+- Online visibility and information-leakage awareness
+- Protective posture decision-support
 
 This project translates those strategic concerns into a structured, quantitative risk-intelligence model using public data.
 
@@ -65,7 +81,7 @@ The final project includes:
 
 - A fully automated Python pipeline
 - ACLED political violence and civil unrest processing
-- World Bank governance, macro, energy, and homicide indicator collection
+- World Bank governance, macro, energy, homicide, and health indicator collection
 - Country-level Executive Protection Risk Score
 - Bounded severity calibration layer
 - Scenario analysis for executive protection contexts
@@ -76,6 +92,19 @@ The final project includes:
 - Executive Protection Intelligence Signal layer
 - Run-to-run change detection
 - Country intelligence profile generation
+- City/location-level ACLED protective intelligence ranking layer
+- 30/60/90/180-day city event monitoring features
+- City risk component scoring for civil unrest, political violence, severity, momentum, and EP-relevant exposure
+- Interactive geospatial city risk map using Plotly
+- Airport access proxy using OurAirports reference data
+- Medical capacity proxy using World Bank health indicators
+- Support access and support gap scoring
+- Access-adjusted operational EP risk score
+- Protective Intelligence Exposure and Decision-Support Layer
+- Trip/principal exposure scoring from a structured planning CSV
+- Protective Intelligence Risk Score
+- Protective posture recommendations
+- Analyst priority notes for planned movements
 - Model governance and methodology documentation
 - Model diagnostics and data coverage checks
 - Streamlit dashboard
@@ -85,43 +114,27 @@ The final project includes:
 
 ## Dashboard Preview
 
-The screenshots below are intended for the GitHub README and should be stored in:
+The screenshots below are included for GitHub portfolio presentation and should be stored in:
 
 ```text
 outputs/screenshots/
 ```
 
-### Model Overview
+### City-Level Protective Intelligence Rankings
 
-![Dashboard Overview](outputs/screenshots/dashboard_overview.png)
+![City Risk Rankings](outputs/screenshots/dashboard_city_risk_rankings.png)
 
-### Country Risk Rankings
+### Geospatial City Risk Map
 
-![Country Risk Rankings](outputs/screenshots/dashboard_rankings.png)
+![Geospatial City Risk Map](outputs/screenshots/dashboard_city_risk_map.png)
 
-### Country Intelligence Profile
+### Access and Support Proxy Layer
 
-![Country Intelligence Profile](outputs/screenshots/dashboard_country_profile.png)
+![Access and Support Proxy Layer](outputs/screenshots/dashboard_access_support_proxy.png)
 
-### Executive Protection Intelligence Signal
+### Protective Intelligence Posture
 
-![Executive Protection Intelligence Signal](outputs/screenshots/dashboard_intelligence_signal.png)
-
-### 2026 Forward Risk Update
-
-![2026 Forward Risk Update](outputs/screenshots/dashboard_forward_risk.png)
-
-### Monte Carlo Risk Simulation
-
-![Monte Carlo Risk Simulation](outputs/screenshots/dashboard_monte_carlo.png)
-
-### Regional Spillover Risk
-
-![Regional Spillover Risk](outputs/screenshots/dashboard_spillover.png)
-
-### Model Governance and Data Coverage
-
-![Model Governance](outputs/screenshots/dashboard_governance.png)
+![Protective Intelligence Posture](outputs/screenshots/dashboard_pi_posture.png)
 
 ---
 
@@ -137,7 +150,9 @@ executive-protection-risk-intelligence-model/
 |   |   |-- acled_events.csv
 |   |   |-- acled_events_checkpoint.csv
 |   |   |-- acled_2025_2026_forward_events.csv
+|   |   |-- airports.csv
 |   |   |-- homicide_rate.csv
+|   |   |-- protective_intelligence_trip_inputs.csv
 |   |
 |   |-- processed/
 |       |-- worldbank_ep_indicators.csv
@@ -146,12 +161,17 @@ executive-protection-risk-intelligence-model/
 |       |-- energy_exposure_features.csv
 |       |-- executive_protection_master_dataset.csv
 |       |-- acled_2025_2026_country_trends.csv
+|       |-- city_ep_risk_features.csv
+|       |-- city_access_proxy_features.csv
+|       |-- protective_intelligence_trip_scores.csv
 |
 |-- outputs/
 |   |-- charts/
+|   |-- maps/
 |   |-- country_profiles/
 |   |-- reports/
 |   |-- tables/
+|   |-- screenshots/
 |
 |-- src/
 |   |-- __init__.py
@@ -159,7 +179,12 @@ executive-protection-risk-intelligence-model/
 |   |-- worldbank_api.py
 |   |-- acled_api.py
 |   |-- acled_processing.py
+|   |-- acled_city_processing.py
 |   |-- acled_forecast_update.py
+|   |-- access_proxy_layer.py
+|   |-- protective_intelligence_score.py
+|   |-- city_map_generator.py
+|   |-- city_visualization.py
 |   |-- crime_data.py
 |   |-- energy_exposure.py
 |   |-- data_processing.py
@@ -189,7 +214,7 @@ executive-protection-risk-intelligence-model/
 
 ### 1. ACLED Event Data
 
-ACLED is used to capture country-level political violence, protest activity, riots, battles, violence against civilians, explosions/remote violence, fatalities, high-fatality events, and geographic spread.
+ACLED is used to capture country-level and city/location-level political violence, protest activity, riots, battles, violence against civilians, explosions/remote violence, fatalities, high-fatality events, and geographic spread.
 
 The project supports ACLED data from the API and can also work from an existing raw CSV:
 
@@ -221,7 +246,7 @@ longitude
 fatalities
 ```
 
-ACLED-derived features include:
+ACLED-derived country features include:
 
 - `total_acled_events`
 - `total_fatalities`
@@ -243,6 +268,28 @@ ACLED-derived features include:
 - `violent_event_share`
 - `recent_event_momentum`
 - `recent_fatality_momentum`
+
+ACLED-derived city/location features include:
+
+- `events_30d`
+- `events_60d`
+- `events_90d`
+- `events_180d`
+- `fatalities_30d`
+- `fatalities_90d`
+- `civil_unrest_90d`
+- `political_violence_90d`
+- `protests_90d`
+- `riots_90d`
+- `violence_against_civilians_90d`
+- `civil_unrest_score`
+- `political_violence_score`
+- `severity_score`
+- `momentum_score`
+- `ep_relevance_score`
+- `city_ep_risk_score`
+- `signal`
+- `primary_driver`
 
 ### 2. World Bank Worldwide Governance Indicators
 
@@ -300,6 +347,73 @@ country_code,homicide_rate_per_100k_year
 ```
 
 The crime module uses latest-available carry-forward logic and adds data-quality flags so the model can distinguish direct, older, missing, and median-filled homicide proxy values.
+
+### 5. OurAirports Airport Reference Data
+
+The airport access proxy uses the public OurAirports airport reference dataset.
+
+Expected file:
+
+```text
+data/raw/airports.csv
+```
+
+Expected columns include:
+
+```text
+type
+name
+latitude_deg
+longitude_deg
+municipality
+iata_code
+```
+
+The access layer uses large and medium airports to estimate nearest-airport distance and airport access density around each ACLED city/location record.
+
+### 6. World Bank Medical Capacity Indicators
+
+The medical access proxy uses World Bank health indicators.
+
+| Indicator Code | Variable |
+|---|---|
+| `SH.MED.BEDS.ZS` | Hospital beds per 1,000 people |
+| `SH.MED.PHYS.ZS` | Physicians per 1,000 people |
+
+These are country-level proxies and should not be interpreted as local hospital capability or emergency medical availability.
+
+---
+
+### 7. Protective Intelligence Trip Input File
+
+The Protective Intelligence Exposure and Decision-Support Layer uses a structured trip-planning CSV to model principal exposure, movement predictability, venue exposure, hotel/airport exposure, online visibility, reputational sensitivity, and business-sector sensitivity.
+
+Expected file:
+
+```text
+data/raw/protective_intelligence_trip_inputs.csv
+```
+
+Expected columns include:
+
+```text
+trip_id
+principal
+city
+country
+scenario
+visibility_level
+travel_predictability
+venue_exposure
+hotel_airport_exposure
+online_visibility
+reputational_sensitivity
+business_sector_sensitivity
+```
+
+This file is intentionally structured as an analyst input rather than an automated feed, because real executive travel details are sensitive and context-specific.
+
+The trip-level scoring layer is designed for portfolio demonstration and decision-support modeling only. It should not be interpreted as a real protective operations plan or travel approval decision.
 
 ---
 
@@ -383,6 +497,130 @@ Uses recent ACLED event and fatality trends relative to trailing averages to ide
 
 ---
 
+## Phase 2: City-Level Protective Intelligence Layer
+
+The project includes a city/location-level protective intelligence module built from ACLED event records.
+
+This layer extends the country-level model by ranking ACLED city/location records according to:
+
+- Recent civil unrest
+- Political violence exposure
+- Fatality severity
+- Event momentum
+- EP-relevant exposure indicators
+- Protest, riot, violence-against-civilians, battle, and remote-violence activity
+- 30-day, 60-day, 90-day, and 180-day event windows
+
+The city layer produces a 0-100 **City EP Risk Score** and a qualitative risk signal.
+
+City-level outputs include:
+
+```text
+data/processed/city_ep_risk_features.csv
+outputs/tables/top_25_city_ep_risk_rankings.csv
+outputs/charts/top_20_city_ep_risk_rankings.png
+outputs/charts/top_15_city_risk_component_breakdown.png
+outputs/maps/city_ep_risk_map.html
+```
+
+The city model is intended as a protective intelligence screening layer. ACLED `location` values may represent cities, towns, neighborhoods, villages, districts, or event locations rather than formal municipal boundaries.
+
+The city-level score should be interpreted as a strategic screening and prioritization indicator, not as a tactical route plan, threat forecast, or travel approval decision.
+
+---
+
+## Phase 3: Airport and Medical Access Proxy Layer
+
+The project includes an airport and medical access proxy layer that adds support-environment context to the city-level risk model.
+
+This layer estimates where protective planning may face additional operating constraints by combining:
+
+- Nearest large or medium airport distance
+- Airport access status
+- Airports within 50 km, 100 km, and 150 km
+- Country-level hospital beds per 1,000 people
+- Country-level physicians per 1,000 people
+- Medical capacity proxy score
+- Support access score
+- Support gap score
+- Access-adjusted operational EP risk score
+
+Airport reference data comes from OurAirports and should be saved as:
+
+```text
+data/raw/airports.csv
+```
+
+Access proxy outputs include:
+
+```text
+data/processed/city_access_proxy_features.csv
+data/processed/protective_intelligence_trip_scores.csv
+outputs/tables/top_25_city_operational_risk_rankings.csv
+```
+
+The access-adjusted operational score increases when city-level risk is high and support access appears constrained.
+
+This layer is a planning-support proxy only. It is not a medical assessment, evacuation plan, hospital capability assessment, route plan, or tactical protective operations product.
+
+---
+
+## Phase 4: Protective Intelligence Exposure and Decision-Support Layer
+
+The project includes a Protective Intelligence Exposure and Decision-Support Layer that converts local threat context, support-access constraints, and trip/principal exposure assumptions into a trip-level **Protective Intelligence Risk Score**.
+
+This layer reflects the intelligence-led executive protection concept that modern EP is not only physical protection. It also requires structured information collection, exposure assessment, and decision support before risk becomes an incident.
+
+The layer combines:
+
+- Local threat environment from the city-level ACLED model
+- Support gap from the airport and medical access proxy layer
+- Principal / executive visibility
+- Movement predictability
+- Venue exposure
+- Hotel and airport exposure
+- Online visibility and information leakage
+- Reputational sensitivity
+- Business-sector sensitivity
+- Scenario-specific movement context
+
+The scoring module reads:
+
+```text
+data/raw/protective_intelligence_trip_inputs.csv
+```
+
+and produces:
+
+```text
+data/processed/protective_intelligence_trip_scores.csv
+outputs/tables/top_protective_intelligence_priorities.csv
+```
+
+The output includes:
+
+- Protective Intelligence Risk Score
+- Protective Intelligence signal
+- Protective posture recommendation
+- Analyst priority note
+- City context match flag
+- Local threat, support gap, exposure, and reputational component scores
+
+Protective posture categories include:
+
+| Score Range | Protective Posture |
+|---:|---|
+| 0-30 | Advisory / Routine Monitoring |
+| 30-45 | Standard EP Coverage |
+| 45-60 | Enhanced Advance Work |
+| 60-75 | Protective Intelligence Watch |
+| 75-85 | Route / Venue Redesign Recommended |
+| 85-100 | Senior Security Review / Consider Postponement |
+
+This layer is a decision-support and portfolio-demonstration layer. It does not approve, deny, or operationally plan travel.
+
+---
+
 ## Severity Calibration Layer
 
 The model includes a bounded severity calibration layer after the initial weighted score.
@@ -419,6 +657,8 @@ Each country receives a 0-100 Executive Protection Risk Score and a qualitative 
 | 50-70 | Elevated |
 | 70-85 | High |
 | 85-100 | Severe |
+
+City-level and operational city-level scores use similar screening signals, but they should be interpreted as prioritization indicators rather than travel approval decisions.
 
 ---
 
@@ -649,7 +889,7 @@ Country profiles summarize:
 
 ## Model Governance
 
-The project includes a model governance layer that documents intended use, not intended use, data-source dependencies, scoring structure, scenario assumptions, sensitivity design, forward-risk guardrails, and limitations.
+The project includes a model governance layer that documents intended use, not intended use, data-source dependencies, scoring structure, scenario assumptions, sensitivity design, forward-risk guardrails, city-level model limitations, support-access proxy assumptions, and general limitations.
 
 Outputs include:
 
@@ -707,6 +947,8 @@ Dashboard tabs include:
 
 - Rankings
 - Country Profile
+- City Risk
+- PI Posture
 - Intelligence Signal
 - Forward Risk
 - Monitoring
@@ -714,6 +956,26 @@ Dashboard tabs include:
 - Monte Carlo
 - Spillover
 - Governance
+
+The City Risk tab includes:
+
+- City/location-level ACLED risk rankings
+- City EP risk component breakdown
+- 30/60/90/180-day event metrics
+- Downloadable city risk tables
+- Interactive geospatial city risk map
+- Airport and medical access proxy layer
+- Access-adjusted operational EP risk ranking
+
+The PI Posture tab includes:
+
+- Protective Intelligence priority rankings
+- Scenario, signal, and posture filters
+- Protective Intelligence Risk Score chart
+- Trip exposure component view
+- Selected movement detail table
+- Analyst priority notes
+- Downloadable PI priorities table
 
 The dashboard also supports PDF download when the report exists in the configured report path.
 
@@ -730,6 +992,9 @@ data/processed/crime_features.csv
 data/processed/energy_exposure_features.csv
 data/processed/executive_protection_master_dataset.csv
 data/processed/acled_2025_2026_country_trends.csv
+data/processed/city_ep_risk_features.csv
+data/processed/city_access_proxy_features.csv
+data/processed/protective_intelligence_trip_scores.csv
 ```
 
 ### Tables
@@ -755,6 +1020,9 @@ outputs/tables/forward_2026_risk_scores.csv
 outputs/tables/forward_2026_top_risk_changes.csv
 outputs/tables/executive_protection_intelligence_signals.csv
 outputs/tables/top_intelligence_signal_countries.csv
+outputs/tables/top_25_city_ep_risk_rankings.csv
+outputs/tables/top_25_city_operational_risk_rankings.csv
+outputs/tables/top_protective_intelligence_priorities.csv
 outputs/tables/model_governance_summary.csv
 outputs/tables/model_assumptions_summary.csv
 outputs/tables/model_diagnostics_summary.csv
@@ -789,9 +1057,26 @@ outputs/charts/forward_2026_score_changes.png
 outputs/charts/forward_2026_acled_event_momentum.png
 outputs/charts/forward_2026_bucket_distribution.png
 outputs/charts/executive_protection_intelligence_signals.png
+outputs/charts/top_20_city_ep_risk_rankings.png
+outputs/charts/top_15_city_risk_component_breakdown.png
 ```
 
 Forward-risk charts are skipped when the underlying forward data would make them misleading, such as when all forward score changes are zero or target-year ACLED data is unavailable.
+
+### Maps
+
+```text
+outputs/maps/city_ep_risk_map.html
+```
+
+### Screenshots
+
+```text
+outputs/screenshots/dashboard_city_risk_rankings.png
+outputs/screenshots/dashboard_city_risk_map.png
+outputs/screenshots/dashboard_access_support_proxy.png
+outputs/screenshots/dashboard_pi_posture.png
+```
 
 ### Report
 
@@ -811,6 +1096,9 @@ The PDF report includes:
 - 2026 Forward Risk Update
 - Run-to-Run Change Detection
 - Civil Unrest and Political Violence
+- City-Level Protective Intelligence Layer
+- Airport and Medical Access Proxy Layer
+- Protective Intelligence Exposure and Decision-Support Layer
 - Energy Exposure, Governance, and Crime Risk
 - Scenario Analysis
 - Sensitivity Analysis
@@ -833,6 +1121,7 @@ __pycache__/
 data/raw/
 data/processed/
 outputs/tables/
+outputs/maps/
 ```
 
 Recommended files and folders to include for portfolio presentation:
@@ -861,7 +1150,7 @@ python -m venv .venv
 Install dependencies:
 
 ```powershell
-pip install -r requirements.txt
+python -m pip install -r requirements.txt
 ```
 
 Recommended packages include:
@@ -875,6 +1164,7 @@ scikit-learn
 matplotlib
 reportlab
 streamlit
+plotly
 ```
 
 ---
@@ -905,10 +1195,15 @@ The full pipeline will:
 14. Calculate 2026 forward-risk scores
 15. Build executive protection intelligence signals
 16. Generate country intelligence profiles
-17. Save charts
-18. Run model diagnostics
-19. Build model governance documentation
-20. Generate the PDF report
+17. Save country-level charts
+18. Build city-level ACLED protective intelligence rankings
+19. Save city-level protective intelligence charts
+20. Generate the city-level geospatial risk map
+21. Build the airport and medical access proxy layer
+22. Build protective intelligence exposure and posture scores
+23. Run model diagnostics
+24. Build model governance documentation
+25. Generate the PDF report
 
 ---
 
@@ -934,6 +1229,11 @@ python -m src.forward_risk_model
 python -m src.intelligence_signal
 python -m src.country_profile_generator
 python -m src.visualization
+python -m src.acled_city_processing
+python -m src.city_visualization
+python -m src.city_map_generator
+python -m src.access_proxy_layer
+python -m src.protective_intelligence_score
 python -m src.model_diagnostics
 python -m src.model_governance
 python -m src.report_generator
@@ -941,11 +1241,22 @@ python -m src.report_generator
 
 If the ACLED raw file already exists and you do not want a long API pull, do not force refresh the baseline ACLED download.
 
+If your project folder was moved or copied and the virtual environment launchers point to an old path, use:
+
+```powershell
+python -m pip install package_name
+python -m streamlit run app.py
+```
+
+instead of direct `pip` or `streamlit` commands.
+
 ---
 
 ## Example Current Output
 
 Recent model output identified Ukraine as the highest baseline Executive Protection Risk country and the top Executive Protection Intelligence Signal. The current report also identifies that the 2026 forward-risk layer is initialized but baseline-retained because target-year ACLED data is unavailable.
+
+The city-level model identified Salvador, Brazil as the highest city/location-level ACLED risk record in the current run, and the access-adjusted operational layer ranks city/location records by combining city risk with airport and medical support-access constraints.
 
 Key current-output themes:
 
@@ -954,9 +1265,12 @@ Key current-output themes:
 - Monte Carlo robustness testing shows a stable top-risk group.
 - Regional spillover exposure is highest for Ukraine and Nigeria.
 - The 2026 forward layer is not treated as risk easing when target-year ACLED data is unavailable.
+- City-level ACLED analysis highlights urban/location-level variation that country-level scores can obscure.
+- The access-support proxy layer adds airport and medical-capacity context to city-level risk screening.
+- The Protective Intelligence layer converts trip-level exposure assumptions into posture recommendations and analyst priority notes.
 - No material run-to-run changes were detected in the most recent report output.
 
-These outputs will change as input data, model parameters, or forward-year ACLED availability change.
+These outputs will change as input data, model parameters, airport reference data, medical indicator availability, trip-input assumptions, or forward-year ACLED availability change.
 
 ---
 
@@ -965,6 +1279,7 @@ These outputs will change as input data, model parameters, or forward-year ACLED
 This project can support questions such as:
 
 - Which countries have the highest modeled executive protection risk for energy-sector operations?
+- Which cities or ACLED locations show the highest recent city-level EP risk signal?
 - Where do civil unrest and energy-sector exposure overlap?
 - Which countries combine weak governance with high public-order risk?
 - Which countries have high baseline risk but are especially sensitive to high-visibility executive visit scenarios?
@@ -974,7 +1289,10 @@ This project can support questions such as:
 - Which countries have elevated regional spillover exposure?
 - Which countries receive the strongest Executive Protection Intelligence Signal?
 - How should missing forward-year ACLED data be handled to avoid false risk easing?
-- Which countries may require enhanced travel, event, or site-visit risk review?
+- Which cities combine elevated event risk with constrained airport or medical-capacity proxy conditions?
+- Which locations may require enhanced travel, event, or site-visit risk review?
+- Which planned movements combine local risk, support constraints, and exposure assumptions into elevated Protective Intelligence priority?
+- Which trips may require enhanced advance work, protective intelligence watch, route or venue redesign review, or senior security review?
 
 ---
 
@@ -986,6 +1304,8 @@ This model is intended for:
 - Security risk intelligence
 - Executive protection strategy analysis
 - Energy-sector operating-risk analysis
+- City/location-level protective intelligence screening
+- Protective intelligence posture modeling
 - Portfolio demonstration
 - LinkedIn and GitHub publication
 - Data-driven risk modeling practice
@@ -999,6 +1319,7 @@ It is not intended to replace professional security assessments, protective inte
 This model uses public country-level and event-level data. It does not include:
 
 - Confidential executive travel itineraries
+- Real principal identity, itinerary leakage, family exposure, or social-media threat monitoring
 - Company-specific asset locations
 - Real-time protective intelligence
 - Local law-enforcement reporting
@@ -1008,12 +1329,18 @@ This model uses public country-level and event-level data. It does not include:
 - Internal corporate security controls
 - Proprietary security or geopolitical intelligence
 - Travel-party composition
-- Airport, hospital, or emergency response constraints
+- Local airport operating status, real-time flight availability, hospital capability, ambulance availability, or evacuation feasibility
 - Asset-level access-control details
 
 Because of these limitations, this project should be viewed as a strategic screening and research model rather than a tactical executive protection plan.
 
 Country-level scores can obscure local variation. A low-risk national score does not mean every city, venue, route, event, or asset is low risk. A high-risk national score does not mean all travel is infeasible. The model is best used as a prioritization and analytical triage tool.
+
+ACLED location names are treated as city/location-level records. Some entries may represent neighborhoods, towns, villages, districts, or event locations rather than formal city boundaries.
+
+The airport and medical access layer uses public proxy data. Airport distance is based on reference airport locations, and medical capacity is based on country-level World Bank indicators. These features should be interpreted as planning-support context, not as a medical, evacuation, logistics, or tactical security assessment.
+
+The Protective Intelligence Exposure and Decision-Support Layer uses structured analyst assumptions from a CSV input. It is intended to demonstrate a repeatable scoring workflow and should not be interpreted as real itinerary intelligence, principal-specific threat assessment, or operational recommendation.
 
 ---
 
@@ -1021,23 +1348,24 @@ Country-level scores can obscure local variation. A low-risk national score does
 
 Potential improvements include:
 
-- Add city-level or subnational risk scoring
-- Add geospatial mapping of risk indicators
-- Add energy infrastructure proximity analysis
-- Add event-level trend monitoring over the last 30, 60, and 90 days
-- Add kidnapping or organized-crime indicators if reliable public data becomes available
-- Add travel infrastructure indicators such as airport access and emergency medical capacity
-- Add country intelligence briefs for top-risk executive travel scenarios
-- Add dashboard screenshots and usage examples
+- Add city-level intelligence brief generation
+- Add selected-trip Protective Intelligence brief exports
+- Add scenario-adjusted city travel risk scoring
+- Add richer venue-type and event-type exposure assumptions
+- Add online visibility / itinerary leakage proxy data where defensible
+- Add family / residential exposure review fields for synthetic scenario modeling
+- Add selected-city PDF brief exports
 - Add Power BI or Tableau dashboard version
 - Add automated PDF appendix with methodology and data dictionary
-- Add event-level geospatial heat maps for selected countries
+- Add richer geospatial filtering by event type, country, and recent time window
+- Add additional public support-environment proxies where defensible
+- Add workflow diagrams and methodology architecture visuals
 
 ---
 
 ## Suggested Portfolio Framing
 
-This project demonstrates the use of public OSINT datasets to build a quantitative risk-intelligence framework for executive protection and global energy operations. It combines political violence data, governance indicators, violent-crime proxies, energy-sector exposure metrics, regional spillover analysis, Monte Carlo robustness testing, and executive-facing intelligence signals into a structured country-level model that can support strategic planning, travel risk screening, scenario analysis, sensitivity testing, forward-risk monitoring, and portfolio demonstration.
+This project demonstrates the use of public OSINT datasets to build a quantitative risk-intelligence framework for executive protection and global energy operations. It combines political violence data, governance indicators, violent-crime proxies, energy-sector exposure metrics, regional spillover analysis, Monte Carlo robustness testing, city/location-level ACLED analysis, geospatial mapping, airport access proxies, medical capacity proxies, protective intelligence exposure scoring, posture recommendations, and executive-facing intelligence signals into a structured model that can support strategic planning, travel risk screening, scenario analysis, sensitivity testing, forward-risk monitoring, support-access review, protective intelligence posture screening, and portfolio demonstration.
 
 It is especially relevant to roles involving:
 
@@ -1063,6 +1391,6 @@ keenjasonr@gmail.com
 
 ## Disclaimer
 
-This project is an independent research and portfolio project. It is not affiliated with, endorsed by, or representative of any company, government agency, security organization, ACLED, the World Bank, or any other organization referenced through public data sources.
+This project is an independent research and portfolio project. It is not affiliated with, endorsed by, or representative of any company, government agency, security organization, ACLED, the World Bank, OurAirports, or any other organization referenced through public data sources.
 
 The model is intended for strategic research, OSINT analysis, and portfolio demonstration purposes only. It does not represent an internal corporate security methodology, proprietary executive protection process, or operational security plan.
