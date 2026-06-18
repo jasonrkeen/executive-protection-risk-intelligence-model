@@ -2,31 +2,31 @@
 
 ## Summary
 
-Libya is classified as **Moderate** with a modeled Executive Protection Risk Score of **46.62**. The country profile is primarily shaped by weak governance or rule-of-law conditions. This profile should be used as a strategic screening input rather than a tactical travel decision tool.
+Libya is classified as **Moderate** with a modeled Executive Protection Risk Score of **33.51**. The country profile is primarily shaped by a mixed risk-driver profile without one dominant extreme component. This profile should be used as a strategic screening input rather than a tactical travel decision tool.
 
 ## Baseline Risk Snapshot
 
 | Metric | Value |
 |---|---:|
 | Country code | LBY |
-| Executive Protection Risk Score | 46.62 |
+| Executive Protection Risk Score | 33.51 |
 | Risk bucket | Moderate |
-| Weighted baseline score | 38.62 |
-| Severity uplift | 8 |
+| Weighted baseline score | 30.51 |
+| Severity uplift | 3 |
 | Data coverage flag | Moderate data coverage |
 
 ## Top Risk Drivers
 
-- **Governance / Rule-of-Law Risk:** 90.57
 - **Energy-Sector Exposure:** 60.78
 - **Recent Risk Momentum:** 53.88
+- **Governance / Rule-of-Law Risk:** 50.00
 
 ## Component Scores
 
 | Component | Score |
 |---|---:|
 | Civil Unrest / Political Violence | 7.06 |
-| Governance / Rule-of-Law Risk | 90.57 |
+| Governance / Rule-of-Law Risk | 50 |
 | Violent-Crime Proxy Risk | 3.29 |
 | Energy-Sector Exposure | 60.78 |
 | Recent Risk Momentum | 53.88 |
@@ -48,10 +48,10 @@ Libya is classified as **Moderate** with a modeled Executive Protection Risk Sco
 
 | Indicator | Value |
 |---|---:|
-| Political stability | -2.17 |
-| Rule of law | -1.77 |
-| Control of corruption | -1.53 |
-| Government effectiveness | -1.64 |
+| Political stability | N/A |
+| Rule of law | N/A |
+| Control of corruption | N/A |
+| Government effectiveness | N/A |
 | Homicide rate per 100k | 2.58 |
 | Homicide data year | N/A |
 | Crime data quality | Median-filled homicide proxy |
@@ -62,13 +62,13 @@ Libya is classified as **Moderate** with a modeled Executive Protection Risk Sco
 
 | Scenario | Baseline | Scenario Score | Lift | Scenario Bucket |
 |---|---:|---:|---:|---|
-| High Visibility Executive Visit | 46.62 | 65.27 | 18.65 | Elevated |
-| Travel During Civil Unrest | 46.62 | 62.94 | 16.32 | Elevated |
-| Major Energy Project Announcement | 46.62 | 60.61 | 13.99 | Elevated |
-| Labor Unrest Or Protest Environment | 46.62 | 58.27 | 11.66 | Elevated |
-| Site Visit To Energy Asset | 46.62 | 55.94 | 9.32 | Elevated |
-| Public Energy Event | 46.62 | 53.61 | 6.99 | Elevated |
-| Routine Executive Travel | 46.62 | 46.62 | 0 | Moderate |
+| High Visibility Executive Visit | 33.51 | 46.91 | 13.40 | Moderate |
+| Travel During Civil Unrest | 33.51 | 45.24 | 11.73 | Moderate |
+| Major Energy Project Announcement | 33.51 | 43.56 | 10.05 | Moderate |
+| Labor Unrest Or Protest Environment | 33.51 | 41.89 | 8.38 | Moderate |
+| Site Visit To Energy Asset | 33.51 | 40.21 | 6.70 | Moderate |
+| Public Energy Event | 33.51 | 38.54 | 5.03 | Moderate |
+| Routine Executive Travel | 33.51 | 33.51 | 0 | Moderate |
 
 ## 2026 Forward Risk View
 

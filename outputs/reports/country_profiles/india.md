@@ -2,22 +2,22 @@
 
 ## Summary
 
-India is classified as **Moderate** with a modeled Executive Protection Risk Score of **44.83**. The country profile is primarily shaped by a mixed risk-driver profile without one dominant extreme component. This profile should be used as a strategic screening input rather than a tactical travel decision tool.
+India is classified as **Moderate** with a modeled Executive Protection Risk Score of **45.08**. The country profile is primarily shaped by a mixed risk-driver profile without one dominant extreme component. This profile should be used as a strategic screening input rather than a tactical travel decision tool.
 
 ## Baseline Risk Snapshot
 
 | Metric | Value |
 |---|---:|
 | Country code | IND |
-| Executive Protection Risk Score | 44.83 |
+| Executive Protection Risk Score | 45.08 |
 | Risk bucket | Moderate |
-| Weighted baseline score | 28.83 |
+| Weighted baseline score | 29.08 |
 | Severity uplift | 16 |
 | Data coverage flag | Strong data coverage |
 
 ## Top Risk Drivers
 
-- **Governance / Rule-of-Law Risk:** 48.73
+- **Governance / Rule-of-Law Risk:** 50.00
 - **Recent Risk Momentum:** 44.14
 - **Civil Unrest / Political Violence:** 32.78
 
@@ -26,7 +26,7 @@ India is classified as **Moderate** with a modeled Executive Protection Risk Sco
 | Component | Score |
 |---|---:|
 | Civil Unrest / Political Violence | 32.78 |
-| Governance / Rule-of-Law Risk | 48.73 |
+| Governance / Rule-of-Law Risk | 50 |
 | Violent-Crime Proxy Risk | 3.60 |
 | Energy-Sector Exposure | 13.26 |
 | Recent Risk Momentum | 44.14 |
@@ -48,10 +48,10 @@ India is classified as **Moderate** with a modeled Executive Protection Risk Sco
 
 | Indicator | Value |
 |---|---:|
-| Political stability | -0.64 |
-| Rule of law | 0.19 |
-| Control of corruption | -0.37 |
-| Government effectiveness | 0.48 |
+| Political stability | N/A |
+| Rule of law | N/A |
+| Control of corruption | N/A |
+| Government effectiveness | N/A |
 | Homicide rate per 100k | 2.82 |
 | Homicide data year | 2,022 |
 | Crime data quality | Homicide proxy populated |
@@ -62,13 +62,13 @@ India is classified as **Moderate** with a modeled Executive Protection Risk Sco
 
 | Scenario | Baseline | Scenario Score | Lift | Scenario Bucket |
 |---|---:|---:|---:|---|
-| High Visibility Executive Visit | 44.83 | 62.76 | 17.93 | Elevated |
-| Travel During Civil Unrest | 44.83 | 60.52 | 15.69 | Elevated |
-| Major Energy Project Announcement | 44.83 | 58.28 | 13.45 | Elevated |
-| Labor Unrest Or Protest Environment | 44.83 | 56.04 | 11.21 | Elevated |
-| Site Visit To Energy Asset | 44.83 | 53.80 | 8.97 | Elevated |
-| Public Energy Event | 44.83 | 51.55 | 6.72 | Elevated |
-| Routine Executive Travel | 44.83 | 44.83 | 0 | Moderate |
+| High Visibility Executive Visit | 45.08 | 63.11 | 18.03 | Elevated |
+| Travel During Civil Unrest | 45.08 | 60.86 | 15.78 | Elevated |
+| Major Energy Project Announcement | 45.08 | 58.60 | 13.52 | Elevated |
+| Labor Unrest Or Protest Environment | 45.08 | 56.35 | 11.27 | Elevated |
+| Site Visit To Energy Asset | 45.08 | 54.10 | 9.02 | Elevated |
+| Public Energy Event | 45.08 | 51.84 | 6.76 | Elevated |
+| Routine Executive Travel | 45.08 | 45.08 | 0 | Moderate |
 
 ## 2026 Forward Risk View
 

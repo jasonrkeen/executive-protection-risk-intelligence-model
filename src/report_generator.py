@@ -91,6 +91,18 @@ TOP_PROTECTIVE_INTELLIGENCE_PRIORITIES_FILE = (
     PROJECT_ROOT / "outputs" / "tables" / "top_protective_intelligence_priorities.csv"
 )
 
+PROTECTIVE_INTELLIGENCE_DECISION_SUPPORT_FILE = (
+    PROJECT_ROOT / "outputs" / "tables" / "protective_intelligence_decision_support.csv"
+)
+
+TOP_DECISION_ESCALATIONS_FILE = (
+    PROJECT_ROOT / "outputs" / "tables" / "top_decision_escalations.csv"
+)
+
+DECISION_RULE_AUDIT_FILE = (
+    PROJECT_ROOT / "outputs" / "tables" / "decision_rule_audit.csv"
+)
+
 
 REPORT_SUBTITLE = (
     "Country, city, support-access, and protective intelligence posture modeling "
@@ -620,7 +632,7 @@ def add_executive_summary(
             "momentum features, city/location-level protective intelligence, airport "
             "and medical support-access proxies, regional spillover analysis, Monte "
             "Carlo robustness testing, an executive-facing intelligence signal layer, "
-            "and a trip-level Protective Intelligence posture model. The output is "
+            "and a trip-level Protective Intelligence posture model with a COA-oriented decision-support layer. The output is "
             "designed to support strategic thinking around executive travel, site visits, "
             "public events, operating-environment risk, and intelligence-led protective "
             "planning. "
@@ -644,6 +656,7 @@ def add_key_findings_section(
     monte_carlo_top20,
     spillover_top,
     top_pi_priorities=None,
+    top_decision_escalations=None,
 ):
     """
     Add polished key findings table near the front of the report.
@@ -736,6 +749,28 @@ def add_key_findings_section(
                     f"{top_pi.get('country', 'N/A')} "
                     f"({round(float(top_pi.get('protective_intelligence_risk_score', 0)), 2)}, "
                     f"{top_pi.get('protective_intelligence_signal', 'N/A')})",
+                )
+            )
+
+    if top_decision_escalations is not None and not top_decision_escalations.empty:
+        if (
+            "protective_intelligence_risk_score" in top_decision_escalations.columns
+            and "coa_level" in top_decision_escalations.columns
+        ):
+            top_decision = top_decision_escalations.sort_values(
+                "protective_intelligence_risk_score",
+                ascending=False,
+            ).iloc[0]
+
+            findings.append(
+                (
+                    "Top COA decision-support priority",
+                    f"{top_decision.get('trip_id', 'N/A')} / "
+                    f"{top_decision.get('city', 'N/A')}, "
+                    f"{top_decision.get('country', 'N/A')} "
+                    f"({round(float(top_decision.get('protective_intelligence_risk_score', 0)), 2)}, "
+                    f"{top_decision.get('coa_level', 'N/A')} - "
+                    f"{top_decision.get('protective_intelligence_recommendation', 'N/A')})",
                 )
             )
 
@@ -1918,6 +1953,231 @@ def add_protective_intelligence_posture_section(
     )
 
 
+
+def add_protective_intelligence_decision_support_section(
+    story,
+    styles,
+    decision_support,
+    top_decision_escalations,
+    decision_rule_audit,
+):
+    """
+    Add the Protective Intelligence COA Decision-Support Layer.
+    """
+
+    if decision_support.empty and top_decision_escalations.empty:
+        return
+
+    story.append(PageBreak())
+    story.append(
+        Paragraph(
+            "Protective Intelligence COA Decision-Support Layer",
+            styles["heading"],
+        )
+    )
+
+    story.append(
+        Paragraph(
+            "The Protective Intelligence COA decision-support layer converts trip-level "
+            "risk scores and trigger flags into explainable courses of action for "
+            "analyst review. The goal is to move beyond identifying elevated risk and "
+            "toward documenting the type of review, validation, monitoring, or escalation "
+            "that may be appropriate in a protective intelligence workflow.",
+            styles["body"],
+        )
+    )
+
+    table_df = (
+        top_decision_escalations
+        if not top_decision_escalations.empty
+        else decision_support
+    ).copy()
+
+    if "decision_priority_rank" in table_df.columns:
+        table_df = table_df.sort_values(
+            "decision_priority_rank",
+            ascending=False,
+        )
+
+    if not table_df.empty and "protective_intelligence_risk_score" in table_df.columns:
+        top_decision = table_df.sort_values(
+            "protective_intelligence_risk_score",
+            ascending=False,
+        ).iloc[0]
+
+        story.append(
+            Paragraph(
+                f"The highest COA decision-support priority is "
+                f"{top_decision.get('trip_id', 'N/A')} for "
+                f"{top_decision.get('principal', 'N/A')} in "
+                f"{top_decision.get('city', 'N/A')}, "
+                f"{top_decision.get('country', 'N/A')}. The PI Risk Score is "
+                f"{round(float(top_decision.get('protective_intelligence_risk_score', 0)), 2)}, "
+                f"with COA level: {top_decision.get('coa_level', 'N/A')} and "
+                f"recommendation: "
+                f"{top_decision.get('protective_intelligence_recommendation', 'N/A')}.",
+                styles["body"],
+            )
+        )
+
+    story.append(Paragraph("Top COA Decision-Support Priorities", styles["subheading"]))
+    story.append(
+        build_table(
+            table_df,
+            [
+                "trip_id",
+                "principal",
+                "city",
+                "country",
+                "scenario",
+                "protective_intelligence_risk_score",
+                "risk_band",
+                "coa_level",
+                "protective_intelligence_recommendation",
+                "primary_decision_driver",
+                "data_confidence",
+            ],
+            max_rows=12,
+            font_size=5,
+            header_labels={
+                "trip_id": "Trip",
+                "principal": "Principal",
+                "city": "City",
+                "country": "Country",
+                "scenario": "Scenario",
+                "protective_intelligence_risk_score": "PI Score",
+                "risk_band": "Band",
+                "coa_level": "COA",
+                "protective_intelligence_recommendation": "Recommendation",
+                "primary_decision_driver": "Primary Driver",
+                "data_confidence": "Confidence",
+            },
+        )
+    )
+
+    if not table_df.empty:
+        story.append(Paragraph("Decision Drivers and Analyst Notes", styles["subheading"]))
+
+        note_columns = [
+            column
+            for column in [
+                "trip_id",
+                "coa_level",
+                "primary_decision_driver",
+                "secondary_decision_driver",
+                "supporting_indicators",
+                "analyst_note",
+            ]
+            if column in table_df.columns
+        ]
+
+        if note_columns:
+            story.append(
+                build_table(
+                    table_df[note_columns],
+                    note_columns,
+                    max_rows=8,
+                    font_size=5,
+                    header_labels={
+                        "trip_id": "Trip",
+                        "coa_level": "COA",
+                        "primary_decision_driver": "Primary Driver",
+                        "secondary_decision_driver": "Secondary Driver",
+                        "supporting_indicators": "Supporting Indicators",
+                        "analyst_note": "Analyst Note",
+                    },
+                )
+            )
+
+    trigger_columns = [
+        "trip_id",
+        "trigger_count",
+        "trigger_support_gap",
+        "trigger_predictable_movement",
+        "trigger_online_visibility",
+        "trigger_city_risk_momentum",
+        "trigger_high_city_risk",
+        "trigger_high_score_plus_support_gap",
+        "trigger_multiple_high_triggers",
+    ]
+
+    available_trigger_columns = [
+        column for column in trigger_columns if column in table_df.columns
+    ]
+
+    if available_trigger_columns:
+        story.append(Paragraph("Decision Trigger Flags", styles["subheading"]))
+        story.append(
+            build_table(
+                table_df[available_trigger_columns],
+                available_trigger_columns,
+                max_rows=8,
+                font_size=5,
+                header_labels={
+                    "trip_id": "Trip",
+                    "trigger_count": "Triggers",
+                    "trigger_support_gap": "Support Gap",
+                    "trigger_predictable_movement": "Predictable",
+                    "trigger_online_visibility": "Online",
+                    "trigger_city_risk_momentum": "Momentum",
+                    "trigger_high_city_risk": "City Risk",
+                    "trigger_high_score_plus_support_gap": "High+Gap",
+                    "trigger_multiple_high_triggers": "Multi",
+                },
+            )
+        )
+
+    if not decision_rule_audit.empty:
+        story.append(Paragraph("Decision Rule Audit", styles["subheading"]))
+
+        audit_columns = [
+            column
+            for column in [
+                "rule_id",
+                "min_score",
+                "max_score",
+                "required_condition",
+                "coa_level",
+                "recommendation",
+                "rules_file_loaded",
+                "total_decision_records",
+                "record_count",
+            ]
+            if column in decision_rule_audit.columns
+        ]
+
+        if audit_columns:
+            story.append(
+                build_table(
+                    decision_rule_audit[audit_columns],
+                    audit_columns,
+                    max_rows=12,
+                    font_size=5,
+                    header_labels={
+                        "rule_id": "Rule",
+                        "min_score": "Min",
+                        "max_score": "Max",
+                        "required_condition": "Condition",
+                        "coa_level": "COA",
+                        "recommendation": "Recommendation",
+                        "rules_file_loaded": "Rules Loaded",
+                        "total_decision_records": "Records",
+                        "record_count": "Rule Count",
+                    },
+                )
+            )
+
+    story.append(
+        Paragraph(
+            "Interpretation note: the COA decision-support layer is an analyst-facing "
+            "triage tool. It recommends review posture categories such as monitoring, "
+            "validation, enhanced advance work, security lead review, senior review, "
+            "or posture reassessment. It does not provide tactical instructions, route "
+            "approval, venue approval, or a real-world incident probability forecast.",
+            styles["small"],
+        )
+    )
+
 def add_energy_governance_crime_section(story, styles, rankings):
     story.append(Paragraph("Energy Exposure, Governance, and Crime Risk", styles["heading"]))
     story.append(
@@ -2544,6 +2804,17 @@ def add_limitations(story, styles):
         )
     )
 
+    story.append(
+        Paragraph(
+            "The COA decision-support layer translates scores and trigger flags into "
+            "review recommendations for analyst triage. These outputs should not be "
+            "treated as binding operational decisions, tactical instructions, route "
+            "approval, venue approval, protective detail staffing guidance, or final "
+            "go/no-go determinations.",
+            styles["body"],
+        )
+    )
+
 
 def generate_report():
     print("Generating PDF report...")
@@ -2590,6 +2861,10 @@ def generate_report():
     pi_trip_scores = read_csv_if_exists(PROTECTIVE_INTELLIGENCE_TRIP_SCORES_FILE)
     top_pi_priorities = read_csv_if_exists(TOP_PROTECTIVE_INTELLIGENCE_PRIORITIES_FILE)
 
+    decision_support = read_csv_if_exists(PROTECTIVE_INTELLIGENCE_DECISION_SUPPORT_FILE)
+    top_decision_escalations = read_csv_if_exists(TOP_DECISION_ESCALATIONS_FILE)
+    decision_rule_audit = read_csv_if_exists(DECISION_RULE_AUDIT_FILE)
+
     if rankings.empty:
         raise FileNotFoundError(
             f"Risk rankings not available at {RISK_RANKINGS_FILE}. "
@@ -2630,6 +2905,7 @@ def generate_report():
         monte_carlo_top20,
         spillover_top,
         top_pi_priorities,
+        top_decision_escalations,
     )
     add_model_framework(story, styles)
     add_top_risk_section(story, styles, rankings)
@@ -2672,6 +2948,13 @@ def generate_report():
         styles,
         pi_trip_scores,
         top_pi_priorities,
+    )
+    add_protective_intelligence_decision_support_section(
+        story,
+        styles,
+        decision_support,
+        top_decision_escalations,
+        decision_rule_audit,
     )
     add_energy_governance_crime_section(story, styles, rankings)
     add_scenario_section(story, styles, scenarios, scenario_top, scenario_summary)

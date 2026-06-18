@@ -2,23 +2,23 @@
 
 ## Summary
 
-Congo, Rep. is classified as **Moderate** with a modeled Executive Protection Risk Score of **46.01**. The country profile is primarily shaped by high strategic energy-sector exposure. This profile should be used as a strategic screening input rather than a tactical travel decision tool.
+Congo, Rep. is classified as **Moderate** with a modeled Executive Protection Risk Score of **34.13**. The country profile is primarily shaped by high strategic energy-sector exposure. This profile should be used as a strategic screening input rather than a tactical travel decision tool.
 
 ## Baseline Risk Snapshot
 
 | Metric | Value |
 |---|---:|
 | Country code | COG |
-| Executive Protection Risk Score | 46.01 |
+| Executive Protection Risk Score | 34.13 |
 | Risk bucket | Moderate |
-| Weighted baseline score | 38.01 |
-| Severity uplift | 8 |
+| Weighted baseline score | 34.13 |
+| Severity uplift | 0 |
 | Data coverage flag | Partial data coverage |
 
 ## Top Risk Drivers
 
 - **Energy-Sector Exposure:** 99.22
-- **Governance / Rule-of-Law Risk:** 69.42
+- **Governance / Rule-of-Law Risk:** 50.00
 - **Recent Risk Momentum:** 37.89
 
 ## Component Scores
@@ -26,7 +26,7 @@ Congo, Rep. is classified as **Moderate** with a modeled Executive Protection Ri
 | Component | Score |
 |---|---:|
 | Civil Unrest / Political Violence | 0 |
-| Governance / Rule-of-Law Risk | 69.42 |
+| Governance / Rule-of-Law Risk | 50 |
 | Violent-Crime Proxy Risk | 3.29 |
 | Energy-Sector Exposure | 99.22 |
 | Recent Risk Momentum | 37.89 |
@@ -48,10 +48,10 @@ Congo, Rep. is classified as **Moderate** with a modeled Executive Protection Ri
 
 | Indicator | Value |
 |---|---:|
-| Political stability | 0.02 |
-| Rule of law | -1.02 |
-| Control of corruption | -1.35 |
-| Government effectiveness | -1.33 |
+| Political stability | N/A |
+| Rule of law | N/A |
+| Control of corruption | N/A |
+| Government effectiveness | N/A |
 | Homicide rate per 100k | 2.58 |
 | Homicide data year | N/A |
 | Crime data quality | Median-filled homicide proxy |
@@ -62,13 +62,13 @@ Congo, Rep. is classified as **Moderate** with a modeled Executive Protection Ri
 
 | Scenario | Baseline | Scenario Score | Lift | Scenario Bucket |
 |---|---:|---:|---:|---|
-| High Visibility Executive Visit | 46.01 | 64.41 | 18.40 | Elevated |
-| Travel During Civil Unrest | 46.01 | 62.11 | 16.10 | Elevated |
-| Major Energy Project Announcement | 46.01 | 59.81 | 13.80 | Elevated |
-| Labor Unrest Or Protest Environment | 46.01 | 57.51 | 11.50 | Elevated |
-| Site Visit To Energy Asset | 46.01 | 55.21 | 9.20 | Elevated |
-| Public Energy Event | 46.01 | 52.91 | 6.90 | Elevated |
-| Routine Executive Travel | 46.01 | 46.01 | 0 | Moderate |
+| High Visibility Executive Visit | 34.13 | 47.78 | 13.65 | Moderate |
+| Travel During Civil Unrest | 34.13 | 46.08 | 11.95 | Moderate |
+| Major Energy Project Announcement | 34.13 | 44.37 | 10.24 | Moderate |
+| Labor Unrest Or Protest Environment | 34.13 | 42.66 | 8.53 | Moderate |
+| Site Visit To Energy Asset | 34.13 | 40.96 | 6.83 | Moderate |
+| Public Energy Event | 34.13 | 39.25 | 5.12 | Moderate |
+| Routine Executive Travel | 34.13 | 34.13 | 0 | Moderate |
 
 ## 2026 Forward Risk View
 

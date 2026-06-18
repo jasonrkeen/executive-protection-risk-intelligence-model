@@ -2,31 +2,31 @@
 
 ## Summary
 
-Oman is classified as **Moderate** with a modeled Executive Protection Risk Score of **47.42**. The country profile is primarily shaped by high strategic energy-sector exposure. This profile should be used as a strategic screening input rather than a tactical travel decision tool.
+Oman is classified as **Elevated** with a modeled Executive Protection Risk Score of **50.18**. The country profile is primarily shaped by high strategic energy-sector exposure. This profile should be used as a strategic screening input rather than a tactical travel decision tool.
 
 ## Baseline Risk Snapshot
 
 | Metric | Value |
 |---|---:|
 | Country code | OMN |
-| Executive Protection Risk Score | 47.42 |
-| Risk bucket | Moderate |
-| Weighted baseline score | 34.42 |
+| Executive Protection Risk Score | 50.18 |
+| Risk bucket | Elevated |
+| Weighted baseline score | 37.18 |
 | Severity uplift | 13 |
 | Data coverage flag | Strong data coverage |
 
 ## Top Risk Drivers
 
 - **Energy-Sector Exposure:** 87.19
+- **Governance / Rule-of-Law Risk:** 50.00
 - **Recent Risk Momentum:** 49.66
-- **Governance / Rule-of-Law Risk:** 36.18
 
 ## Component Scores
 
 | Component | Score |
 |---|---:|
 | Civil Unrest / Political Violence | 13.62 |
-| Governance / Rule-of-Law Risk | 36.18 |
+| Governance / Rule-of-Law Risk | 50 |
 | Violent-Crime Proxy Risk | 0.09 |
 | Energy-Sector Exposure | 87.19 |
 | Recent Risk Momentum | 49.66 |
@@ -48,10 +48,10 @@ Oman is classified as **Moderate** with a modeled Executive Protection Risk Scor
 
 | Indicator | Value |
 |---|---:|
-| Political stability | 0.59 |
-| Rule of law | 0.61 |
-| Control of corruption | 0.22 |
-| Government effectiveness | 0.27 |
+| Political stability | N/A |
+| Rule of law | N/A |
+| Control of corruption | N/A |
+| Government effectiveness | N/A |
 | Homicide rate per 100k | 0.14 |
 | Homicide data year | 2,023 |
 | Crime data quality | Homicide proxy populated |
@@ -62,13 +62,13 @@ Oman is classified as **Moderate** with a modeled Executive Protection Risk Scor
 
 | Scenario | Baseline | Scenario Score | Lift | Scenario Bucket |
 |---|---:|---:|---:|---|
-| High Visibility Executive Visit | 47.42 | 66.39 | 18.97 | Elevated |
-| Travel During Civil Unrest | 47.42 | 64.02 | 16.60 | Elevated |
-| Major Energy Project Announcement | 47.42 | 61.65 | 14.23 | Elevated |
-| Labor Unrest Or Protest Environment | 47.42 | 59.28 | 11.86 | Elevated |
-| Site Visit To Energy Asset | 47.42 | 56.90 | 9.48 | Elevated |
-| Public Energy Event | 47.42 | 54.53 | 7.11 | Elevated |
-| Routine Executive Travel | 47.42 | 47.42 | 0 | Moderate |
+| High Visibility Executive Visit | 50.18 | 70.25 | 20.07 | High |
+| Travel During Civil Unrest | 50.18 | 67.74 | 17.56 | Elevated |
+| Major Energy Project Announcement | 50.18 | 65.23 | 15.05 | Elevated |
+| Labor Unrest Or Protest Environment | 50.18 | 62.73 | 12.55 | Elevated |
+| Site Visit To Energy Asset | 50.18 | 60.22 | 10.04 | Elevated |
+| Public Energy Event | 50.18 | 57.71 | 7.53 | Elevated |
+| Routine Executive Travel | 50.18 | 50.18 | 0 | Elevated |
 
 ## 2026 Forward Risk View
 

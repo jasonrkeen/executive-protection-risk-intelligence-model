@@ -22,6 +22,11 @@ def build_worldbank_url(
 ) -> str:
     """
     Build a World Bank API URL for one indicator.
+
+    World Bank V2 API notes:
+    - Use /v2/
+    - Use format=json for JSON response
+    - source can be passed as a query parameter for source-specific indicators
     """
 
     base_url = (
@@ -35,18 +40,44 @@ def build_worldbank_url(
     return base_url
 
 
-def request_worldbank_json(url: str, indicator_code: str) -> list:
+def request_worldbank_json(url: str, indicator_code: str):
     """
     Request World Bank API JSON with a small retry loop.
+
+    Returns
+    -------
+    object
+        Parsed JSON payload. Successful indicator calls usually return:
+            [metadata, records]
+        API errors may return:
+            {"message": ...}
+            [{"message": ...}]
+            []
     """
 
     last_error = None
 
+    headers = {
+        "User-Agent": (
+            "executive-protection-risk-intelligence-model/1.0 "
+            "(public-source research project)"
+        )
+    }
+
     for attempt in range(1, 4):
         try:
-            response = requests.get(url, timeout=45)
+            response = requests.get(url, timeout=45, headers=headers)
             response.raise_for_status()
-            return response.json()
+
+            try:
+                return response.json()
+            except ValueError as exc:
+                preview = response.text[:500]
+                raise ValueError(
+                    f"Non-JSON World Bank response for {indicator_code}. "
+                    f"Preview: {preview}"
+                ) from exc
+
         except Exception as exc:
             last_error = exc
             print(
@@ -64,18 +95,101 @@ def request_worldbank_json(url: str, indicator_code: str) -> list:
 def parse_worldbank_response(payload, indicator_code: str) -> tuple[dict, list]:
     """
     Validate and parse a World Bank API response.
+
+    Successful World Bank indicator response:
+        [metadata, records]
+
+    Known non-success shapes:
+        {"message": ...}
+        {"error": ...}
+        [{"message": ...}]
+        []
+        None
     """
 
-    if not isinstance(payload, list) or len(payload) < 2:
-        raise ValueError(f"Unexpected World Bank response for {indicator_code}")
+    if payload is None:
+        raise ValueError(
+            f"World Bank returned no payload for {indicator_code}."
+        )
+
+    if isinstance(payload, dict):
+        if "message" in payload:
+            raise ValueError(
+                f"World Bank API message for {indicator_code}: "
+                f"{payload.get('message')}"
+            )
+
+        if "error" in payload:
+            raise ValueError(
+                f"World Bank API error for {indicator_code}: "
+                f"{payload.get('error')}"
+            )
+
+        raise ValueError(
+            f"Unexpected World Bank dictionary response for {indicator_code}: "
+            f"{str(payload)[:500]}"
+        )
+
+    if not isinstance(payload, list):
+        raise ValueError(
+            f"Unexpected World Bank response type for {indicator_code}: "
+            f"{type(payload).__name__}. Preview: {str(payload)[:500]}"
+        )
+
+    if len(payload) == 0:
+        raise ValueError(
+            f"World Bank returned an empty list for {indicator_code}."
+        )
+
+    if len(payload) == 1:
+        first = payload[0]
+
+        if isinstance(first, dict) and "message" in first:
+            raise ValueError(
+                f"World Bank API message for {indicator_code}: "
+                f"{first.get('message')}"
+            )
+
+        raise ValueError(
+            f"World Bank returned a one-item list for {indicator_code}: "
+            f"{str(payload)[:500]}"
+        )
 
     metadata = payload[0] or {}
     records = payload[1] or []
 
+    if isinstance(metadata, dict) and "message" in metadata:
+        raise ValueError(
+            f"World Bank API metadata message for {indicator_code}: "
+            f"{metadata.get('message')}"
+        )
+
     if not isinstance(records, list):
-        raise ValueError(f"Unexpected World Bank records format for {indicator_code}")
+        raise ValueError(
+            f"Unexpected World Bank records format for {indicator_code}: "
+            f"{type(records).__name__}. Preview: {str(records)[:500]}"
+        )
 
     return metadata, records
+
+
+def empty_indicator_frame(indicator_code: str, indicator_name: str) -> pd.DataFrame:
+    """
+    Return an empty indicator frame with the expected schema.
+
+    This lets the pipeline continue when one World Bank indicator is temporarily
+    unavailable, renamed, deprecated, or blocked by an API issue.
+    """
+
+    return pd.DataFrame(
+        columns=[
+            "country",
+            "country_code",
+            "year",
+            indicator_name,
+            f"{indicator_name}_indicator_code",
+        ]
+    )
 
 
 def fetch_worldbank_indicator(
@@ -84,70 +198,80 @@ def fetch_worldbank_indicator(
     source: Optional[int] = None,
     start_year: int = START_YEAR,
     end_year: int = END_YEAR,
+    fail_soft: bool = True,
 ) -> pd.DataFrame:
     """
     Fetch one World Bank indicator for all countries and years.
+
+    If fail_soft=True, API or parsing failures return an empty frame instead of
+    stopping the entire model.
     """
 
     rows = []
     page = 1
     total_pages = 1
 
-    while page <= total_pages:
-        url = build_worldbank_url(
-            indicator_code=indicator_code,
-            source=source,
-            page=page,
-        )
+    try:
+        while page <= total_pages:
+            url = build_worldbank_url(
+                indicator_code=indicator_code,
+                source=source,
+                page=page,
+            )
 
-        payload = request_worldbank_json(url, indicator_code)
+            payload = request_worldbank_json(url, indicator_code)
 
-        metadata, records = parse_worldbank_response(
-            payload,
-            indicator_code=indicator_code,
-        )
+            metadata, records = parse_worldbank_response(
+                payload,
+                indicator_code=indicator_code,
+            )
 
-        total_pages = int(metadata.get("pages", 1))
+            total_pages = int(metadata.get("pages", 1) or 1)
 
-        for item in records:
-            country = item.get("country", {}).get("value")
-            country_code = item.get("countryiso3code")
-            value = item.get("value")
+            for item in records:
+                if not isinstance(item, dict):
+                    continue
 
-            try:
-                year = int(item.get("date"))
-            except (TypeError, ValueError):
-                continue
+                country = item.get("country", {}).get("value")
+                country_code = item.get("countryiso3code")
+                value = item.get("value")
 
-            if not country or not country_code:
-                continue
+                try:
+                    year = int(item.get("date"))
+                except (TypeError, ValueError):
+                    continue
 
-            if start_year <= year <= end_year:
-                rows.append(
-                    {
-                        "country": country,
-                        "country_code": country_code,
-                        "year": year,
-                        indicator_name: value,
-                        f"{indicator_name}_indicator_code": indicator_code,
-                    }
-                )
+                if not country or not country_code:
+                    continue
 
-        page += 1
+                if start_year <= year <= end_year:
+                    rows.append(
+                        {
+                            "country": country,
+                            "country_code": country_code,
+                            "year": year,
+                            indicator_name: value,
+                            f"{indicator_name}_indicator_code": indicator_code,
+                        }
+                    )
+
+            page += 1
+
+    except Exception as exc:
+        if fail_soft:
+            print(
+                f"  Warning: World Bank indicator skipped: "
+                f"{indicator_code} ({indicator_name}). Reason: {exc}"
+            )
+            return empty_indicator_frame(indicator_code, indicator_name)
+
+        raise
 
     df = pd.DataFrame(rows)
 
     if df.empty:
         print(f"  Warning: no records returned for {indicator_code}: {indicator_name}")
-        return pd.DataFrame(
-            columns=[
-                "country",
-                "country_code",
-                "year",
-                indicator_name,
-                f"{indicator_name}_indicator_code",
-            ]
-        )
+        return empty_indicator_frame(indicator_code, indicator_name)
 
     return df
 
@@ -232,6 +356,7 @@ def fetch_latest_indicator(
     source: Optional[int] = None,
     start_year: int = START_YEAR,
     end_year: int = END_YEAR,
+    fail_soft: bool = True,
 ) -> pd.DataFrame:
     """
     Fetch a World Bank indicator and keep the latest available value by country.
@@ -243,6 +368,7 @@ def fetch_latest_indicator(
         source=source,
         start_year=start_year,
         end_year=end_year,
+        fail_soft=fail_soft,
     )
 
     latest = latest_available_by_country(
@@ -542,6 +668,11 @@ def build_worldbank_dataset() -> pd.DataFrame:
 
     This version keeps the latest available observation for each country up to
     END_YEAR and adds a homicide-rate proxy from the World Bank API.
+
+    Important:
+    - Individual indicators fail soft by default.
+    - If one WGI indicator is unavailable or returns a changed API shape, the
+      pipeline continues and records lower World Bank coverage.
     """
 
     print("Downloading World Bank WGI indicators...")
@@ -554,6 +685,7 @@ def build_worldbank_dataset() -> pd.DataFrame:
             indicator_code=code,
             indicator_name=name,
             source=WGI_SOURCE,
+            fail_soft=True,
         )
         frames.append(df)
         time.sleep(0.25)
@@ -566,6 +698,7 @@ def build_worldbank_dataset() -> pd.DataFrame:
             indicator_code=code,
             indicator_name=name,
             source=None,
+            fail_soft=True,
         )
         frames.append(df)
         time.sleep(0.25)
@@ -578,6 +711,7 @@ def build_worldbank_dataset() -> pd.DataFrame:
             indicator_code=code,
             indicator_name=name,
             source=None,
+            fail_soft=True,
         )
         frames.append(df)
         time.sleep(0.25)

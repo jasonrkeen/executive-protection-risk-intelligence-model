@@ -42,12 +42,15 @@ Thumbs.db
 # =========================
 # Raw and processed data
 # Avoid committing restricted/large data files
+# Keep only transparent methodology/config files
 # =========================
-data/raw/
+data/raw/*
+!data/raw/protective_intelligence_decision_rules.csv
 data/processed/
 
 # =========================
 # Generated tables
+# Avoid committing generated CSV model outputs
 # =========================
 outputs/tables/
 
@@ -61,12 +64,29 @@ outputs/tables/
 # Keep portfolio-facing outputs
 # =========================
 !outputs/
+
+# Charts
 !outputs/charts/
 !outputs/charts/*.png
+
+# Maps
+!outputs/maps/
+!outputs/maps/*.html
+
+# Reports
 !outputs/reports/
 !outputs/reports/*.pdf
+
+# Country profiles generated under reports
+!outputs/reports/country_profiles/
+!outputs/reports/country_profiles/*.md
+!outputs/reports/country_profiles/*.csv
+
+# Screenshots
 !outputs/screenshots/
 !outputs/screenshots/*.png
+
+# Legacy / alternate country profile location
 !outputs/country_profiles/
 !outputs/country_profiles/*.md
 !outputs/country_profiles/*.csv

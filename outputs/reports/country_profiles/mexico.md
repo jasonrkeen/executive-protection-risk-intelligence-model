@@ -2,22 +2,22 @@
 
 ## Summary
 
-Mexico is classified as **Elevated** with a modeled Executive Protection Risk Score of **58.23**. The country profile is primarily shaped by a mixed risk-driver profile without one dominant extreme component. This profile should be used as a strategic screening input rather than a tactical travel decision tool.
+Mexico is classified as **Elevated** with a modeled Executive Protection Risk Score of **55.61**. The country profile is primarily shaped by a mixed risk-driver profile without one dominant extreme component. This profile should be used as a strategic screening input rather than a tactical travel decision tool.
 
 ## Baseline Risk Snapshot
 
 | Metric | Value |
 |---|---:|
 | Country code | MEX |
-| Executive Protection Risk Score | 58.23 |
+| Executive Protection Risk Score | 55.61 |
 | Risk bucket | Elevated |
-| Weighted baseline score | 33.23 |
+| Weighted baseline score | 30.61 |
 | Severity uplift | 25 |
 | Data coverage flag | Strong data coverage |
 
 ## Top Risk Drivers
 
-- **Governance / Rule-of-Law Risk:** 63.08
+- **Governance / Rule-of-Law Risk:** 50.00
 - **Recent Risk Momentum:** 39.61
 - **Violent-Crime Proxy Risk:** 32.50
 
@@ -26,7 +26,7 @@ Mexico is classified as **Elevated** with a modeled Executive Protection Risk Sc
 | Component | Score |
 |---|---:|
 | Civil Unrest / Political Violence | 30.48 |
-| Governance / Rule-of-Law Risk | 63.08 |
+| Governance / Rule-of-Law Risk | 50 |
 | Violent-Crime Proxy Risk | 32.50 |
 | Energy-Sector Exposure | 5.53 |
 | Recent Risk Momentum | 39.61 |
@@ -48,10 +48,10 @@ Mexico is classified as **Elevated** with a modeled Executive Protection Risk Sc
 
 | Indicator | Value |
 |---|---:|
-| Political stability | -0.63 |
-| Rule of law | -0.81 |
-| Control of corruption | -1.02 |
-| Government effectiveness | -0.20 |
+| Political stability | N/A |
+| Rule of law | N/A |
+| Control of corruption | N/A |
+| Government effectiveness | N/A |
 | Homicide rate per 100k | 24.86 |
 | Homicide data year | 2,023 |
 | Crime data quality | Homicide proxy populated |
@@ -62,13 +62,13 @@ Mexico is classified as **Elevated** with a modeled Executive Protection Risk Sc
 
 | Scenario | Baseline | Scenario Score | Lift | Scenario Bucket |
 |---|---:|---:|---:|---|
-| High Visibility Executive Visit | 58.23 | 81.52 | 23.29 | High |
-| Travel During Civil Unrest | 58.23 | 78.61 | 20.38 | High |
-| Major Energy Project Announcement | 58.23 | 75.70 | 17.47 | High |
-| Labor Unrest Or Protest Environment | 58.23 | 72.79 | 14.56 | High |
-| Site Visit To Energy Asset | 58.23 | 69.88 | 11.65 | Elevated |
-| Public Energy Event | 58.23 | 66.96 | 8.73 | Elevated |
-| Routine Executive Travel | 58.23 | 58.23 | 0 | Elevated |
+| High Visibility Executive Visit | 55.61 | 77.85 | 22.24 | High |
+| Travel During Civil Unrest | 55.61 | 75.07 | 19.46 | High |
+| Major Energy Project Announcement | 55.61 | 72.29 | 16.68 | High |
+| Labor Unrest Or Protest Environment | 55.61 | 69.51 | 13.90 | Elevated |
+| Site Visit To Energy Asset | 55.61 | 66.73 | 11.12 | Elevated |
+| Public Energy Event | 55.61 | 63.95 | 8.34 | Elevated |
+| Routine Executive Travel | 55.61 | 55.61 | 0 | Elevated |
 
 ## 2026 Forward Risk View
 

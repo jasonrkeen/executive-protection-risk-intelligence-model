@@ -27,8 +27,13 @@ from src.city_map_generator import create_city_risk_map
 # Phase 3: Access and Support Proxy Layer
 from src.access_proxy_layer import build_access_proxy_layer
 
-# Phase 4: Protective Intelligence Exposure and Decision-Support Layer
+# Phase 4: Protective Intelligence Exposure and Posture Scoring Layer
 from src.protective_intelligence_score import build_protective_intelligence_scores
+
+# Phase 5: Protective Intelligence COA Decision-Support Layer
+from src.protective_intelligence_decision_layer import (
+    build_decision_support_from_existing_outputs,
+)
 
 
 def main():
@@ -58,12 +63,13 @@ def main():
         20. Generate city-level geospatial risk map
         21. Build airport and medical access proxy layer
         22. Build protective intelligence exposure and posture scores
-        23. Run diagnostics
-        24. Build model governance documentation
-        25. Generate PDF report
+        23. Build protective intelligence COA decision-support layer
+        24. Run diagnostics
+        25. Build model governance documentation
+        26. Generate PDF report
     """
 
-    total_steps = 25
+    total_steps = 26
 
     print("=" * 70)
     print("Starting Executive Protection Risk Intelligence pipeline...")
@@ -142,18 +148,27 @@ def main():
     )
     build_protective_intelligence_scores()
 
-    print(f"\n[23/{total_steps}] Running model diagnostics...")
+    print(
+        f"\n[23/{total_steps}] Building protective intelligence COA decision-support layer..."
+    )
+    build_decision_support_from_existing_outputs()
+
+    print(f"\n[24/{total_steps}] Running model diagnostics...")
     run_model_diagnostics()
 
-    print(f"\n[24/{total_steps}] Building model governance documentation...")
+    print(f"\n[25/{total_steps}] Building model governance documentation...")
     run_model_governance()
 
-    print(f"\n[25/{total_steps}] Generating PDF report...")
+    print(f"\n[26/{total_steps}] Generating PDF report...")
     generate_report()
 
     print("\n" + "=" * 70)
     print("Pipeline complete.")
     print("=" * 70)
+    print("New decision-support outputs should be available in:")
+    print("- outputs/tables/protective_intelligence_decision_support.csv")
+    print("- outputs/tables/top_decision_escalations.csv")
+    print("- outputs/tables/decision_rule_audit.csv")
 
 
 if __name__ == "__main__":

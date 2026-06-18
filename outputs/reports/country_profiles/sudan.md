@@ -2,23 +2,23 @@
 
 ## Summary
 
-Sudan is classified as **Elevated** with a modeled Executive Protection Risk Score of **58.95**. The country profile is primarily shaped by weak governance or rule-of-law conditions. This profile should be used as a strategic screening input rather than a tactical travel decision tool.
+Sudan is classified as **Moderate** with a modeled Executive Protection Risk Score of **49.18**. The country profile is primarily shaped by a mixed risk-driver profile without one dominant extreme component. This profile should be used as a strategic screening input rather than a tactical travel decision tool.
 
 ## Baseline Risk Snapshot
 
 | Metric | Value |
 |---|---:|
 | Country code | SDN |
-| Executive Protection Risk Score | 58.95 |
-| Risk bucket | Elevated |
-| Weighted baseline score | 33.95 |
-| Severity uplift | 25 |
+| Executive Protection Risk Score | 49.18 |
+| Risk bucket | Moderate |
+| Weighted baseline score | 25.18 |
+| Severity uplift | 24 |
 | Data coverage flag | Moderate data coverage |
 
 ## Top Risk Drivers
 
-- **Governance / Rule-of-Law Risk:** 93.80
 - **Recent Risk Momentum:** 52.94
+- **Governance / Rule-of-Law Risk:** 50.00
 - **Civil Unrest / Political Violence:** 24.97
 
 ## Component Scores
@@ -26,7 +26,7 @@ Sudan is classified as **Elevated** with a modeled Executive Protection Risk Sco
 | Component | Score |
 |---|---:|
 | Civil Unrest / Political Violence | 24.97 |
-| Governance / Rule-of-Law Risk | 93.80 |
+| Governance / Rule-of-Law Risk | 50 |
 | Violent-Crime Proxy Risk | 3.29 |
 | Energy-Sector Exposure | 3.29 |
 | Recent Risk Momentum | 52.94 |
@@ -48,10 +48,10 @@ Sudan is classified as **Elevated** with a modeled Executive Protection Risk Sco
 
 | Indicator | Value |
 |---|---:|
-| Political stability | -2.47 |
-| Rule of law | -1.67 |
-| Control of corruption | -1.50 |
-| Government effectiveness | -1.98 |
+| Political stability | N/A |
+| Rule of law | N/A |
+| Control of corruption | N/A |
+| Government effectiveness | N/A |
 | Homicide rate per 100k | 2.58 |
 | Homicide data year | N/A |
 | Crime data quality | Median-filled homicide proxy |
@@ -62,13 +62,13 @@ Sudan is classified as **Elevated** with a modeled Executive Protection Risk Sco
 
 | Scenario | Baseline | Scenario Score | Lift | Scenario Bucket |
 |---|---:|---:|---:|---|
-| High Visibility Executive Visit | 58.95 | 82.53 | 23.58 | High |
-| Travel During Civil Unrest | 58.95 | 79.58 | 20.63 | High |
-| Major Energy Project Announcement | 58.95 | 76.64 | 17.69 | High |
-| Labor Unrest Or Protest Environment | 58.95 | 73.69 | 14.74 | High |
-| Site Visit To Energy Asset | 58.95 | 70.74 | 11.79 | High |
-| Public Energy Event | 58.95 | 67.79 | 8.84 | Elevated |
-| Routine Executive Travel | 58.95 | 58.95 | 0 | Elevated |
+| High Visibility Executive Visit | 49.18 | 68.85 | 19.67 | Elevated |
+| Travel During Civil Unrest | 49.18 | 66.39 | 17.21 | Elevated |
+| Major Energy Project Announcement | 49.18 | 63.93 | 14.75 | Elevated |
+| Labor Unrest Or Protest Environment | 49.18 | 61.48 | 12.30 | Elevated |
+| Site Visit To Energy Asset | 49.18 | 59.02 | 9.84 | Elevated |
+| Public Energy Event | 49.18 | 56.56 | 7.38 | Elevated |
+| Routine Executive Travel | 49.18 | 49.18 | 0 | Moderate |
 
 ## 2026 Forward Risk View
 

@@ -77,6 +77,18 @@ TOP_PROTECTIVE_INTELLIGENCE_PRIORITIES_FILE = (
     PROJECT_ROOT / "outputs" / "tables" / "top_protective_intelligence_priorities.csv"
 )
 
+PROTECTIVE_INTELLIGENCE_DECISION_SUPPORT_FILE = (
+    PROJECT_ROOT / "outputs" / "tables" / "protective_intelligence_decision_support.csv"
+)
+
+TOP_DECISION_ESCALATIONS_FILE = (
+    PROJECT_ROOT / "outputs" / "tables" / "top_decision_escalations.csv"
+)
+
+DECISION_RULE_AUDIT_FILE = (
+    PROJECT_ROOT / "outputs" / "tables" / "decision_rule_audit.csv"
+)
+
 
 def read_csv_if_exists(path: Path) -> pd.DataFrame:
     if not path.exists():
@@ -123,6 +135,9 @@ def load_data():
         "top_operational_city_rankings": read_csv_if_exists(TOP_OPERATIONAL_RISK_FILE),
         "pi_trip_scores": read_csv_if_exists(PROTECTIVE_INTELLIGENCE_TRIP_SCORES_FILE),
         "top_pi_priorities": read_csv_if_exists(TOP_PROTECTIVE_INTELLIGENCE_PRIORITIES_FILE),
+        "decision_support": read_csv_if_exists(PROTECTIVE_INTELLIGENCE_DECISION_SUPPORT_FILE),
+        "top_decision_escalations": read_csv_if_exists(TOP_DECISION_ESCALATIONS_FILE),
+        "decision_rule_audit": read_csv_if_exists(DECISION_RULE_AUDIT_FILE),
     }
 
 
@@ -148,7 +163,7 @@ def show_overview(rankings: pd.DataFrame, maturity: pd.DataFrame):
     st.subheader("Model Overview")
 
     if rankings.empty:
-        st.warning("Risk rankings file not found. Run `python main.py` first.")
+        st.warning("Risk rankings file not found. Run `python -m src.main` first.")
         return
 
     top_country = rankings.iloc[0]
@@ -375,7 +390,7 @@ def show_city_risk_tab(
     if city_features.empty:
         st.warning(
             "No city-level ACLED output available. Run "
-            "`python -m src.acled_city_processing` or `python main.py` first."
+            "`python -m src.acled_city_processing` or `python -m src.main` first."
         )
         return
 
@@ -586,7 +601,7 @@ def show_city_risk_tab(
     if city_access.empty:
         st.info(
             "Access proxy output not found. Run `python -m src.access_proxy_layer` "
-            "or `python main.py` first."
+            "or `python -m src.main` first."
         )
     else:
         access_display = city_access.copy()
@@ -746,7 +761,7 @@ def show_city_risk_tab(
     else:
         st.info(
             "City risk map not found. Run `python -m src.city_map_generator` "
-            "or `python main.py` first."
+            "or `python -m src.main` first."
         )
 
     st.markdown("### Saved City-Level Charts")
@@ -807,7 +822,6 @@ def show_city_risk_tab(
     )
 
 
-
 def show_pi_posture_tab(
     pi_trip_scores: pd.DataFrame,
     top_pi_priorities: pd.DataFrame,
@@ -817,7 +831,7 @@ def show_pi_posture_tab(
     if pi_trip_scores.empty and top_pi_priorities.empty:
         st.warning(
             "No Protective Intelligence posture output available. Run "
-            "`python -m src.protective_intelligence_score` or `python main.py` first."
+            "`python -m src.protective_intelligence_score` or `python -m src.main` first."
         )
         return
 
@@ -1124,6 +1138,326 @@ def show_pi_posture_tab(
         "protection plan, route approval, or real-world incident probability forecast."
     )
 
+
+def show_decision_support_tab(
+    decision_support: pd.DataFrame,
+    top_decision_escalations: pd.DataFrame,
+    decision_rule_audit: pd.DataFrame,
+):
+    st.subheader("Protective Intelligence COA Decision Support")
+
+    if decision_support.empty and top_decision_escalations.empty:
+        st.warning(
+            "No Protective Intelligence decision-support output available. Run "
+            "`python -m src.main` first."
+        )
+        return
+
+    st.write(
+        "This layer converts protective intelligence trip scores into explainable "
+        "courses of action, decision drivers, data-confidence labels, and escalation "
+        "priorities for analyst review."
+    )
+
+    display = (
+        top_decision_escalations.copy()
+        if not top_decision_escalations.empty
+        else decision_support.copy()
+    )
+
+    if display.empty:
+        st.info("No decision-support rows available.")
+        return
+
+    if "decision_priority_rank" in display.columns:
+        display = display.sort_values(
+            "decision_priority_rank",
+            ascending=False,
+        )
+
+    top_row = display.iloc[0]
+
+    col1, col2, col3, col4 = st.columns(4)
+
+    col1.metric("Decision Records", f"{len(display):,}")
+    col2.metric("Top COA Level", str(top_row.get("coa_level", "N/A")))
+    col3.metric(
+        "Top PI Score",
+        format_score(top_row.get("protective_intelligence_risk_score")),
+    )
+    col4.markdown("**Top Recommendation**")
+    col4.markdown(
+        f"""
+        <div style="
+            font-size: 1.2rem;
+            line-height: 1.25;
+            font-weight: 500;
+            color: #fafafa;
+            white-space: normal;
+            word-break: normal;
+            overflow-wrap: break-word;
+        ">
+            {top_row.get("protective_intelligence_recommendation", "N/A")}
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    st.markdown("### Filters")
+
+    filter_col1, filter_col2, filter_col3, filter_col4 = st.columns(4)
+
+    coa_options = ["All"]
+    if "coa_level" in display.columns:
+        coa_options += sorted(display["coa_level"].dropna().unique().tolist())
+
+    selected_coa = filter_col1.selectbox(
+        "Filter by COA level",
+        coa_options,
+        key="decision_coa_filter",
+    )
+
+    risk_band_options = ["All"]
+    if "risk_band" in display.columns:
+        risk_band_options += sorted(display["risk_band"].dropna().unique().tolist())
+
+    selected_risk_band = filter_col2.selectbox(
+        "Filter by risk band",
+        risk_band_options,
+        key="decision_risk_band_filter",
+    )
+
+    confidence_options = ["All"]
+    if "data_confidence" in display.columns:
+        confidence_options += sorted(display["data_confidence"].dropna().unique().tolist())
+
+    selected_confidence = filter_col3.selectbox(
+        "Filter by data confidence",
+        confidence_options,
+        key="decision_confidence_filter",
+    )
+
+    top_n = filter_col4.slider(
+        "Number of decision rows",
+        3,
+        50,
+        min(10, max(3, len(display))),
+        key="decision_top_n_slider",
+    )
+
+    filtered = display.copy()
+
+    if selected_coa != "All" and "coa_level" in filtered.columns:
+        filtered = filtered[filtered["coa_level"] == selected_coa]
+
+    if selected_risk_band != "All" and "risk_band" in filtered.columns:
+        filtered = filtered[filtered["risk_band"] == selected_risk_band]
+
+    if selected_confidence != "All" and "data_confidence" in filtered.columns:
+        filtered = filtered[filtered["data_confidence"] == selected_confidence]
+
+    if filtered.empty:
+        st.info("No decision-support rows match the selected filters.")
+        return
+
+    st.markdown("### COA Decision-Support Rankings")
+
+    display_columns = [
+        "trip_id",
+        "principal",
+        "city",
+        "country",
+        "scenario",
+        "protective_intelligence_risk_score",
+        "risk_band",
+        "coa_level",
+        "protective_intelligence_recommendation",
+        "primary_decision_driver",
+        "secondary_decision_driver",
+        "supporting_indicators",
+        "data_confidence",
+        "analyst_note",
+        "decision_priority_rank",
+    ]
+
+    display_columns = [column for column in display_columns if column in filtered.columns]
+
+    st.dataframe(
+        filtered[display_columns].head(top_n),
+        use_container_width=True,
+        hide_index=True,
+    )
+
+    csv_data = filtered[display_columns].to_csv(index=False).encode("utf-8")
+
+    st.download_button(
+        label="Download Decision-Support Output",
+        data=csv_data,
+        file_name="protective_intelligence_decision_support.csv",
+        mime="text/csv",
+    )
+
+    if "coa_level" in filtered.columns:
+        st.markdown("### COA Distribution")
+
+        coa_counts = filtered["coa_level"].value_counts().reset_index()
+        coa_counts.columns = ["coa_level", "record_count"]
+
+        st.dataframe(
+            coa_counts,
+            use_container_width=True,
+            hide_index=True,
+        )
+
+        st.bar_chart(coa_counts.set_index("coa_level")["record_count"])
+
+    if "protective_intelligence_risk_score" in filtered.columns:
+        st.markdown("### Decision-Support Risk Score Chart")
+
+        chart_df = filtered.sort_values(
+            "protective_intelligence_risk_score",
+            ascending=False,
+        ).head(top_n).copy()
+
+        label_parts = []
+
+        if "trip_id" in chart_df.columns:
+            label_parts.append(chart_df["trip_id"].astype(str))
+        if "city" in chart_df.columns:
+            label_parts.append(chart_df["city"].astype(str))
+        if "country" in chart_df.columns:
+            label_parts.append(chart_df["country"].astype(str))
+
+        if label_parts:
+            chart_df["decision_label"] = label_parts[0]
+            for part in label_parts[1:]:
+                chart_df["decision_label"] = chart_df["decision_label"] + " | " + part
+        else:
+            chart_df["decision_label"] = chart_df.index.astype(str)
+
+        st.bar_chart(
+            chart_df.set_index("decision_label")[
+                "protective_intelligence_risk_score"
+            ]
+        )
+
+    st.markdown("### Selected Decision Detail")
+
+    selector_df = filtered.head(500).copy()
+
+    if "trip_id" in selector_df.columns:
+        selector_df["decision_selection_label"] = (
+            selector_df["trip_id"].astype(str)
+            + " | "
+            + selector_df.get("principal", pd.Series("N/A", index=selector_df.index)).astype(str)
+            + " | "
+            + selector_df.get("city", pd.Series("N/A", index=selector_df.index)).astype(str)
+            + ", "
+            + selector_df.get("country", pd.Series("N/A", index=selector_df.index)).astype(str)
+            + " | "
+            + selector_df.get("coa_level", pd.Series("N/A", index=selector_df.index)).astype(str)
+        )
+    else:
+        selector_df["decision_selection_label"] = selector_df.index.astype(str)
+
+    selected_decision_label = st.selectbox(
+        "Select decision record",
+        selector_df["decision_selection_label"].tolist(),
+        key="decision_record_selector",
+    )
+
+    selected_row = selector_df[
+        selector_df["decision_selection_label"] == selected_decision_label
+    ].iloc[0]
+
+    detail_columns = [
+        "trip_id",
+        "principal",
+        "city",
+        "country",
+        "scenario",
+        "protective_intelligence_risk_score",
+        "protective_intelligence_signal",
+        "protective_posture_recommendation",
+        "risk_band",
+        "coa_level",
+        "protective_intelligence_recommendation",
+        "primary_decision_driver",
+        "secondary_decision_driver",
+        "supporting_indicators",
+        "data_confidence",
+        "analyst_note",
+        "decision_priority_rank",
+        "city_ep_risk_score",
+        "support_gap_score",
+        "movement_predictability_score",
+        "online_information_leakage_score",
+        "trigger_count",
+        "trigger_support_gap",
+        "trigger_predictable_movement",
+        "trigger_online_visibility",
+        "trigger_city_risk_momentum",
+        "trigger_high_city_risk",
+        "trigger_high_score_plus_support_gap",
+        "trigger_multiple_high_triggers",
+    ]
+
+    detail_columns = [column for column in detail_columns if column in selected_row.index]
+
+    detail_df = pd.DataFrame(
+        [
+            {
+                "indicator": column,
+                "value": selected_row.get(column),
+            }
+            for column in detail_columns
+        ]
+    )
+
+    st.dataframe(detail_df, use_container_width=True, hide_index=True)
+
+    if "analyst_note" in selected_row.index:
+        st.markdown("### Analyst Decision Note")
+        st.info(str(selected_row.get("analyst_note", "N/A")))
+
+    if not decision_rule_audit.empty:
+        st.markdown("### Decision Rule Audit")
+
+        audit_columns = [
+            "rule_id",
+            "min_score",
+            "max_score",
+            "required_condition",
+            "coa_level",
+            "recommendation",
+            "analyst_note",
+            "rules_file_loaded",
+            "total_decision_records",
+            "record_count",
+        ]
+
+        audit_columns = [
+            column for column in audit_columns
+            if column in decision_rule_audit.columns
+        ]
+
+        st.dataframe(
+            decision_rule_audit[audit_columns].head(100),
+            use_container_width=True,
+            hide_index=True,
+        )
+
+    st.markdown("### Methodology Note")
+
+    st.info(
+        "The COA decision-support layer is an analyst-facing triage tool. It converts "
+        "risk scores and trigger flags into review recommendations such as monitoring, "
+        "validation, enhanced advance work, security lead review, senior review, or "
+        "posture reassessment. It does not provide tactical instructions, route approval, "
+        "or a real-world incident probability forecast."
+    )
+
+
 def show_intelligence_signal_tab(
     intelligence_signals: pd.DataFrame,
     intelligence_signal_top: pd.DataFrame,
@@ -1133,7 +1467,7 @@ def show_intelligence_signal_tab(
     if intelligence_signals.empty and intelligence_signal_top.empty:
         st.warning(
             "No intelligence signal output available. Run `python -m src.intelligence_signal` "
-            "or `python main.py` first."
+            "or `python -m src.main` first."
         )
         return
 
@@ -1499,6 +1833,7 @@ def main():
             "Country Profile",
             "City Risk",
             "PI Posture",
+            "Decision Support",
             "Intelligence Signal",
             "Forward Risk",
             "Monitoring",
@@ -1535,37 +1870,44 @@ def main():
         )
 
     with tabs[4]:
+        show_decision_support_tab(
+            data["decision_support"],
+            data["top_decision_escalations"],
+            data["decision_rule_audit"],
+        )
+
+    with tabs[5]:
         show_intelligence_signal_tab(
             data["intelligence_signals"],
             data["intelligence_signal_top"],
         )
 
-    with tabs[5]:
+    with tabs[6]:
         show_forward_tab(data["forward"])
 
-    with tabs[6]:
+    with tabs[7]:
         show_monitoring_tab(
             data["score_changes"],
             data["bucket_changes"],
             data["rank_movers"],
         )
 
-    with tabs[7]:
+    with tabs[8]:
         show_sensitivity_tab(data["sensitivity_overlap"])
 
-    with tabs[8]:
+    with tabs[9]:
         show_monte_carlo_tab(
             data["monte_carlo_summary"],
             data["monte_carlo_top20"],
         )
 
-    with tabs[9]:
+    with tabs[10]:
         show_spillover_tab(
             data["spillover"],
             data["spillover_top"],
         )
 
-    with tabs[10]:
+    with tabs[11]:
         show_governance_tab(
             data["governance"],
             data["assumptions"],

@@ -1,0 +1,11 @@
+rule_id,min_score,max_score,required_condition,coa_level,recommendation,analyst_note
+COA-001,0,29,none,Routine,Continue routine monitoring,No elevated protective intelligence decision trigger identified.
+COA-002,30,44,moderate_score,Monitor,Increase monitoring,Moderate exposure or operating-environment concern requires continued monitoring.
+COA-003,45,59,elevated_score,Validate,Request analyst validation,"Elevated risk score requires review of recent events, trip assumptions, and data quality."
+COA-004,60,69,high_score,Enhanced Advance,Require enhanced advance work,"High-risk movement should receive additional advance planning and local validation."
+COA-005,70,79,high_score_plus_support_gap,Security Lead Review,Notify security lead,"High risk combined with support-access constraints requires security leadership review."
+COA-006,80,100,severe_score,Senior Review,Senior security review,"Severe score indicates multiple elevated indicators requiring senior-level review."
+COA-007,65,100,predictable_movement,Movement Review,Review route venue timing,"High predictability or public exposure may require review of route venue and timing assumptions."
+COA-008,60,100,online_visibility,Information Exposure Review,Review online visibility and itinerary exposure,"Online visibility or information leakage may increase protective intelligence concern."
+COA-009,70,100,city_risk_momentum,Protective Intelligence Watch,Place on protective intelligence watchlist,"Recent city-level unrest or violence momentum requires additional monitoring."
+COA-010,80,100,multiple_high_triggers,Posture Reassessment,Consider postponement relocation or alternate plan,"Multiple severe triggers require review through approved organizational decision process."

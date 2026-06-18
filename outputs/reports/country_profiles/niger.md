@@ -2,23 +2,23 @@
 
 ## Summary
 
-Niger is classified as **Moderate** with a modeled Executive Protection Risk Score of **41.04**. The country profile is primarily shaped by a mixed risk-driver profile without one dominant extreme component. This profile should be used as a strategic screening input rather than a tactical travel decision tool.
+Niger is classified as **Moderate** with a modeled Executive Protection Risk Score of **37.28**. The country profile is primarily shaped by a mixed risk-driver profile without one dominant extreme component. This profile should be used as a strategic screening input rather than a tactical travel decision tool.
 
 ## Baseline Risk Snapshot
 
 | Metric | Value |
 |---|---:|
 | Country code | NER |
-| Executive Protection Risk Score | 41.04 |
+| Executive Protection Risk Score | 37.28 |
 | Risk bucket | Moderate |
-| Weighted baseline score | 36.04 |
+| Weighted baseline score | 32.28 |
 | Severity uplift | 5 |
 | Data coverage flag | Moderate data coverage |
 
 ## Top Risk Drivers
 
-- **Governance / Rule-of-Law Risk:** 68.81
 - **Energy-Sector Exposure:** 66.83
+- **Governance / Rule-of-Law Risk:** 50.00
 - **Recent Risk Momentum:** 42.17
 
 ## Component Scores
@@ -26,7 +26,7 @@ Niger is classified as **Moderate** with a modeled Executive Protection Risk Sco
 | Component | Score |
 |---|---:|
 | Civil Unrest / Political Violence | 12.01 |
-| Governance / Rule-of-Law Risk | 68.81 |
+| Governance / Rule-of-Law Risk | 50 |
 | Violent-Crime Proxy Risk | 3.29 |
 | Energy-Sector Exposure | 66.83 |
 | Recent Risk Momentum | 42.17 |
@@ -48,10 +48,10 @@ Niger is classified as **Moderate** with a modeled Executive Protection Risk Sco
 
 | Indicator | Value |
 |---|---:|
-| Political stability | -1.67 |
-| Rule of law | -0.71 |
-| Control of corruption | -0.56 |
-| Government effectiveness | -0.64 |
+| Political stability | N/A |
+| Rule of law | N/A |
+| Control of corruption | N/A |
+| Government effectiveness | N/A |
 | Homicide rate per 100k | 2.58 |
 | Homicide data year | N/A |
 | Crime data quality | Median-filled homicide proxy |
@@ -62,13 +62,13 @@ Niger is classified as **Moderate** with a modeled Executive Protection Risk Sco
 
 | Scenario | Baseline | Scenario Score | Lift | Scenario Bucket |
 |---|---:|---:|---:|---|
-| High Visibility Executive Visit | 41.04 | 57.46 | 16.42 | Elevated |
-| Travel During Civil Unrest | 41.04 | 55.40 | 14.36 | Elevated |
-| Major Energy Project Announcement | 41.04 | 53.35 | 12.31 | Elevated |
-| Labor Unrest Or Protest Environment | 41.04 | 51.30 | 10.26 | Elevated |
-| Site Visit To Energy Asset | 41.04 | 49.25 | 8.21 | Moderate |
-| Public Energy Event | 41.04 | 47.20 | 6.16 | Moderate |
-| Routine Executive Travel | 41.04 | 41.04 | 0 | Moderate |
+| High Visibility Executive Visit | 37.28 | 52.19 | 14.91 | Elevated |
+| Travel During Civil Unrest | 37.28 | 50.33 | 13.05 | Elevated |
+| Major Energy Project Announcement | 37.28 | 48.46 | 11.18 | Moderate |
+| Labor Unrest Or Protest Environment | 37.28 | 46.60 | 9.32 | Moderate |
+| Site Visit To Energy Asset | 37.28 | 44.74 | 7.46 | Moderate |
+| Public Energy Event | 37.28 | 42.87 | 5.59 | Moderate |
+| Routine Executive Travel | 37.28 | 37.28 | 0 | Moderate |
 
 ## 2026 Forward Risk View
 

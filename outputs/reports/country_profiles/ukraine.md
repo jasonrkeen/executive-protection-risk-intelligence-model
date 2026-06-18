@@ -2,23 +2,23 @@
 
 ## Summary
 
-Ukraine is classified as **High** with a modeled Executive Protection Risk Score of **73.25**. The country profile is primarily shaped by elevated civil unrest or political violence exposure. This profile should be used as a strategic screening input rather than a tactical travel decision tool.
+Ukraine is classified as **Elevated** with a modeled Executive Protection Risk Score of **69.76**. The country profile is primarily shaped by elevated civil unrest or political violence exposure. This profile should be used as a strategic screening input rather than a tactical travel decision tool.
 
 ## Baseline Risk Snapshot
 
 | Metric | Value |
 |---|---:|
 | Country code | UKR |
-| Executive Protection Risk Score | 73.25 |
-| Risk bucket | High |
-| Weighted baseline score | 48.25 |
+| Executive Protection Risk Score | 69.76 |
+| Risk bucket | Elevated |
+| Weighted baseline score | 44.76 |
 | Severity uplift | 25 |
 | Data coverage flag | Strong data coverage |
 
 ## Top Risk Drivers
 
 - **Civil Unrest / Political Violence:** 82.61
-- **Governance / Rule-of-Law Risk:** 67.44
+- **Governance / Rule-of-Law Risk:** 50.00
 - **Recent Risk Momentum:** 47.20
 
 ## Component Scores
@@ -26,7 +26,7 @@ Ukraine is classified as **High** with a modeled Executive Protection Risk Score
 | Component | Score |
 |---|---:|
 | Civil Unrest / Political Violence | 82.61 |
-| Governance / Rule-of-Law Risk | 67.44 |
+| Governance / Rule-of-Law Risk | 50 |
 | Violent-Crime Proxy Risk | 4.86 |
 | Energy-Sector Exposure | 2 |
 | Recent Risk Momentum | 47.20 |
@@ -48,10 +48,10 @@ Ukraine is classified as **High** with a modeled Executive Protection Risk Score
 
 | Indicator | Value |
 |---|---:|
-| Political stability | -1.43 |
-| Rule of law | -0.89 |
-| Control of corruption | -0.69 |
-| Government effectiveness | -0.36 |
+| Political stability | N/A |
+| Rule of law | N/A |
+| Control of corruption | N/A |
+| Government effectiveness | N/A |
 | Homicide rate per 100k | 3.78 |
 | Homicide data year | 2,021 |
 | Crime data quality | Homicide proxy populated |
@@ -62,13 +62,13 @@ Ukraine is classified as **High** with a modeled Executive Protection Risk Score
 
 | Scenario | Baseline | Scenario Score | Lift | Scenario Bucket |
 |---|---:|---:|---:|---|
-| High Visibility Executive Visit | 73.25 | 100 | 26.75 | Severe |
-| Travel During Civil Unrest | 73.25 | 98.89 | 25.64 | Severe |
-| Major Energy Project Announcement | 73.25 | 95.23 | 21.98 | Severe |
-| Labor Unrest Or Protest Environment | 73.25 | 91.56 | 18.31 | Severe |
-| Site Visit To Energy Asset | 73.25 | 87.90 | 14.65 | Severe |
-| Public Energy Event | 73.25 | 84.24 | 10.99 | High |
-| Routine Executive Travel | 73.25 | 73.25 | 0 | High |
+| High Visibility Executive Visit | 69.76 | 97.66 | 27.90 | Severe |
+| Travel During Civil Unrest | 69.76 | 94.18 | 24.42 | Severe |
+| Major Energy Project Announcement | 69.76 | 90.69 | 20.93 | Severe |
+| Labor Unrest Or Protest Environment | 69.76 | 87.20 | 17.44 | Severe |
+| Site Visit To Energy Asset | 69.76 | 83.71 | 13.95 | High |
+| Public Energy Event | 69.76 | 80.22 | 10.46 | High |
+| Routine Executive Travel | 69.76 | 69.76 | 0 | Elevated |
 
 ## 2026 Forward Risk View
 

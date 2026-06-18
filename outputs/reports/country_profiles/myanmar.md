@@ -2,22 +2,22 @@
 
 ## Summary
 
-Myanmar is classified as **Elevated** with a modeled Executive Protection Risk Score of **63.67**. The country profile is primarily shaped by weak governance or rule-of-law conditions. This profile should be used as a strategic screening input rather than a tactical travel decision tool.
+Myanmar is classified as **Elevated** with a modeled Executive Protection Risk Score of **56.04**. The country profile is primarily shaped by a mixed risk-driver profile without one dominant extreme component. This profile should be used as a strategic screening input rather than a tactical travel decision tool.
 
 ## Baseline Risk Snapshot
 
 | Metric | Value |
 |---|---:|
 | Country code | MMR |
-| Executive Protection Risk Score | 63.67 |
+| Executive Protection Risk Score | 56.04 |
 | Risk bucket | Elevated |
-| Weighted baseline score | 38.67 |
+| Weighted baseline score | 31.04 |
 | Severity uplift | 25 |
 | Data coverage flag | Strong data coverage |
 
 ## Top Risk Drivers
 
-- **Governance / Rule-of-Law Risk:** 88.18
+- **Governance / Rule-of-Law Risk:** 50.00
 - **Civil Unrest / Political Violence:** 36.53
 - **Recent Risk Momentum:** 35.66
 
@@ -26,7 +26,7 @@ Myanmar is classified as **Elevated** with a modeled Executive Protection Risk S
 | Component | Score |
 |---|---:|
 | Civil Unrest / Political Violence | 36.53 |
-| Governance / Rule-of-Law Risk | 88.18 |
+| Governance / Rule-of-Law Risk | 50 |
 | Violent-Crime Proxy Risk | 3.29 |
 | Energy-Sector Exposure | 20.96 |
 | Recent Risk Momentum | 35.66 |
@@ -48,10 +48,10 @@ Myanmar is classified as **Elevated** with a modeled Executive Protection Risk S
 
 | Indicator | Value |
 |---|---:|
-| Political stability | -2.13 |
-| Rule of law | -1.62 |
-| Control of corruption | -1.22 |
-| Government effectiveness | -1.75 |
+| Political stability | N/A |
+| Rule of law | N/A |
+| Control of corruption | N/A |
+| Government effectiveness | N/A |
 | Homicide rate per 100k | 2.58 |
 | Homicide data year | 2,023 |
 | Crime data quality | Homicide proxy populated |
@@ -62,13 +62,13 @@ Myanmar is classified as **Elevated** with a modeled Executive Protection Risk S
 
 | Scenario | Baseline | Scenario Score | Lift | Scenario Bucket |
 |---|---:|---:|---:|---|
-| High Visibility Executive Visit | 63.67 | 89.14 | 25.47 | Severe |
-| Travel During Civil Unrest | 63.67 | 85.95 | 22.28 | Severe |
-| Major Energy Project Announcement | 63.67 | 82.77 | 19.10 | High |
-| Labor Unrest Or Protest Environment | 63.67 | 79.59 | 15.92 | High |
-| Site Visit To Energy Asset | 63.67 | 76.40 | 12.73 | High |
-| Public Energy Event | 63.67 | 73.22 | 9.55 | High |
-| Routine Executive Travel | 63.67 | 63.67 | 0 | Elevated |
+| High Visibility Executive Visit | 56.04 | 78.46 | 22.42 | High |
+| Travel During Civil Unrest | 56.04 | 75.65 | 19.61 | High |
+| Major Energy Project Announcement | 56.04 | 72.85 | 16.81 | High |
+| Labor Unrest Or Protest Environment | 56.04 | 70.05 | 14.01 | High |
+| Site Visit To Energy Asset | 56.04 | 67.25 | 11.21 | Elevated |
+| Public Energy Event | 56.04 | 64.45 | 8.41 | Elevated |
+| Routine Executive Travel | 56.04 | 56.04 | 0 | Elevated |
 
 ## 2026 Forward Risk View
 

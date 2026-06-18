@@ -2,22 +2,22 @@
 
 ## Summary
 
-Iraq is classified as **Moderate** with a modeled Executive Protection Risk Score of **45.80**. The country profile is primarily shaped by weak governance or rule-of-law conditions. This profile should be used as a strategic screening input rather than a tactical travel decision tool.
+Iraq is classified as **Moderate** with a modeled Executive Protection Risk Score of **38.03**. The country profile is primarily shaped by a mixed risk-driver profile without one dominant extreme component. This profile should be used as a strategic screening input rather than a tactical travel decision tool.
 
 ## Baseline Risk Snapshot
 
 | Metric | Value |
 |---|---:|
 | Country code | IRQ |
-| Executive Protection Risk Score | 45.80 |
+| Executive Protection Risk Score | 38.03 |
 | Risk bucket | Moderate |
-| Weighted baseline score | 35.80 |
+| Weighted baseline score | 28.03 |
 | Severity uplift | 10 |
 | Data coverage flag | Moderate data coverage |
 
 ## Top Risk Drivers
 
-- **Governance / Rule-of-Law Risk:** 88.83
+- **Governance / Rule-of-Law Risk:** 50.00
 - **Energy-Sector Exposure:** 43.31
 - **Recent Risk Momentum:** 36.45
 
@@ -26,7 +26,7 @@ Iraq is classified as **Moderate** with a modeled Executive Protection Risk Scor
 | Component | Score |
 |---|---:|
 | Civil Unrest / Political Violence | 14.95 |
-| Governance / Rule-of-Law Risk | 88.83 |
+| Governance / Rule-of-Law Risk | 50 |
 | Violent-Crime Proxy Risk | 3.29 |
 | Energy-Sector Exposure | 43.31 |
 | Recent Risk Momentum | 36.45 |
@@ -48,10 +48,10 @@ Iraq is classified as **Moderate** with a modeled Executive Protection Risk Scor
 
 | Indicator | Value |
 |---|---:|
-| Political stability | -2.41 |
-| Rule of law | -1.69 |
-| Control of corruption | -1.32 |
-| Government effectiveness | -1.39 |
+| Political stability | N/A |
+| Rule of law | N/A |
+| Control of corruption | N/A |
+| Government effectiveness | N/A |
 | Homicide rate per 100k | 2.58 |
 | Homicide data year | N/A |
 | Crime data quality | Median-filled homicide proxy |
@@ -62,13 +62,13 @@ Iraq is classified as **Moderate** with a modeled Executive Protection Risk Scor
 
 | Scenario | Baseline | Scenario Score | Lift | Scenario Bucket |
 |---|---:|---:|---:|---|
-| High Visibility Executive Visit | 45.80 | 64.12 | 18.32 | Elevated |
-| Travel During Civil Unrest | 45.80 | 61.83 | 16.03 | Elevated |
-| Major Energy Project Announcement | 45.80 | 59.54 | 13.74 | Elevated |
-| Labor Unrest Or Protest Environment | 45.80 | 57.25 | 11.45 | Elevated |
-| Site Visit To Energy Asset | 45.80 | 54.96 | 9.16 | Elevated |
-| Public Energy Event | 45.80 | 52.67 | 6.87 | Elevated |
-| Routine Executive Travel | 45.80 | 45.80 | 0 | Moderate |
+| High Visibility Executive Visit | 38.03 | 53.24 | 15.21 | Elevated |
+| Travel During Civil Unrest | 38.03 | 51.34 | 13.31 | Elevated |
+| Major Energy Project Announcement | 38.03 | 49.44 | 11.41 | Moderate |
+| Labor Unrest Or Protest Environment | 38.03 | 47.54 | 9.51 | Moderate |
+| Site Visit To Energy Asset | 38.03 | 45.64 | 7.61 | Moderate |
+| Public Energy Event | 38.03 | 43.73 | 5.70 | Moderate |
+| Routine Executive Travel | 38.03 | 38.03 | 0 | Moderate |
 
 ## 2026 Forward Risk View
 

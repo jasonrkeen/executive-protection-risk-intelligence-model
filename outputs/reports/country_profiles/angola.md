@@ -2,23 +2,23 @@
 
 ## Summary
 
-Angola is classified as **Moderate** with a modeled Executive Protection Risk Score of **46.23**. The country profile is primarily shaped by high strategic energy-sector exposure. This profile should be used as a strategic screening input rather than a tactical travel decision tool.
+Angola is classified as **Moderate** with a modeled Executive Protection Risk Score of **35.12**. The country profile is primarily shaped by high strategic energy-sector exposure. This profile should be used as a strategic screening input rather than a tactical travel decision tool.
 
 ## Baseline Risk Snapshot
 
 | Metric | Value |
 |---|---:|
 | Country code | AGO |
-| Executive Protection Risk Score | 46.23 |
+| Executive Protection Risk Score | 35.12 |
 | Risk bucket | Moderate |
-| Weighted baseline score | 38.23 |
-| Severity uplift | 8 |
+| Weighted baseline score | 35.12 |
+| Severity uplift | 0 |
 | Data coverage flag | Moderate data coverage |
 
 ## Top Risk Drivers
 
 - **Energy-Sector Exposure:** 100.00
-- **Governance / Rule-of-Law Risk:** 65.57
+- **Governance / Rule-of-Law Risk:** 50.00
 - **Recent Risk Momentum:** 28.49
 
 ## Component Scores
@@ -26,7 +26,7 @@ Angola is classified as **Moderate** with a modeled Executive Protection Risk Sc
 | Component | Score |
 |---|---:|
 | Civil Unrest / Political Violence | 5.07 |
-| Governance / Rule-of-Law Risk | 65.57 |
+| Governance / Rule-of-Law Risk | 50 |
 | Violent-Crime Proxy Risk | 3.29 |
 | Energy-Sector Exposure | 100 |
 | Recent Risk Momentum | 28.49 |
@@ -48,10 +48,10 @@ Angola is classified as **Moderate** with a modeled Executive Protection Risk Sc
 
 | Indicator | Value |
 |---|---:|
-| Political stability | -0.34 |
-| Rule of law | -1.10 |
-| Control of corruption | -0.61 |
-| Government effectiveness | -1.01 |
+| Political stability | N/A |
+| Rule of law | N/A |
+| Control of corruption | N/A |
+| Government effectiveness | N/A |
 | Homicide rate per 100k | 2.58 |
 | Homicide data year | N/A |
 | Crime data quality | Median-filled homicide proxy |
@@ -62,13 +62,13 @@ Angola is classified as **Moderate** with a modeled Executive Protection Risk Sc
 
 | Scenario | Baseline | Scenario Score | Lift | Scenario Bucket |
 |---|---:|---:|---:|---|
-| High Visibility Executive Visit | 46.23 | 64.72 | 18.49 | Elevated |
-| Travel During Civil Unrest | 46.23 | 62.41 | 16.18 | Elevated |
-| Major Energy Project Announcement | 46.23 | 60.10 | 13.87 | Elevated |
-| Labor Unrest Or Protest Environment | 46.23 | 57.79 | 11.56 | Elevated |
-| Site Visit To Energy Asset | 46.23 | 55.48 | 9.25 | Elevated |
-| Public Energy Event | 46.23 | 53.16 | 6.93 | Elevated |
-| Routine Executive Travel | 46.23 | 46.23 | 0 | Moderate |
+| High Visibility Executive Visit | 35.12 | 49.17 | 14.05 | Moderate |
+| Travel During Civil Unrest | 35.12 | 47.41 | 12.29 | Moderate |
+| Major Energy Project Announcement | 35.12 | 45.66 | 10.54 | Moderate |
+| Labor Unrest Or Protest Environment | 35.12 | 43.90 | 8.78 | Moderate |
+| Site Visit To Energy Asset | 35.12 | 42.14 | 7.02 | Moderate |
+| Public Energy Event | 35.12 | 40.39 | 5.27 | Moderate |
+| Routine Executive Travel | 35.12 | 35.12 | 0 | Moderate |
 
 ## 2026 Forward Risk View
 

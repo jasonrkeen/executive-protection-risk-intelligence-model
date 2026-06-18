@@ -2,23 +2,23 @@
 
 ## Summary
 
-Nigeria is classified as **High** with a modeled Executive Protection Risk Score of **70.21**. The country profile is primarily shaped by weak governance or rule-of-law conditions, high strategic energy-sector exposure. This profile should be used as a strategic screening input rather than a tactical travel decision tool.
+Nigeria is classified as **Elevated** with a modeled Executive Protection Risk Score of **64.25**. The country profile is primarily shaped by high strategic energy-sector exposure. This profile should be used as a strategic screening input rather than a tactical travel decision tool.
 
 ## Baseline Risk Snapshot
 
 | Metric | Value |
 |---|---:|
 | Country code | NGA |
-| Executive Protection Risk Score | 70.21 |
-| Risk bucket | High |
-| Weighted baseline score | 45.21 |
-| Severity uplift | 25 |
+| Executive Protection Risk Score | 64.25 |
+| Risk bucket | Elevated |
+| Weighted baseline score | 40.25 |
+| Severity uplift | 24 |
 | Data coverage flag | Strong data coverage |
 
 ## Top Risk Drivers
 
-- **Governance / Rule-of-Law Risk:** 74.77
 - **Energy-Sector Exposure:** 74.04
+- **Governance / Rule-of-Law Risk:** 50.00
 - **Recent Risk Momentum:** 41.01
 
 ## Component Scores
@@ -26,7 +26,7 @@ Nigeria is classified as **High** with a modeled Executive Protection Risk Score
 | Component | Score |
 |---|---:|
 | Civil Unrest / Political Violence | 23.60 |
-| Governance / Rule-of-Law Risk | 74.77 |
+| Governance / Rule-of-Law Risk | 50 |
 | Violent-Crime Proxy Risk | 20.56 |
 | Energy-Sector Exposure | 74.04 |
 | Recent Risk Momentum | 41.01 |
@@ -48,10 +48,10 @@ Nigeria is classified as **High** with a modeled Executive Protection Risk Score
 
 | Indicator | Value |
 |---|---:|
-| Political stability | -1.77 |
-| Rule of law | -0.89 |
-| Control of corruption | -1.04 |
-| Government effectiveness | -0.85 |
+| Political stability | N/A |
+| Rule of law | N/A |
+| Control of corruption | N/A |
+| Government effectiveness | N/A |
 | Homicide rate per 100k | 15.75 |
 | Homicide data year | 2,023 |
 | Crime data quality | Homicide proxy populated |
@@ -62,13 +62,13 @@ Nigeria is classified as **High** with a modeled Executive Protection Risk Score
 
 | Scenario | Baseline | Scenario Score | Lift | Scenario Bucket |
 |---|---:|---:|---:|---|
-| High Visibility Executive Visit | 70.21 | 98.29 | 28.08 | Severe |
-| Travel During Civil Unrest | 70.21 | 94.78 | 24.57 | Severe |
-| Major Energy Project Announcement | 70.21 | 91.27 | 21.06 | Severe |
-| Labor Unrest Or Protest Environment | 70.21 | 87.76 | 17.55 | Severe |
-| Site Visit To Energy Asset | 70.21 | 84.25 | 14.04 | High |
-| Public Energy Event | 70.21 | 80.74 | 10.53 | High |
-| Routine Executive Travel | 70.21 | 70.21 | 0 | High |
+| High Visibility Executive Visit | 64.25 | 89.95 | 25.70 | Severe |
+| Travel During Civil Unrest | 64.25 | 86.74 | 22.49 | Severe |
+| Major Energy Project Announcement | 64.25 | 83.53 | 19.28 | High |
+| Labor Unrest Or Protest Environment | 64.25 | 80.31 | 16.06 | High |
+| Site Visit To Energy Asset | 64.25 | 77.10 | 12.85 | High |
+| Public Energy Event | 64.25 | 73.89 | 9.64 | High |
+| Routine Executive Travel | 64.25 | 64.25 | 0 | Elevated |
 
 ## 2026 Forward Risk View
 

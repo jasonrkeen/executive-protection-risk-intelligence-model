@@ -2,7 +2,7 @@
 
 ## A Quantitative OSINT Model for Executive Protection Risk in Global Energy Operations
 
-This project builds a data-driven, open-source intelligence (OSINT) model for estimating executive protection risk in global energy operations. The model combines country-level operating-environment risk scoring, city/location-level ACLED event analysis, geospatial risk visualization, airport access proxies, medical capacity proxies, protective intelligence exposure scoring, scenario analysis, Monte Carlo robustness testing, regional spillover analysis, and executive-facing intelligence signal scoring.
+This project builds a data-driven, open-source intelligence (OSINT) model for estimating executive protection risk in global energy operations. The model combines country-level operating-environment risk scoring, city/location-level ACLED event analysis, geospatial risk visualization, airport access proxies, medical capacity proxies, protective intelligence exposure scoring, COA-oriented decision-support logic, scenario analysis, Monte Carlo robustness testing, regional spillover analysis, and executive-facing intelligence signal scoring.
 
 The project is designed to support strategic thinking around executive travel, site visits, corporate events, public appearances, high-visibility leadership movement, and operating-environment risk in countries and cities where energy-sector exposure intersects with civil unrest, political violence, governance weakness, violent-crime exposure, regional instability, support-access constraints, principal exposure, movement predictability, online visibility, and recent risk momentum.
 
@@ -43,7 +43,7 @@ The model combines public data on:
 - Protective intelligence posture recommendations
 - Executive-facing intelligence signal scoring
 
-The result is a country-level **Executive Protection Risk Score**, city-level **City EP Risk Score**, access-adjusted **Operational EP Risk Score**, trip-level **Protective Intelligence Risk Score**, protective posture recommendation layer, scenario-adjusted risk framework, sensitivity analysis, Monte Carlo robustness layer, regional spillover model, intelligence signal layer, diagnostics framework, Streamlit dashboard, country intelligence profiles, geospatial city risk map, and PDF report suitable for portfolio presentation.
+The result is a country-level **Executive Protection Risk Score**, city-level **City EP Risk Score**, access-adjusted **Operational EP Risk Score**, trip-level **Protective Intelligence Risk Score**, protective posture recommendation layer, COA decision-support layer, scenario-adjusted risk framework, sensitivity analysis, Monte Carlo robustness layer, regional spillover model, intelligence signal layer, diagnostics framework, Streamlit dashboard, country intelligence profiles, geospatial city risk map, and PDF report suitable for portfolio presentation.
 
 ---
 
@@ -70,6 +70,8 @@ For multinational energy companies, executive protection extends beyond the prot
 - Venue, hotel, airport, and public-space exposure review
 - Online visibility and information-leakage awareness
 - Protective posture decision-support
+- COA-oriented protective intelligence review recommendations
+- Decision trigger flags and analyst-facing escalation logic
 
 This project translates those strategic concerns into a structured, quantitative risk-intelligence model using public data.
 
@@ -101,9 +103,12 @@ The final project includes:
 - Support access and support gap scoring
 - Access-adjusted operational EP risk score
 - Protective Intelligence Exposure and Decision-Support Layer
+- Protective Intelligence COA Decision-Support Layer
 - Trip/principal exposure scoring from a structured planning CSV
 - Protective Intelligence Risk Score
 - Protective posture recommendations
+- COA decision-support recommendations
+- Decision rule audit table
 - Analyst priority notes for planned movements
 - Model governance and methodology documentation
 - Model diagnostics and data coverage checks
@@ -136,6 +141,10 @@ outputs/screenshots/
 
 ![Protective Intelligence Posture](outputs/screenshots/dashboard_pi_posture.png)
 
+### COA Decision Support
+
+![COA Decision Support](outputs/screenshots/dashboard_decision_support.png)
+
 ---
 
 ## Project Structure
@@ -153,6 +162,7 @@ executive-protection-risk-intelligence-model/
 |   |   |-- airports.csv
 |   |   |-- homicide_rate.csv
 |   |   |-- protective_intelligence_trip_inputs.csv
+|   |   |-- protective_intelligence_decision_rules.csv
 |   |
 |   |-- processed/
 |       |-- worldbank_ep_indicators.csv
@@ -183,6 +193,7 @@ executive-protection-risk-intelligence-model/
 |   |-- acled_forecast_update.py
 |   |-- access_proxy_layer.py
 |   |-- protective_intelligence_score.py
+|   |-- protective_intelligence_decision_layer.py
 |   |-- city_map_generator.py
 |   |-- city_visualization.py
 |   |-- crime_data.py
@@ -621,6 +632,62 @@ This layer is a decision-support and portfolio-demonstration layer. It does not 
 
 ---
 
+## Phase 5: Protective Intelligence COA Decision-Support Layer
+
+The project includes a Protective Intelligence COA Decision-Support Layer that converts trip-level Protective Intelligence scores and trigger flags into explainable analyst-facing courses of action.
+
+This layer is designed to answer the practical follow-up question after a risk score is produced:
+
+> Once a protective intelligence concern is identified, what type of review or decision pathway should be considered next?
+
+The COA layer uses transparent score bands, trigger flags, and supporting indicators to produce:
+
+- COA level
+- Protective intelligence recommendation
+- Primary decision driver
+- Secondary decision driver
+- Supporting indicators
+- Data-confidence label
+- Analyst note
+- Decision priority rank
+- Decision rule audit output
+
+COA levels include:
+
+| Score / Trigger Context | COA Level | Recommendation |
+|---|---|---|
+| Low score and no elevated trigger | Routine | Continue routine monitoring |
+| Moderate score | Monitor | Increase monitoring |
+| Elevated score | Validate | Request analyst validation |
+| High score | Enhanced Advance | Require enhanced advance work |
+| High score plus support-access gap | Security Lead Review | Notify security lead |
+| Severe score | Senior Review | Senior security review |
+| Multiple high-severity triggers | Posture Reassessment | Consider postponement, relocation, or alternate plan through approved organizational review channels |
+
+The decision-support layer reads the existing trip-level score output:
+
+```text
+data/processed/protective_intelligence_trip_scores.csv
+```
+
+and produces:
+
+```text
+outputs/tables/protective_intelligence_decision_support.csv
+outputs/tables/top_decision_escalations.csv
+outputs/tables/decision_rule_audit.csv
+```
+
+The transparent decision rules file is stored at:
+
+```text
+data/raw/protective_intelligence_decision_rules.csv
+```
+
+The COA layer is a strategic analyst triage and portfolio-demonstration tool. It does not provide tactical instructions, route approval, venue approval, staffing guidance, protective detail direction, or final go/no-go determinations.
+
+---
+
 ## Severity Calibration Layer
 
 The model includes a bounded severity calibration layer after the initial weighted score.
@@ -949,6 +1016,7 @@ Dashboard tabs include:
 - Country Profile
 - City Risk
 - PI Posture
+- Decision Support
 - Intelligence Signal
 - Forward Risk
 - Monitoring
@@ -976,6 +1044,18 @@ The PI Posture tab includes:
 - Selected movement detail table
 - Analyst priority notes
 - Downloadable PI priorities table
+
+The Decision Support tab includes:
+
+- COA decision-support rankings
+- COA level, risk band, and data-confidence filters
+- Decision-support risk score chart
+- COA distribution table
+- Selected decision detail view
+- Analyst decision note
+- Decision trigger flags
+- Decision rule audit table
+- Downloadable decision-support output
 
 The dashboard also supports PDF download when the report exists in the configured report path.
 
@@ -1023,6 +1103,9 @@ outputs/tables/top_intelligence_signal_countries.csv
 outputs/tables/top_25_city_ep_risk_rankings.csv
 outputs/tables/top_25_city_operational_risk_rankings.csv
 outputs/tables/top_protective_intelligence_priorities.csv
+outputs/tables/protective_intelligence_decision_support.csv
+outputs/tables/top_decision_escalations.csv
+outputs/tables/decision_rule_audit.csv
 outputs/tables/model_governance_summary.csv
 outputs/tables/model_assumptions_summary.csv
 outputs/tables/model_diagnostics_summary.csv
@@ -1076,6 +1159,7 @@ outputs/screenshots/dashboard_city_risk_rankings.png
 outputs/screenshots/dashboard_city_risk_map.png
 outputs/screenshots/dashboard_access_support_proxy.png
 outputs/screenshots/dashboard_pi_posture.png
+outputs/screenshots/dashboard_decision_support.png
 ```
 
 ### Report
@@ -1099,6 +1183,7 @@ The PDF report includes:
 - City-Level Protective Intelligence Layer
 - Airport and Medical Access Proxy Layer
 - Protective Intelligence Exposure and Decision-Support Layer
+- Protective Intelligence COA Decision-Support Layer
 - Energy Exposure, Governance, and Crime Risk
 - Scenario Analysis
 - Sensitivity Analysis
@@ -1201,9 +1286,10 @@ The full pipeline will:
 20. Generate the city-level geospatial risk map
 21. Build the airport and medical access proxy layer
 22. Build protective intelligence exposure and posture scores
-23. Run model diagnostics
-24. Build model governance documentation
-25. Generate the PDF report
+23. Build protective intelligence COA decision-support outputs
+24. Run model diagnostics
+25. Build model governance documentation
+26. Generate the PDF report
 
 ---
 
@@ -1234,6 +1320,7 @@ python -m src.city_visualization
 python -m src.city_map_generator
 python -m src.access_proxy_layer
 python -m src.protective_intelligence_score
+python -m src.protective_intelligence_decision_layer
 python -m src.model_diagnostics
 python -m src.model_governance
 python -m src.report_generator
@@ -1268,6 +1355,7 @@ Key current-output themes:
 - City-level ACLED analysis highlights urban/location-level variation that country-level scores can obscure.
 - The access-support proxy layer adds airport and medical-capacity context to city-level risk screening.
 - The Protective Intelligence layer converts trip-level exposure assumptions into posture recommendations and analyst priority notes.
+- The COA decision-support layer identifies review pathways such as validation, enhanced advance work, security lead review, senior review, and posture reassessment.
 - No material run-to-run changes were detected in the most recent report output.
 
 These outputs will change as input data, model parameters, airport reference data, medical indicator availability, trip-input assumptions, or forward-year ACLED availability change.
@@ -1293,6 +1381,8 @@ This project can support questions such as:
 - Which locations may require enhanced travel, event, or site-visit risk review?
 - Which planned movements combine local risk, support constraints, and exposure assumptions into elevated Protective Intelligence priority?
 - Which trips may require enhanced advance work, protective intelligence watch, route or venue redesign review, or senior security review?
+- Which planned movements generate COA decision-support triggers such as security lead review, senior review, or posture reassessment?
+- Which decision drivers explain why a protective intelligence movement record was escalated?
 
 ---
 
@@ -1306,6 +1396,7 @@ This model is intended for:
 - Energy-sector operating-risk analysis
 - City/location-level protective intelligence screening
 - Protective intelligence posture modeling
+- COA-oriented protective intelligence triage
 - Portfolio demonstration
 - LinkedIn and GitHub publication
 - Data-driven risk modeling practice
@@ -1342,6 +1433,8 @@ The airport and medical access layer uses public proxy data. Airport distance is
 
 The Protective Intelligence Exposure and Decision-Support Layer uses structured analyst assumptions from a CSV input. It is intended to demonstrate a repeatable scoring workflow and should not be interpreted as real itinerary intelligence, principal-specific threat assessment, or operational recommendation.
 
+The Protective Intelligence COA Decision-Support Layer translates scores and trigger flags into review recommendations for analyst triage. These outputs should not be treated as binding operational decisions, tactical instructions, route approval, venue approval, protective detail staffing guidance, or final go/no-go determinations.
+
 ---
 
 ## Future Enhancements
@@ -1350,6 +1443,7 @@ Potential improvements include:
 
 - Add city-level intelligence brief generation
 - Add selected-trip Protective Intelligence brief exports
+- Add selected-trip COA decision-support brief exports
 - Add scenario-adjusted city travel risk scoring
 - Add richer venue-type and event-type exposure assumptions
 - Add online visibility / itinerary leakage proxy data where defensible
@@ -1365,7 +1459,7 @@ Potential improvements include:
 
 ## Suggested Portfolio Framing
 
-This project demonstrates the use of public OSINT datasets to build a quantitative risk-intelligence framework for executive protection and global energy operations. It combines political violence data, governance indicators, violent-crime proxies, energy-sector exposure metrics, regional spillover analysis, Monte Carlo robustness testing, city/location-level ACLED analysis, geospatial mapping, airport access proxies, medical capacity proxies, protective intelligence exposure scoring, posture recommendations, and executive-facing intelligence signals into a structured model that can support strategic planning, travel risk screening, scenario analysis, sensitivity testing, forward-risk monitoring, support-access review, protective intelligence posture screening, and portfolio demonstration.
+This project demonstrates the use of public OSINT datasets to build a quantitative risk-intelligence framework for executive protection and global energy operations. It combines political violence data, governance indicators, violent-crime proxies, energy-sector exposure metrics, regional spillover analysis, Monte Carlo robustness testing, city/location-level ACLED analysis, geospatial mapping, airport access proxies, medical capacity proxies, protective intelligence exposure scoring, COA decision-support logic, posture recommendations, and executive-facing intelligence signals into a structured model that can support strategic planning, travel risk screening, scenario analysis, sensitivity testing, forward-risk monitoring, support-access review, protective intelligence posture screening, COA-oriented decision-support triage, and portfolio demonstration.
 
 It is especially relevant to roles involving:
 
