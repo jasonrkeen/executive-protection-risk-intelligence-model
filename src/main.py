@@ -159,8 +159,9 @@ def main():
 
     print(f"\n[24/{total_steps}] Auditing intelligence evidence coverage and validation gaps...")
     validation_outputs = run_intelligence_validation_layer()
-    for name, path in validation_outputs.items():
-        print(f"  - {name}: {path}")
+    if isinstance(validation_outputs, dict):
+        for name, path in validation_outputs.items():
+            print(f"  - {name}: {path}")
 
     print(f"\n[25/{total_steps}] Running model diagnostics...")
     run_model_diagnostics()
