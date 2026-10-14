@@ -83,7 +83,7 @@ def read_csv_required(path: Path, guidance: str) -> pd.DataFrame:
     if not path.exists():
         raise FileNotFoundError(f"Missing required file: {path}\n{guidance}")
 
-    return pd.read_csv(path, low_memory=False)
+    return pd.read_csv(path, low_memory=False, dtype={"trip_id": str})
 
 
 def normalize_text(value) -> str:

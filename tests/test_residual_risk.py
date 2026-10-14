@@ -154,6 +154,92 @@ class ResidualTests(unittest.TestCase):
                 SimpleDocTemplate(str(path)).build(story)
                 self.assertGreater(path.stat().st_size, 1000)
 
+    def test_explicit_missing_capacity_fails(self):
+        with tempfile.TemporaryDirectory() as td:
+            with self.assertRaises(FileNotFoundError):
+                build_residual_risk(Path(td)/'pi.csv', Path(td)/'missing.csv')
+
+    def test_corrupt_residual_cannot_bypass_coa(self):
+        for column, value in [('residual_review_state', 'No additional capacity review trigger'),
+                              ('residual_risk_score', 0), ('residual_model_version', 'old')]:
+            scored = score_residual_risk(trips(20), capacity(0, 100))
+            scored[column] = value
+            with self.subTest(column=column), self.assertRaises(ValueError):
+                build_decision_support_layer(scored)
+        with self.assertRaises(ValueError):
+            build_decision_support_layer(score_residual_risk(trips()).drop(columns=['residual_review_state']))
+
+    def test_residual_audit_counts(self):
+        from src.protective_intelligence_decision_layer import build_decision_rule_audit
+        scored = pd.concat([score_residual_risk(trips(20)),
+                            score_residual_risk(trips(20), capacity(0, 100)).assign(trip_id='002')], ignore_index=True)
+        audit = build_decision_rule_audit(build_decision_support_layer(scored)).set_index('rule_id')
+        self.assertEqual(audit.loc['RPR1-UNKNOWN', 'triggered_record_count'], 1)
+        self.assertEqual(audit.loc['RPR1-REVIEW', 'triggered_record_count'], 1)
+
+    def test_real_pi_to_residual_to_coa_synthetic(self):
+        from src import protective_intelligence_score as pi
+        from src.report_generator import read_csv_if_exists
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            raw = pd.DataFrame([dict(trip_id='001', principal='Synthetic', city='Test', country='Test',
+                scenario='routine executive travel', visibility_level='low', travel_predictability='low',
+                venue_exposure='low', hotel_airport_exposure='low', online_visibility='low',
+                reputational_sensitivity='low', business_sector_sensitivity='other')])
+            raw.to_csv(root/'raw.csv', index=False)
+            with patch.object(pi, 'TRIP_INPUT_FILE', root/'raw.csv'):
+                loaded = pi.load_trip_inputs()
+            self.assertEqual(loaded.trip_id[0], '001')
+            context = pd.DataFrame([dict(city_key='test', country_key='test', city_ep_risk_score=40,
+                support_gap_score=20, city_operational_ep_risk_score=35, rank=1)])
+            baseline = pi.calculate_protective_intelligence_scores(loaded, context)
+            baseline.to_csv(root/'pi.csv', index=False)
+            capacity(0, 100).to_csv(root/'capacity.csv', index=False)
+            output = build_residual_risk(root/'pi.csv', root/'capacity.csv', root/'residual.csv')
+            displayed = read_csv_if_exists(output)
+            self.assertEqual(displayed.trip_id[0], '001')
+            self.assertAlmostEqual(displayed.protective_intelligence_risk_score[0], baseline.protective_intelligence_risk_score[0])
+            result = build_decision_support_from_existing_outputs(output, output_dir=root/'coa')
+            self.assertEqual(pd.read_csv(result['decision_support']).coa_level[0], 'Security Lead Review')
+
+    def test_order_independent_matching_and_empty_schema(self):
+        ts = pd.concat([trips(20), trips(80).assign(trip_id='002')], ignore_index=True)
+        cs = pd.concat([capacity(0, 100).assign(trip_id='002'), capacity()], ignore_index=True)
+        result = score_residual_risk(ts, cs).set_index('trip_id')
+        self.assertEqual(result.loc['001', 'residual_risk_score'], 15)
+        self.assertEqual(result.loc['002', 'residual_risk_score'], 100)
+        with self.assertRaises(ValueError):
+            score_residual_risk(trips().drop(columns=['protective_intelligence_risk_score']))
+        with self.assertRaises(ValueError):
+            score_residual_risk(pd.concat([trips(), trips()['trip_id']], axis=1))
+
+    def test_invalid_views_do_not_present_scores(self):
+        from streamlit.testing.v1 import AppTest
+        script = ('from tests.test_residual_risk import trips, capacity\n'
+                  'from src.residual_protective_risk import score_residual_risk\n'
+                  'from src.residual_risk_views import show_residual_risk_tab\n'
+                  'scores=score_residual_risk(trips(), capacity())\n'
+                  'scores["residual_risk_score"]=0\nshow_residual_risk_tab(scores)')
+        app = AppTest.from_string(script).run()
+        self.assertEqual(len(app.exception), 0)
+        self.assertEqual(len(app.error), 1)
+        self.assertEqual(len(app.dataframe), 0)
+        from src.residual_risk_views import add_residual_risk_section
+        from src.report_generator import make_styles
+        story = []
+        add_residual_risk_section(story, make_styles(), trips())
+        text = ' '.join(item.getPlainText() for item in story if hasattr(item, 'getPlainText'))
+        self.assertIn('invalid or incompatible', text)
+
+    def test_custom_rules_are_used_in_saved_audit(self):
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            score_residual_risk(trips()).to_csv(root/'residual.csv', index=False)
+            pd.DataFrame([{'rule_id': 'CUSTOM', 'coa_level': 'Validate'}]).to_csv(root/'rules.csv', index=False)
+            paths = build_decision_support_from_existing_outputs(root/'residual.csv', rules_path=root/'rules.csv', output_dir=root/'coa')
+            rules = pd.read_csv(paths['decision_rule_audit']).rule_id.tolist()
+            self.assertEqual(rules, ['CUSTOM', 'RPR1-UNKNOWN', 'RPR1-REVIEW'])
+
 
 if __name__ == '__main__':
     unittest.main()

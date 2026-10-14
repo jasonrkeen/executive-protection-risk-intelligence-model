@@ -17,6 +17,8 @@ OUTPUT = ROOT / "data/processed/residual_protective_risk_scores.csv"
 
 def _keys(frame):
     frame = frame.copy()
+    if frame.columns.duplicated().any():
+        raise ValueError("Duplicate column names are not allowed")
     if "trip_id" not in frame:
         raise ValueError("trip_id is required")
     if frame.trip_id.isna().any():
@@ -32,6 +34,8 @@ def score_residual_risk(trips, capacity=None):
     out = _keys(trips)
     if out.empty:
         raise ValueError("trip scores cannot be empty")
+    if "protective_intelligence_risk_score" not in out:
+        raise ValueError("protective_intelligence_risk_score is required")
     score = pd.to_numeric(out["protective_intelligence_risk_score"], errors="coerce")
     if (~np.isfinite(score) | ~score.between(0, 100)).any():
         raise ValueError("PI scores must be finite numbers in [0, 100]")
@@ -67,7 +71,35 @@ def score_residual_risk(trips, capacity=None):
     return out
 
 
+def validate_residual_scores(scored):
+    """Reject incomplete, stale-version or altered derived fields at consumption."""
+    required = {"trip_id", "protective_intelligence_risk_score", *FIELDS}
+    if not required.issubset(scored.columns):
+        raise ValueError("Residual input is missing baseline or capacity columns")
+    expected = score_residual_risk(
+        scored[["trip_id", "protective_intelligence_risk_score"]],
+        scored[["trip_id", *FIELDS]],
+    )
+    for column in expected.columns:
+        if column in required:
+            continue
+        if column not in scored:
+            raise ValueError(f"Residual input is missing {column}")
+        actual = scored[column].reset_index(drop=True)
+        target = expected[column]
+        if pd.api.types.is_numeric_dtype(target) and target.dtype != bool:
+            numeric = pd.to_numeric(actual, errors="coerce")
+            matches = not (actual.notna() & numeric.isna()).any() and np.isclose(
+                numeric, target, rtol=1e-10, atol=1e-10, equal_nan=True).all()
+        else:
+            matches = actual.eq(target).fillna(False).all()
+        if not matches:
+            raise ValueError(f"Residual input is inconsistent: {column}; regenerate RPR-1 output")
+
+
 def build_residual_risk(input_path=None, capacity_path=None, output_path=None):
+    if capacity_path is not None and not Path(capacity_path).is_file():
+        raise FileNotFoundError(capacity_path)
     input_path = Path(input_path) if input_path is not None else ROOT / "data/processed/protective_intelligence_trip_scores.csv"
     capacity_path = Path(capacity_path) if capacity_path is not None else ROOT / "data/raw/protective_capacity_inputs.csv"
     output_path = Path(output_path) if output_path is not None else OUTPUT

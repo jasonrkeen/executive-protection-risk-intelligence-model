@@ -62,11 +62,24 @@ states. Both visibly identify the replacement and its experimental status.
 
 ## Validation and release boundary
 
+Consumption by COA, the residual tab, and the residual PDF section recomputes
+derived fields and rejects inconsistent or incompatible output. This checks
+internal consistency, not whether input assessments are fresh or factually valid.
+An explicitly supplied missing capacity path is an error; only an absent default
+capacity file is treated as an unknown assessment. Trip IDs are read as text
+through PI ingestion, residual output, COA, dashboard, and reports.
+The decision audit includes the RPR-1 assessment and review floors and their
+triggered-record counts. A supplied decision-rules path is retained in the audit.
+
 Run `python -m unittest discover -s tests -v`. Tests cover hand calculations,
 monotonicity and bounds, missingness, invalid values, join integrity, unchanged
 PI, support-gap non-duplication, COA floors, file integration, pipeline order,
 and Streamlit rendering. Pipeline-order testing mocks upstream data acquisition;
 it is not a full real-data run. Local and CI outcomes are recorded in the PR.
+
+A synthetic integration test additionally executes PI input loading and scoring,
+residual scoring, CSV serialization, and COA generation with actual functions.
+It verifies the leading-zero movement ID and baseline PI score survive the flow.
 
 Before operational adoption, validate source freshness and assessment evidence,
 run with authorized real trip data, perform independent construct review and

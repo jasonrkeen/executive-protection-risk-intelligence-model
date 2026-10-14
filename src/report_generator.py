@@ -131,7 +131,7 @@ def read_csv_if_exists(path: Path) -> pd.DataFrame:
         return pd.DataFrame()
 
     try:
-        return pd.read_csv(path, low_memory=False)
+        return pd.read_csv(path, low_memory=False, dtype={"trip_id": str})
     except Exception as exc:
         print(f"Warning: could not read {path}: {exc}")
         return pd.DataFrame()

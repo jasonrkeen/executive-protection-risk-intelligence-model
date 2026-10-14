@@ -14,6 +14,12 @@ def show_residual_risk_tab(scores):
     if scores.empty:
         st.info("Residual risk has not been generated. Run the residual layer after PI scoring.")
         return
+    from src.residual_protective_risk import validate_residual_scores
+    try:
+        validate_residual_scores(scores)
+    except ValueError as exc:
+        st.error(f"Residual assessment unavailable: {exc}")
+        return
     st.dataframe(scores[COLS], hide_index=True)
     selected = st.selectbox("Movement", scores.trip_id.tolist(), key="residual_trip")
     row = scores.loc[scores.trip_id == selected].iloc[0]
@@ -30,6 +36,12 @@ def add_residual_risk_section(story, styles, scores):
                   Paragraph(NOTICE, styles["body"])])
     if scores.empty:
         story.append(Paragraph("Residual layer not generated; no residual assessment available.", styles["body"]))
+        return
+    from src.residual_protective_risk import validate_residual_scores
+    try:
+        validate_residual_scores(scores)
+    except ValueError:
+        story.append(Paragraph("Residual assessment invalid or incompatible; regenerate RPR-1 output.", styles["body"]))
         return
     # Compact movement paragraphs avoid wide or clipped tables and retain unknowns.
     for _, row in scores.iterrows():
