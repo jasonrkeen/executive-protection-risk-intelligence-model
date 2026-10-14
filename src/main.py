@@ -1,4 +1,5 @@
 from src.residual_protective_risk import build_residual_risk
+from src.intelligence_validation_layer import run_intelligence_validation_layer
 from src.worldbank_api import build_worldbank_dataset
 from src.acled_api import fetch_acled_events
 from src.acled_processing import build_acled_country_features
@@ -65,12 +66,13 @@ def main():
         21. Build airport and medical access proxy layer
         22. Build protective intelligence exposure and posture scores
         23. Build replacement residual risk, then protective intelligence COA decision support
-        24. Run diagnostics
-        25. Build model governance documentation
-        26. Generate PDF report
+        24. Build intelligence evidence coverage and collection requirements
+        25. Run diagnostics
+        26. Build model governance documentation
+        27. Generate PDF report
     """
 
-    total_steps = 26
+    total_steps = 27
 
     print("=" * 70)
     print("Starting Executive Protection Risk Intelligence pipeline...")
@@ -155,13 +157,18 @@ def main():
     residual_path = build_residual_risk()
     build_decision_support_from_existing_outputs(input_path=residual_path)
 
-    print(f"\n[24/{total_steps}] Running model diagnostics...")
+    print(f"\n[24/{total_steps}] Auditing intelligence evidence coverage and validation gaps...")
+    validation_outputs = run_intelligence_validation_layer()
+    for name, path in validation_outputs.items():
+        print(f"  - {name}: {path}")
+
+    print(f"\n[25/{total_steps}] Running model diagnostics...")
     run_model_diagnostics()
 
-    print(f"\n[25/{total_steps}] Building model governance documentation...")
+    print(f"\n[26/{total_steps}] Building model governance documentation...")
     run_model_governance()
 
-    print(f"\n[26/{total_steps}] Generating PDF report...")
+    print(f"\n[27/{total_steps}] Generating PDF report...")
     generate_report()
 
     print("\n" + "=" * 70)
