@@ -1,0 +1,159 @@
+import tempfile
+import unittest
+from pathlib import Path
+from unittest.mock import patch
+
+import numpy as np
+import pandas as pd
+
+from src.residual_protective_risk import CAPACITY, LOAD, FIELDS, score_residual_risk, build_residual_risk
+from src.protective_intelligence_decision_layer import build_decision_support_layer, build_decision_support_from_existing_outputs
+
+
+def trips(score=62):
+    return pd.DataFrame([{"trip_id": "001", "protective_intelligence_risk_score": score}])
+
+
+def capacity(c=100, load=0):
+    return pd.DataFrame([{"trip_id": "001", **dict.fromkeys(CAPACITY, c), **dict.fromkeys(LOAD, load)}])
+
+
+class ResidualTests(unittest.TestCase):
+    def test_hand_calculated_endpoints(self):
+        strong = score_residual_risk(trips(), capacity()).iloc[0]
+        weak = score_residual_risk(trips(), capacity(0, 100)).iloc[0]
+        saturated = score_residual_risk(trips(), capacity(100, 100)).iloc[0]
+        self.assertEqual(strong.residual_risk_score, 46.5)
+        self.assertEqual(weak.residual_risk_score, 77.5)
+        self.assertAlmostEqual(saturated.residual_risk_score, 57.35)
+        self.assertEqual(saturated.protective_coverage_gap, 35)
+
+    def test_monotonicity_and_bounds_grid(self):
+        for pi in (0, 20, 62, 100):
+            for load in (0, 25, 50, 75, 100):
+                values = [score_residual_risk(trips(pi), capacity(c, load)).iloc[0].residual_risk_score for c in range(0, 101, 10)]
+                self.assertTrue(all(0 <= v <= 100 for v in values))
+                self.assertTrue(all(a >= b for a, b in zip(values, values[1:])))
+            values = [score_residual_risk(trips(pi), capacity(80, load)).iloc[0].residual_risk_score for load in range(101)]
+            self.assertTrue(all(a <= b for a, b in zip(values, values[1:])))
+
+    def test_missing_and_partial_unknown(self):
+        for cap in (None, capacity().drop(columns=[FIELDS[0]]), pd.DataFrame(columns=["trip_id"])):
+            row = score_residual_risk(trips(), cap).iloc[0]
+            self.assertEqual(row.residual_risk_score, 62)
+            self.assertEqual(row.capacity_modifier, 1)
+            self.assertTrue(pd.isna(row.protective_coverage_gap))
+            self.assertEqual(row.residual_review_state, "Capacity assessment required")
+
+    def test_invalid_values_rejected(self):
+        for bad in (-1, 101, np.inf, "bad"):
+            with self.subTest(bad=bad):
+                with self.assertRaises(ValueError):
+                    score_residual_risk(trips(bad), capacity())
+                cap = capacity().astype(object)
+                cap.loc[0, FIELDS[0]] = bad
+                with self.assertRaises(ValueError):
+                    score_residual_risk(trips(), cap)
+        with self.assertRaises(ValueError):
+            score_residual_risk(trips(np.nan), capacity())
+
+    def test_join_rejections(self):
+        for cap in (pd.concat([capacity(), capacity()]), capacity().assign(trip_id="other"), capacity().assign(trip_id=None)):
+            with self.assertRaises(ValueError):
+                score_residual_risk(trips(), cap)
+        with self.assertRaises(ValueError):
+            score_residual_risk(pd.concat([trips(), trips()]), capacity())
+
+    def test_no_support_gap_double_count_or_input_mutation(self):
+        t = trips().assign(support_gap_score=0)
+        original = t.copy(deep=True)
+        a = score_residual_risk(t, capacity())
+        b = score_residual_risk(t.assign(support_gap_score=100), capacity())
+        pd.testing.assert_frame_equal(t, original)
+        self.assertEqual(a.residual_risk_score[0], b.residual_risk_score[0])
+        self.assertEqual(a.protective_intelligence_risk_score[0], 62)
+
+    def test_coa_floor_and_no_downgrade(self):
+        low = build_decision_support_layer(score_residual_risk(trips(20), capacity(0, 100)))
+        self.assertEqual(low.coa_level[0], "Security Lead Review")
+        self.assertEqual(low.primary_decision_driver[0], "Protective-planning review required")
+        unknown = build_decision_support_layer(score_residual_risk(trips(20)))
+        self.assertEqual(unknown.coa_level[0], "Validate")
+        self.assertEqual(unknown.data_confidence[0], "Low")
+        baseline = build_decision_support_layer(trips(95))
+        mitigated = build_decision_support_layer(score_residual_risk(trips(95), capacity()))
+        self.assertEqual(baseline.coa_level[0], mitigated.coa_level[0])
+
+    def test_csv_pipeline_preserves_ids_and_consumes_residual(self):
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            trips(20).to_csv(root / 'pi.csv', index=False)
+            capacity(0, 100).to_csv(root / 'capacity.csv', index=False)
+            output = build_residual_risk(root/'pi.csv', root/'capacity.csv', root/'residual.csv')
+            self.assertEqual(pd.read_csv(output, dtype={"trip_id": str}).trip_id[0], "001")
+            paths = build_decision_support_from_existing_outputs(output, output_dir=root/'coa')
+            result = pd.read_csv(paths['decision_support'], dtype={"trip_id": str})
+            self.assertEqual(result.trip_id[0], "001")
+            self.assertEqual(result.coa_level[0], "Security Lead Review")
+            self.assertIn('residual_risk_score', result)
+            with self.assertRaises(FileNotFoundError):
+                build_decision_support_from_existing_outputs(root/'missing.csv')
+
+    def test_pipeline_order(self):
+        import src.main as pipeline
+        calls = []
+        names = [name for name, value in vars(pipeline).items() if callable(value) and name != 'main']
+        from contextlib import ExitStack
+        with ExitStack() as stack:
+            for name in names:
+                stack.enter_context(patch.object(pipeline, name, side_effect=lambda *a, _name=name, **kw: calls.append((_name, kw)) or 'residual.csv'))
+            pipeline.main()
+        order = [name for name, kw in calls]
+        self.assertLess(order.index('build_protective_intelligence_scores'), order.index('build_residual_risk'))
+        self.assertLess(order.index('build_residual_risk'), order.index('build_decision_support_from_existing_outputs'))
+        self.assertEqual(dict(calls)['build_decision_support_from_existing_outputs']['input_path'], 'residual.csv')
+
+    def test_streamlit_populated_and_empty(self):
+        from streamlit.testing.v1 import AppTest
+        for populated in (False, True):
+            script = ('import pandas as pd\nfrom src.residual_risk_views import show_residual_risk_tab\n'
+                      'from tests.test_residual_risk import trips, capacity\n'
+                      'from src.residual_protective_risk import score_residual_risk\n'
+                      'show_residual_risk_tab(' + ('score_residual_risk(trips(), capacity())' if populated else 'pd.DataFrame()') + ')')
+            app = AppTest.from_string(script).run()
+            self.assertEqual(len(app.exception), 0)
+            self.assertEqual(len(app.dataframe), int(populated))
+
+    def test_review_threshold_boundaries(self):
+        # At zero workload, capacity 40 gives gap 60 exactly.
+        self.assertTrue(score_residual_risk(trips(20), capacity(40, 0)).residual_review_required[0])
+        self.assertFalse(score_residual_risk(trips(20), capacity(40.01, 0)).residual_review_required[0])
+        self.assertTrue(score_residual_risk(trips(20), capacity(100, 70)).residual_review_required[0])
+        self.assertFalse(score_residual_risk(trips(20), capacity(100, 69.99)).residual_review_required[0])
+        self.assertTrue(score_residual_risk(trips(80), capacity(100, 0)).residual_review_required[0])
+        self.assertFalse(score_residual_risk(trips(79.99), capacity(100, 0)).residual_review_required[0])
+
+    def test_full_dashboard_tab(self):
+        from streamlit.testing.v1 import AppTest
+        app = AppTest.from_file(str(Path(__file__).resolve().parents[1] / 'app.py')).run(timeout=30)
+        self.assertEqual(len(app.exception), 0)
+        labels = [tab.label for tab in app.tabs]
+        self.assertEqual(labels[3:6], ['PI Posture', 'Residual Risk', 'Decision Support'])
+
+    def test_report_section_builds_known_and_unknown(self):
+        from src.residual_risk_views import add_residual_risk_section
+        from src.report_generator import make_styles
+        from reportlab.platypus import SimpleDocTemplate
+        with tempfile.TemporaryDirectory() as td:
+            for name, scores in [('known', score_residual_risk(trips(), capacity())),
+                                 ('unknown', score_residual_risk(trips())),
+                                 ('absent', pd.DataFrame())]:
+                path = Path(td) / (name + '.pdf')
+                story = []
+                add_residual_risk_section(story, make_styles(), scores)
+                SimpleDocTemplate(str(path)).build(story)
+                self.assertGreater(path.stat().st_size, 1000)
+
+
+if __name__ == '__main__':
+    unittest.main()

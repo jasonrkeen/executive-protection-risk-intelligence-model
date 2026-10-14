@@ -435,6 +435,24 @@ def build_decision_support_layer(
         "Routine": 0,
     }
 
+    # RPR-1 adds review floors while preserving all baseline PI escalations.
+    if "residual_review_state" in output:
+        output["baseline_coa_level"] = output["coa_level"]
+        for idx, row in output.iterrows():
+            state = row["residual_review_state"]
+            floor = ("Validate" if state == "Capacity assessment required" else
+                     "Security Lead Review" if state == "Protective-planning review required" else None)
+            if floor:
+                if priority_order[row["coa_level"]] < priority_order[floor]:
+                    output.at[idx, "coa_level"] = floor
+                    output.at[idx, "protective_intelligence_recommendation"] = state
+                    output.at[idx, "secondary_decision_driver"] = row["primary_decision_driver"]
+                    output.at[idx, "primary_decision_driver"] = state
+                output.at[idx, "supporting_indicators"] += "; " + state
+                output.at[idx, "analyst_note"] += " RPR-1 replacement: " + state + "."
+                if state == "Capacity assessment required":
+                    output.at[idx, "data_confidence"] = "Low"
+
     output["decision_priority_rank"] = (
         output["coa_level"].map(priority_order).fillna(0).astype(int)
     )
@@ -640,6 +658,9 @@ def build_decision_support_from_existing_outputs(
     if input_path is not None:
         candidate_paths.append(Path(input_path))
 
+    if input_path is not None and not Path(input_path).exists():
+        raise FileNotFoundError(input_path)
+
     candidate_paths.extend(
         [
             Path("outputs/tables/protective_intelligence_trip_scores.csv"),
@@ -665,7 +686,7 @@ def build_decision_support_from_existing_outputs(
 
     print(f"[Decision Support] Loading source scores from: {source_path}")
 
-    trip_scores = pd.read_csv(source_path)
+    trip_scores = pd.read_csv(source_path, dtype={"trip_id": str})
 
     decision_support = build_decision_support_layer(
         trip_scores=trip_scores,
