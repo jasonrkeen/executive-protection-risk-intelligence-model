@@ -1,5 +1,6 @@
 from datetime import datetime
 from src.residual_risk_views import add_residual_risk_section
+from src.intelligence_validation_views import add_intelligence_validation_section
 from src.residual_protective_risk import OUTPUT as RESIDUAL_FILE
 from pathlib import Path
 from xml.sax.saxutils import escape
@@ -104,6 +105,7 @@ TOP_DECISION_ESCALATIONS_FILE = (
 DECISION_RULE_AUDIT_FILE = (
     PROJECT_ROOT / "outputs" / "tables" / "decision_rule_audit.csv"
 )
+IV_TABLES_DIR = PROJECT_ROOT / "outputs" / "tables"
 
 
 REPORT_SUBTITLE = (
@@ -2866,6 +2868,9 @@ def generate_report():
     decision_support = read_csv_if_exists(PROTECTIVE_INTELLIGENCE_DECISION_SUPPORT_FILE)
     top_decision_escalations = read_csv_if_exists(TOP_DECISION_ESCALATIONS_FILE)
     decision_rule_audit = read_csv_if_exists(DECISION_RULE_AUDIT_FILE)
+    iv_confidence = read_csv_if_exists(IV_TABLES_DIR / "intelligence_confidence_scores.csv")
+    iv_gaps = read_csv_if_exists(IV_TABLES_DIR / "source_coverage_gaps.csv")
+    iv_plan = read_csv_if_exists(IV_TABLES_DIR / "analyst_collection_plan.csv")
 
     if rankings.empty:
         raise FileNotFoundError(
@@ -2959,6 +2964,7 @@ def generate_report():
         top_decision_escalations,
         decision_rule_audit,
     )
+    add_intelligence_validation_section(story, styles, iv_confidence, iv_gaps, iv_plan)
     add_energy_governance_crime_section(story, styles, rankings)
     add_scenario_section(story, styles, scenarios, scenario_top, scenario_summary)
     add_sensitivity_section(story, styles, sensitivity_summary, sensitivity_overlap)
