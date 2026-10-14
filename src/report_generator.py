@@ -1,4 +1,6 @@
 from datetime import datetime
+from src.residual_risk_views import add_residual_risk_section
+from src.residual_protective_risk import OUTPUT as RESIDUAL_FILE
 from pathlib import Path
 from xml.sax.saxutils import escape
 
@@ -129,7 +131,7 @@ def read_csv_if_exists(path: Path) -> pd.DataFrame:
         return pd.DataFrame()
 
     try:
-        return pd.read_csv(path, low_memory=False)
+        return pd.read_csv(path, low_memory=False, dtype={"trip_id": str})
     except Exception as exc:
         print(f"Warning: could not read {path}: {exc}")
         return pd.DataFrame()
@@ -2949,6 +2951,7 @@ def generate_report():
         pi_trip_scores,
         top_pi_priorities,
     )
+    add_residual_risk_section(story, styles, read_csv_if_exists(RESIDUAL_FILE))
     add_protective_intelligence_decision_support_section(
         story,
         styles,

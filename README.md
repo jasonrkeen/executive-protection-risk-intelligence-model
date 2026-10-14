@@ -1488,3 +1488,10 @@ keenjasonr@gmail.com
 This project is an independent research and portfolio project. It is not affiliated with, endorsed by, or representative of any company, government agency, security organization, ACLED, the World Bank, OurAirports, or any other organization referenced through public data sources.
 
 The model is intended for strategic research, OSINT analysis, and portfolio demonstration purposes only. It does not represent an internal corporate security methodology, proprietary executive protection process, or operational security plan.
+
+## Replacement residual protective risk integration (RPR-1)
+
+The review branch adds an experimental replacement for the unavailable native
+residual integration package. See [the scoring contract, provenance, operation,
+and validation limits](docs/RESIDUAL_RISK_REPLACEMENT.md). This is a new
+implementation; no historical package equivalence is claimed.

@@ -397,6 +397,9 @@ def build_decision_support_layer(
     if trip_scores.empty:
         raise ValueError("trip_scores is empty. Cannot build decision-support layer.")
 
+    if any(column.startswith("residual_") for column in trip_scores.columns):
+        from src.residual_protective_risk import validate_residual_scores
+        validate_residual_scores(trip_scores)
     df = trip_scores.copy()
     score_col = _find_score_column(df)
     df[score_col] = _safe_numeric(df[score_col])
@@ -434,6 +437,24 @@ def build_decision_support_layer(
         "Monitor": 1,
         "Routine": 0,
     }
+
+    # RPR-1 adds review floors while preserving all baseline PI escalations.
+    if "residual_review_state" in output:
+        output["baseline_coa_level"] = output["coa_level"]
+        for idx, row in output.iterrows():
+            state = row["residual_review_state"]
+            floor = ("Validate" if state == "Capacity assessment required" else
+                     "Security Lead Review" if state == "Protective-planning review required" else None)
+            if floor:
+                if priority_order[row["coa_level"]] < priority_order[floor]:
+                    output.at[idx, "coa_level"] = floor
+                    output.at[idx, "protective_intelligence_recommendation"] = state
+                    output.at[idx, "secondary_decision_driver"] = row["primary_decision_driver"]
+                    output.at[idx, "primary_decision_driver"] = state
+                output.at[idx, "supporting_indicators"] += "; " + state
+                output.at[idx, "analyst_note"] += " RPR-1 replacement: " + state + "."
+                if state == "Capacity assessment required":
+                    output.at[idx, "data_confidence"] = "Low"
 
     output["decision_priority_rank"] = (
         output["coa_level"].map(priority_order).fillna(0).astype(int)
@@ -563,6 +584,20 @@ def build_decision_rule_audit(
 
     audit = audit[preferred_columns + remaining_columns]
 
+    if "residual_review_state" in decision_support:
+        residual_rules = []
+        for rule_id, condition, state, level in [
+            ("RPR1-UNKNOWN", "Any capacity/workload input missing", "Capacity assessment required", "Validate"),
+            ("RPR1-REVIEW", "Complete inputs AND (gap >=60 OR saturation >=70 OR residual >=60)", "Protective-planning review required", "Security Lead Review"),
+        ]:
+            residual_rules.append({
+                "rule_id": rule_id, "required_condition": condition,
+                "coa_level": level, "recommendation": state,
+                "analyst_note": "Uncalibrated RPR-1 review floor; baseline escalation retained",
+                "rules_file_loaded": False, "total_decision_records": total_records,
+                "triggered_record_count": int(decision_support.residual_review_state.eq(state).sum()),
+            })
+        audit = pd.concat([audit, pd.DataFrame(residual_rules)], ignore_index=True)
     return audit
 
 
@@ -570,6 +605,7 @@ def save_decision_support_outputs(
     decision_support: pd.DataFrame,
     output_dir: str | Path = "outputs/tables",
     top_n: int = 25,
+    rules_path: str | Path = DEFAULT_RULES_PATH,
 ) -> Dict[str, Path]:
     """
     Save decision-support tables.
@@ -592,7 +628,7 @@ def save_decision_support_outputs(
 
     top_escalations.to_csv(top_path, index=False)
 
-    audit = build_decision_rule_audit(decision_support)
+    audit = build_decision_rule_audit(decision_support, rules_path=rules_path)
     audit.to_csv(audit_path, index=False)
 
     return {
@@ -640,6 +676,9 @@ def build_decision_support_from_existing_outputs(
     if input_path is not None:
         candidate_paths.append(Path(input_path))
 
+    if input_path is not None and not Path(input_path).exists():
+        raise FileNotFoundError(input_path)
+
     candidate_paths.extend(
         [
             Path("outputs/tables/protective_intelligence_trip_scores.csv"),
@@ -665,7 +704,7 @@ def build_decision_support_from_existing_outputs(
 
     print(f"[Decision Support] Loading source scores from: {source_path}")
 
-    trip_scores = pd.read_csv(source_path)
+    trip_scores = pd.read_csv(source_path, dtype={"trip_id": str})
 
     decision_support = build_decision_support_layer(
         trip_scores=trip_scores,
@@ -676,6 +715,7 @@ def build_decision_support_from_existing_outputs(
         decision_support=decision_support,
         output_dir=output_dir,
         top_n=top_n,
+        rules_path=rules_path,
     )
 
     print("[Decision Support] Saved decision-support outputs:")

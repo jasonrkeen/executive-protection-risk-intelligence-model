@@ -1,3 +1,4 @@
+from src.residual_protective_risk import build_residual_risk
 from src.worldbank_api import build_worldbank_dataset
 from src.acled_api import fetch_acled_events
 from src.acled_processing import build_acled_country_features
@@ -63,7 +64,7 @@ def main():
         20. Generate city-level geospatial risk map
         21. Build airport and medical access proxy layer
         22. Build protective intelligence exposure and posture scores
-        23. Build protective intelligence COA decision-support layer
+        23. Build replacement residual risk, then protective intelligence COA decision support
         24. Run diagnostics
         25. Build model governance documentation
         26. Generate PDF report
@@ -149,9 +150,10 @@ def main():
     build_protective_intelligence_scores()
 
     print(
-        f"\n[23/{total_steps}] Building protective intelligence COA decision-support layer..."
+        f"\n[23/{total_steps}] Building replacement residual risk and COA decision support..."
     )
-    build_decision_support_from_existing_outputs()
+    residual_path = build_residual_risk()
+    build_decision_support_from_existing_outputs(input_path=residual_path)
 
     print(f"\n[24/{total_steps}] Running model diagnostics...")
     run_model_diagnostics()

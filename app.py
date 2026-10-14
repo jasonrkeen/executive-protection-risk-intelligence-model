@@ -1,3 +1,5 @@
+from src.residual_risk_views import show_residual_risk_tab
+from src.residual_protective_risk import OUTPUT as RESIDUAL_FILE
 from pathlib import Path
 
 import pandas as pd
@@ -95,7 +97,7 @@ def read_csv_if_exists(path: Path) -> pd.DataFrame:
         return pd.DataFrame()
 
     try:
-        return pd.read_csv(path, low_memory=False)
+        return pd.read_csv(path, low_memory=False, dtype={"trip_id": str})
     except Exception:
         return pd.DataFrame()
 
@@ -1833,6 +1835,7 @@ def main():
             "Country Profile",
             "City Risk",
             "PI Posture",
+            "Residual Risk",
             "Decision Support",
             "Intelligence Signal",
             "Forward Risk",
@@ -1870,44 +1873,47 @@ def main():
         )
 
     with tabs[4]:
+        show_residual_risk_tab(read_csv_if_exists(RESIDUAL_FILE))
+
+    with tabs[5]:
         show_decision_support_tab(
             data["decision_support"],
             data["top_decision_escalations"],
             data["decision_rule_audit"],
         )
 
-    with tabs[5]:
+    with tabs[6]:
         show_intelligence_signal_tab(
             data["intelligence_signals"],
             data["intelligence_signal_top"],
         )
 
-    with tabs[6]:
+    with tabs[7]:
         show_forward_tab(data["forward"])
 
-    with tabs[7]:
+    with tabs[8]:
         show_monitoring_tab(
             data["score_changes"],
             data["bucket_changes"],
             data["rank_movers"],
         )
 
-    with tabs[8]:
+    with tabs[9]:
         show_sensitivity_tab(data["sensitivity_overlap"])
 
-    with tabs[9]:
+    with tabs[10]:
         show_monte_carlo_tab(
             data["monte_carlo_summary"],
             data["monte_carlo_top20"],
         )
 
-    with tabs[10]:
+    with tabs[11]:
         show_spillover_tab(
             data["spillover"],
             data["spillover_top"],
         )
 
-    with tabs[11]:
+    with tabs[12]:
         show_governance_tab(
             data["governance"],
             data["assumptions"],
