@@ -1,4 +1,5 @@
 from src.residual_risk_views import show_residual_risk_tab
+from src.intelligence_validation_views import show_intelligence_validation_tab
 from src.residual_protective_risk import OUTPUT as RESIDUAL_FILE
 from pathlib import Path
 
@@ -90,6 +91,7 @@ TOP_DECISION_ESCALATIONS_FILE = (
 DECISION_RULE_AUDIT_FILE = (
     PROJECT_ROOT / "outputs" / "tables" / "decision_rule_audit.csv"
 )
+IV_TABLES_DIR = PROJECT_ROOT / "outputs" / "tables"
 
 
 def read_csv_if_exists(path: Path) -> pd.DataFrame:
@@ -140,6 +142,10 @@ def load_data():
         "decision_support": read_csv_if_exists(PROTECTIVE_INTELLIGENCE_DECISION_SUPPORT_FILE),
         "top_decision_escalations": read_csv_if_exists(TOP_DECISION_ESCALATIONS_FILE),
         "decision_rule_audit": read_csv_if_exists(DECISION_RULE_AUDIT_FILE),
+        "iv_confidence": read_csv_if_exists(IV_TABLES_DIR / "intelligence_confidence_scores.csv"),
+        "iv_gaps": read_csv_if_exists(IV_TABLES_DIR / "source_coverage_gaps.csv"),
+        "iv_requirements": read_csv_if_exists(IV_TABLES_DIR / "validation_requirements.csv"),
+        "iv_plan": read_csv_if_exists(IV_TABLES_DIR / "analyst_collection_plan.csv"),
     }
 
 
@@ -1837,6 +1843,7 @@ def main():
             "PI Posture",
             "Residual Risk",
             "Decision Support",
+            "Validation",
             "Intelligence Signal",
             "Forward Risk",
             "Monitoring",
@@ -1883,37 +1890,42 @@ def main():
         )
 
     with tabs[6]:
+        show_intelligence_validation_tab(
+            data["iv_confidence"], data["iv_gaps"], data["iv_requirements"], data["iv_plan"],
+        )
+
+    with tabs[7]:
         show_intelligence_signal_tab(
             data["intelligence_signals"],
             data["intelligence_signal_top"],
         )
 
-    with tabs[7]:
+    with tabs[8]:
         show_forward_tab(data["forward"])
 
-    with tabs[8]:
+    with tabs[9]:
         show_monitoring_tab(
             data["score_changes"],
             data["bucket_changes"],
             data["rank_movers"],
         )
 
-    with tabs[9]:
+    with tabs[10]:
         show_sensitivity_tab(data["sensitivity_overlap"])
 
-    with tabs[10]:
+    with tabs[11]:
         show_monte_carlo_tab(
             data["monte_carlo_summary"],
             data["monte_carlo_top20"],
         )
 
-    with tabs[11]:
+    with tabs[12]:
         show_spillover_tab(
             data["spillover"],
             data["spillover_top"],
         )
 
-    with tabs[12]:
+    with tabs[13]:
         show_governance_tab(
             data["governance"],
             data["assumptions"],
