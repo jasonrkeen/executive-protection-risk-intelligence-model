@@ -124,5 +124,78 @@ class IntelligenceValidationTests(unittest.TestCase):
             self.assertTrue(scores.iloc[0]["wgi_unavailable_flag"])
 
 
+    def test_pipeline_order_after_coa_before_diagnostics(self):
+        from contextlib import ExitStack
+        from unittest.mock import patch
+        import src.main as pipeline
+
+        called = []
+        # Contract style mirrors the existing RPR-1 pipeline-order tests.
+        names = [key for key, value in vars(pipeline).items()
+                 if callable(value) and key != "main"]
+        with ExitStack() as stack:
+            for name in names:
+                stack.enter_context(patch.object(
+                    pipeline, name,
+                    side_effect=lambda *args, _name=name, **kwargs: called.append(_name) or "residual.csv",
+                ))
+            pipeline.main()
+        self.assertLess(
+            called.index("build_decision_support_from_existing_outputs"),
+            called.index("run_intelligence_validation_layer"),
+        )
+        self.assertLess(
+            called.index("run_intelligence_validation_layer"),
+            called.index("run_model_diagnostics"),
+        )
+
+    def test_pdf_validation_section_builds_with_synthetic_gaps(self):
+        from reportlab.platypus import SimpleDocTemplate
+        from src.report_generator import make_styles
+        from src.intelligence_validation_views import add_intelligence_validation_section
+        tables = audit(latest=date(2024, 12, 31), wgi="Unavailable")
+        with tempfile.TemporaryDirectory() as td:
+            pdf = Path(td) / "evidence.pdf"
+            story = []
+            add_intelligence_validation_section(
+                story, make_styles(),
+                tables["intelligence_confidence_scores"],
+                tables["source_coverage_gaps"],
+                tables["analyst_collection_plan"],
+            )
+            SimpleDocTemplate(str(pdf)).build(story)
+            self.assertGreater(pdf.stat().st_size, 1000)
+
+    def test_streamlit_validation_tab_handles_empty_and_populated(self):
+        from streamlit.testing.v1 import AppTest
+        code = (
+            "import pandas as pd\n"
+            "from src.intelligence_validation_views import show_intelligence_validation_tab\n"
+            "empty=pd.DataFrame()\n"
+            "show_intelligence_validation_tab(empty,empty,empty,empty)"
+        )
+        app = AppTest.from_string(code).run()
+        self.assertEqual(len(app.exception), 0)
+        tables = audit(latest=date(2024, 12, 31))
+        # Direct view testing with synthetic frames in AppTest avoids local data dependencies.
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            for name, frame in tables.items():
+                frame.to_csv(root / (name + ".csv"), index=False)
+            snippet = (
+                "import pandas as pd\n"
+                "from src.intelligence_validation_views import show_intelligence_validation_tab\n"
+                f"root={str(root)!r}\n"
+                "def load(name):\n"
+                "    return pd.read_csv(root+'/'+name+'.csv',dtype={'trip_id':str})\n"
+                "show_intelligence_validation_tab(load('intelligence_confidence_scores'),"
+                "load('source_coverage_gaps'),load('validation_requirements'),"
+                "load('analyst_collection_plan'))"
+            )
+            app = AppTest.from_string(snippet).run()
+            self.assertEqual(len(app.exception), 0)
+            self.assertGreaterEqual(len(app.dataframe), 1)
+
+
 if __name__ == "__main__":
     unittest.main()
