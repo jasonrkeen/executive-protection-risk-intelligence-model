@@ -1479,7 +1479,7 @@ It is especially relevant to roles involving:
 ## Author
 
 Jason Keen  
-keenjasonr@gmail.com
+[LinkedIn](https://www.linkedin.com/in/jason-keen-1887b4218)
 
 ---
 
