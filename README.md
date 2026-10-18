@@ -1491,6 +1491,11 @@ The model is intended for strategic research, OSINT analysis, and portfolio demo
 
 ## Replacement residual protective risk integration (RPR-1)
 
+The full pipeline requires an explicit assessment date and a passing
+[preflight evidence gate](docs/PREFLIGHT.md). Use
+`python -m src.main --assessment-date YYYY-MM-DD`; older bare pipeline commands
+below or elsewhere require this argument. This remains experimental research.
+
 The review branch adds an experimental replacement for the unavailable native
 residual integration package. See [the scoring contract, provenance, operation,
 and validation limits](docs/RESIDUAL_RISK_REPLACEMENT.md). This is a new
