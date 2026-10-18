@@ -1,4 +1,5 @@
 from src.residual_protective_risk import build_residual_risk
+from src.preflight import require_preflight
 from src.worldbank_api import build_worldbank_dataset
 from src.acled_api import fetch_acled_events
 from src.acled_processing import build_acled_country_features
@@ -37,7 +38,7 @@ from src.protective_intelligence_decision_layer import (
 )
 
 
-def main():
+def main(assessment_date: str | None = None):
     """
     Run the full Executive Protection Risk Intelligence pipeline.
 
@@ -70,6 +71,9 @@ def main():
         26. Generate PDF report
     """
 
+    # Fail before any network fetch or generated output. Synthetic mode is only
+    # available in the read-only preflight CLI, never in this live pipeline.
+    print(require_preflight(assessment_date))
     total_steps = 26
 
     print("=" * 70)
@@ -174,4 +178,7 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    import argparse
+    parser = argparse.ArgumentParser(description="Experimental RPR-1 research pipeline")
+    parser.add_argument("--assessment-date", required=True)
+    main(parser.parse_args().assessment_date)

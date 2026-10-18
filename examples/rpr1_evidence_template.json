@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "data_class": "",
+  "contains_personal_data": false,
+  "input_sha256": {
+    "trips": "",
+    "capacity": "",
+    "events": ""
+  },
+  "event_source": {
+    "source_ref": "",
+    "coverage_from": "",
+    "coverage_through": "",
+    "retrieved_on": "",
+    "reviewer_ref": "",
+    "review_status": "pending"
+  },
+  "assessments": [
+    {
+      "trip_id": "",
+      "kind": "trip",
+      "source_ref": "",
+      "assessor_ref": "",
+      "reviewer_ref": "",
+      "scope": "",
+      "assessed_on": "",
+      "movement_on": "",
+      "expires_on": "",
+      "review_status": "pending"
+    },
+    {
+      "trip_id": "",
+      "kind": "capacity",
+      "source_ref": "",
+      "assessor_ref": "",
+      "reviewer_ref": "",
+      "scope": "",
+      "assessed_on": "",
+      "movement_on": "",
+      "expires_on": "",
+      "review_status": "pending"
+    }
+  ]
+}

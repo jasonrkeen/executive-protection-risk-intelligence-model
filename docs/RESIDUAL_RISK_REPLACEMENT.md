@@ -51,7 +51,8 @@ Baseline risk bands still describe PI; residual values remain separate columns.
 Copy `examples/protective_capacity_inputs_template.csv` to
 `data/raw/protective_capacity_inputs.csv` and add one row per unique movement
 `trip_id`, matching the PI input. Do not commit sensitive movement data.
-Run the existing pipeline with `python -m src.main`, or run
+Run the pipeline with `python -m src.main --assessment-date YYYY-MM-DD` after
+preparing the [required evidence package](PREFLIGHT.md), or run
 `python -m src.residual_protective_risk` after PI output exists.
 
 The pipeline explicitly passes the new processed residual CSV to COA generation.
