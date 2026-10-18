@@ -1,5 +1,6 @@
 from src.residual_protective_risk import build_residual_risk
-from src.preflight import require_preflight
+from datetime import date
+from src.preflight import PreflightError, require_preflight, verify_package_unchanged
 from src.worldbank_api import build_worldbank_dataset
 from src.acled_api import fetch_acled_events
 from src.acled_processing import build_acled_country_features
@@ -73,7 +74,10 @@ def main(assessment_date: str | None = None):
 
     # Fail before any network fetch or generated output. Synthetic mode is only
     # available in the read-only preflight CLI, never in this live pipeline.
-    print(require_preflight(assessment_date))
+    if assessment_date != date.today().isoformat():
+        raise PreflightError("Live pipeline assessment_date must equal today's local date")
+    receipt = require_preflight(assessment_date)
+    print(receipt)
     total_steps = 26
 
     print("=" * 70)
@@ -87,6 +91,7 @@ def main(assessment_date: str | None = None):
     fetch_acled_events(use_existing=True, force_refresh=False)
 
     print(f"\n[3/{total_steps}] Processing ACLED country-year features...")
+    verify_package_unchanged(receipt)
     build_acled_country_features()
 
     print(f"\n[4/{total_steps}] Building energy exposure features...")
@@ -137,6 +142,7 @@ def main(assessment_date: str | None = None):
     print(
         f"\n[18/{total_steps}] Running Phase 2 city-level ACLED protective intelligence processing..."
     )
+    verify_package_unchanged(receipt)
     build_city_ep_risk_features()
 
     print(f"\n[19/{total_steps}] Saving city-level protective intelligence charts...")
@@ -151,11 +157,13 @@ def main(assessment_date: str | None = None):
     print(
         f"\n[22/{total_steps}] Building protective intelligence exposure and posture scores..."
     )
+    verify_package_unchanged(receipt)
     build_protective_intelligence_scores()
 
     print(
         f"\n[23/{total_steps}] Building replacement residual risk and COA decision support..."
     )
+    verify_package_unchanged(receipt)
     residual_path = build_residual_risk()
     build_decision_support_from_existing_outputs(input_path=residual_path)
 
@@ -166,6 +174,7 @@ def main(assessment_date: str | None = None):
     run_model_governance()
 
     print(f"\n[26/{total_steps}] Generating PDF report...")
+    verify_package_unchanged(receipt)
     generate_report()
 
     print("\n" + "=" * 70)

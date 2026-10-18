@@ -104,3 +104,29 @@ review remain outstanding.
 
 Tests: `python -m pip install -r requirements-dev.txt` then `python -m pytest -q`.
 The new pytest cases run alongside the existing unittest suite in CI.
+
+
+## Review hardening
+
+The live `src.main` entry point requires today's local date. Historical dates
+remain available only to the read-only preflight command; its receipt is valid
+only as of the recorded date. Passing a historical check cannot authorize a live run.
+
+Trip exposure, scenario and sector labels must belong to the scorer's explicit
+vocabularies; typos cannot silently receive fallback scores. Event inputs require
+canonical year, event_type and fatalities as well as location/date columns.
+Year must match the strict event date; fatalities must be finite nonnegative
+integers. Administrative identity must be nonblank (resolve missing identifiers
+with source evidence; do not invent labels to pass). Duplicate CSV headers,
+duplicate JSON keys and boolean schema versions are rejected.
+
+Each assessment lists `covered_fields` exactly as in the template. Reviewers must
+verify support for all listed fields. This is a coverage declaration, not automatic
+verification of linked evidence or reviewer identity.
+
+The pipeline rechecks hashes before country, city, PI, residual scoring and report
+generation. Changes abort the run; discard partial outputs. These checks detect
+changes at boundaries, but are not an atomic snapshot or protection against a
+concurrent writer changing and restoring inputs between checks. Run with exclusive
+ownership of the staged files. Legacy standalone stages and dashboard readers do
+not acquire a preflight attestation by being callable or by displaying old outputs.

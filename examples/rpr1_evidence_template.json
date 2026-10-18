@@ -26,7 +26,21 @@
       "assessed_on": "",
       "movement_on": "",
       "expires_on": "",
-      "review_status": "pending"
+      "review_status": "pending",
+      "covered_fields": [
+        "trip_id",
+        "principal",
+        "city",
+        "country",
+        "scenario",
+        "visibility_level",
+        "travel_predictability",
+        "venue_exposure",
+        "hotel_airport_exposure",
+        "online_visibility",
+        "reputational_sensitivity",
+        "business_sector_sensitivity"
+      ]
     },
     {
       "trip_id": "",
@@ -38,7 +52,21 @@
       "assessed_on": "",
       "movement_on": "",
       "expires_on": "",
-      "review_status": "pending"
+      "review_status": "pending",
+      "covered_fields": [
+        "driver_capacity",
+        "close_protection_capacity",
+        "advance_capacity",
+        "intelligence_capacity",
+        "medical_capacity",
+        "communications_capacity",
+        "local_support_capacity",
+        "combined_role_load",
+        "concurrent_duty_load",
+        "transition_load",
+        "public_exposure_load",
+        "schedule_compression_load"
+      ]
     }
   ]
 }

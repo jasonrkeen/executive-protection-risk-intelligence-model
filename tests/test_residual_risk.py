@@ -102,13 +102,18 @@ class ResidualTests(unittest.TestCase):
     def test_pipeline_order(self):
         import src.main as pipeline
         calls = []
-        names = [name for name, value in vars(pipeline).items() if callable(value) and name != 'main']
+        import inspect
+        names = [name for name, value in vars(pipeline).items() if inspect.isfunction(value) and name != 'main']
         from contextlib import ExitStack
         with ExitStack() as stack:
             for name in names:
                 stack.enter_context(patch.object(pipeline, name, side_effect=lambda *a, _name=name, **kw: calls.append((_name, kw)) or 'residual.csv'))
-            pipeline.main()
+            pipeline.main(pipeline.date.today().isoformat())
         order = [name for name, kw in calls]
+        self.assertEqual(order[0], 'require_preflight')
+        for consumer in ('build_acled_country_features', 'build_city_ep_risk_features',
+                         'build_protective_intelligence_scores', 'build_residual_risk', 'generate_report'):
+            self.assertEqual(order[order.index(consumer) - 1], 'verify_package_unchanged')
         self.assertLess(order.index('build_protective_intelligence_scores'), order.index('build_residual_risk'))
         self.assertLess(order.index('build_residual_risk'), order.index('build_decision_support_from_existing_outputs'))
         self.assertEqual(dict(calls)['build_decision_support_from_existing_outputs']['input_path'], 'residual.csv')

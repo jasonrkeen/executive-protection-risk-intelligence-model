@@ -2,6 +2,8 @@
 from __future__ import annotations
 
 import argparse
+import csv
+import math
 from dataclasses import asdict, dataclass
 from datetime import date
 import hashlib
@@ -49,12 +51,38 @@ def _date(value: Any, label: str) -> date:
 
 def _read(path: Path, columns: list[str] | None = None) -> pd.DataFrame:
     try:
+        with path.open(encoding="utf-8-sig", newline="") as handle:
+            header = next(csv.reader(handle), [])
+        if len(header) != len(set(header)):
+            raise PreflightError(f"Duplicate CSV columns in {path.name}")
         frame = pd.read_csv(path, dtype=str, keep_default_na=False, usecols=columns)
     except (OSError, ValueError, pd.errors.ParserError) as exc:
         raise PreflightError(f"Cannot read required input {path.name}: {type(exc).__name__}") from None
     if frame.empty:
         raise PreflightError(f"Required input {path.name} has no records")
     return frame
+
+
+def _unique_object(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
+    result: dict[str, Any] = {}
+    for key, value in pairs:
+        if key in result:
+            raise PreflightError(f"Duplicate evidence key: {key}")
+        result[key] = value
+    return result
+
+
+def verify_package_unchanged(receipt: PreflightResult, root: Path = ROOT) -> None:
+    """Recheck reviewed bytes at pipeline boundaries; not an atomic snapshot lock."""
+    names = {"trips": "protective_intelligence_trip_inputs.csv",
+             "capacity": "protective_capacity_inputs.csv", "events": "acled_events.csv"}
+    try:
+        hashes = {key: _hash(root / "data/raw" / name) for key, name in names.items()}
+        evidence_hash = _hash(root / "data/raw/rpr1_evidence.json")
+    except OSError:
+        raise PreflightError("Reviewed package disappeared during run") from None
+    if hashes != receipt.input_sha256 or evidence_hash != receipt.evidence_sha256:
+        raise PreflightError("Reviewed package changed during run; discard partial outputs")
 
 
 def _hash(path: Path) -> str:
@@ -104,11 +132,11 @@ def require_preflight(assessment_date: str | None, mode: str = "current", root: 
     paths = {key: raw / name for key, name in names.items()}
     try:
         evidence_bytes = (raw / "rpr1_evidence.json").read_bytes()
-        evidence = json.loads(evidence_bytes)
+        evidence = json.loads(evidence_bytes, object_pairs_hook=_unique_object)
         hashes = {key: _hash(path) for key, path in paths.items()}
     except (OSError, ValueError):
         raise PreflightError("Required evidence, trip, capacity, or event file is missing/unreadable") from None
-    if not isinstance(evidence, dict) or evidence.get("schema_version") != 1:
+    if not isinstance(evidence, dict) or type(evidence.get("schema_version")) is not int or evidence.get("schema_version") != 1:
         raise PreflightError("Evidence schema_version must be 1")
     expected_class = "synthetic" if mode == "synthetic" else "deidentified_research"
     if evidence.get("data_class") != expected_class:
@@ -131,13 +159,28 @@ def require_preflight(assessment_date: str | None, mode: str = "current", root: 
     if (as_of - through).days > policy.max_event_age_days:
         raise PreflightError("Stale event coverage; retrieval date cannot substitute for event coverage")
     trips, capacity = (_read(paths[key]) for key in ("trips", "capacity"))
-    events = _read(paths["events"], ["country", "location", "admin1", "admin2", "event_date"])
+    events = _read(paths["events"], ["country", "location", "admin1", "admin2", "event_date", "year", "event_type", "fatalities"])
     if not set(TRIP_FIELDS).issubset(trips):
         raise PreflightError("Trip input is missing required planning columns")
     if trips[list(TRIP_FIELDS)].apply(lambda col: col.str.strip().eq("")).any().any():
         raise PreflightError("Trip planning fields cannot be blank")
+    # Share the scorer vocabularies: unknown labels must not silently use defaults.
+    from src.protective_intelligence_score import (
+        EXPOSURE_SCORE_MAP, SCENARIO_MULTIPLIERS, BUSINESS_SECTOR_SENSITIVITY,
+    )
+    vocabularies = {field: EXPOSURE_SCORE_MAP for field in TRIP_FIELDS[5:-1]}
+    vocabularies.update(scenario=SCENARIO_MULTIPLIERS,
+                        business_sector_sensitivity=BUSINESS_SECTOR_SENSITIVITY)
+    for field, vocabulary in vocabularies.items():
+        if not trips[field].str.strip().str.lower().isin(vocabulary).all():
+            raise PreflightError(f"Unrecognized trip value in {field}")
     ids = _ids(trips, "trips")
-    if set(_ids(capacity, "capacity")) != set(ids):
+    capacity_ids = _ids(capacity, "capacity")
+    # Pandas' downstream default NA parser must not erase an approved identifier.
+    for key in ("trips", "capacity"):
+        if pd.read_csv(paths[key], dtype=str, usecols=["trip_id"]).trip_id.isna().any():
+            raise PreflightError("Trip IDs cannot use reserved missing-value tokens")
+    if set(capacity_ids) != set(ids):
         raise PreflightError("Capacity must cover exactly the reviewed trip IDs")
     if not set(FIELDS).issubset(capacity):
         raise PreflightError("Missing capacity/workload columns")
@@ -153,6 +196,11 @@ def require_preflight(assessment_date: str | None, mode: str = "current", root: 
         key = (rec["trip_id"], rec["kind"])
         if key in seen or key[0] not in ids or key[1] not in {"trip", "capacity"}:
             raise PreflightError("Duplicate, orphan, or invalid assessment record")
+        expected_fields = set(FIELDS if key[1] == "capacity" else TRIP_FIELDS)
+        covered = rec.get("covered_fields")
+        if (not isinstance(covered, list) or not all(isinstance(f, str) for f in covered)
+                or len(covered) != len(set(covered)) or set(covered) != expected_fields):
+            raise PreflightError("Evidence must explicitly cover every assessed field exactly once")
         seen.add(key)
         if rec.get("review_status") != "approved":
             raise PreflightError("Every trip and capacity assessment requires approved review")
@@ -172,9 +220,19 @@ def require_preflight(assessment_date: str | None, mode: str = "current", root: 
     required = {"country", "location", "admin1", "admin2", "event_date"}
     if not required.issubset(events):
         raise PreflightError("Event schema lacks dates or administrative location identity")
+    if not events.event_date.str.fullmatch(r"[0-9]{4}-[0-9]{2}-[0-9]{2}").all():
+        raise PreflightError("Event dates must be strict YYYY-MM-DD")
+    for field in ("country", "location", "admin1", "admin2", "event_type"):
+        if events[field].str.strip().eq("").any():
+            raise PreflightError(f"Event identity/type cannot be blank: {field}")
+    fatalities = pd.to_numeric(events.fatalities, errors="coerce")
+    if not fatalities.map(lambda value: math.isfinite(value) and value >= 0 and value == int(value)).all():
+        raise PreflightError("Event fatalities must be nonnegative finite integers")
     dates = pd.to_datetime(events.event_date, format="%Y-%m-%d", errors="coerce")
     if dates.isna().any() or dates.min().date() < start or dates.max().date() > through:
         raise PreflightError("Event dates are invalid or outside declared coverage")
+    if not pd.to_numeric(events.year, errors="coerce").eq(dates.dt.year).all():
+        raise PreflightError("Event year must match event_date")
     if (as_of - dates.max().date()).days > policy.max_event_age_days:
         raise PreflightError("Stale event observations despite the declared coverage date")
     locations = events[["country", "location", "admin1", "admin2"]].drop_duplicates().copy()
@@ -183,8 +241,10 @@ def require_preflight(assessment_date: str | None, mode: str = "current", root: 
     trips["city_key"] = trips.city.str.strip().str.lower()
     trips["country_key"] = trips.country.str.strip().str.lower()
     require_unique_trip_context(trips, locations)
-    return PreflightResult(as_of.isoformat(), mode, len(ids), dates.max().date().isoformat(), hashes,
+    result = PreflightResult(as_of.isoformat(), mode, len(ids), dates.max().date().isoformat(), hashes,
                            hashlib.sha256(evidence_bytes).hexdigest(), asdict(policy))
+    verify_package_unchanged(result, root)
+    return result
 
 
 def main() -> None:
