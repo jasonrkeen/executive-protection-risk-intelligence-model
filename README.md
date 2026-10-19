@@ -81,6 +81,8 @@ This project translates those strategic concerns into a structured, quantitative
 
 The final project includes:
 
+- RPR-1 compatible intelligence evidence-coverage auditing and analyst collection requirements
+
 - A fully automated Python pipeline
 - ACLED political violence and civil unrest processing
 - World Bank governance, macro, energy, homicide, and health indicator collection
@@ -194,6 +196,10 @@ executive-protection-risk-intelligence-model/
 |   |-- access_proxy_layer.py
 |   |-- protective_intelligence_score.py
 |   |-- protective_intelligence_decision_layer.py
+|   |-- intelligence_validation_layer.py
+|   |-- intelligence_validation_views.py
+|   |-- residual_protective_risk.py
+|   |-- residual_risk_views.py
 |   |-- city_map_generator.py
 |   |-- city_visualization.py
 |   |-- crime_data.py
@@ -688,6 +694,37 @@ The COA layer is a strategic analyst triage and portfolio-demonstration tool. It
 
 ---
 
+## Intelligence Evidence Coverage & Collection Requirements (IV-2.1-RPR1)
+
+This extension audits the existing **RPR-1 residual protective risk** and COA outputs by `trip_id`. It does **not** rejoin the complete city feature table or replace the existing security decision rules. The source `src/intelligence_validation_layer.py` runs **after** RPR-1/COA and writes four CSV artifacts:
+
+```text
+outputs/tables/intelligence_confidence_scores.csv
+outputs/tables/source_coverage_gaps.csv
+outputs/tables/validation_requirements.csv
+outputs/tables/analyst_collection_plan.csv
+```
+
+Checks cover **actual ACLED source-date freshness**, exact city/location context, airport/medical support proxy completeness, original trip-assumption completeness, RPR-1 capacity-assessment completeness, worldwide WGI file availability, and COA coverage. Each failed check generates an analyst review requirement and a corresponding collection question. Duplicate/unknown trip identifiers and inconsistent RPR-1 outputs are rejected rather than silently remapped.
+
+**Interpretation:** The legacy-compatible `intelligence_confidence_score` column is a 0–100 **evidence-coverage index** formed from seven uncalibrated equal-weight checks. It is **not** confidence in the factual truth of an assessment, not a prediction of incident probability, and not operational travel approval. `intelligence_confidence_label` uses coverage language to avoid implying calibrated confidence. A fresh ACLED extract may still be incomplete or incorrect; historical ACLED 30/90-day windows are relative to the **last event in the extract**, not the present date. WGI availability is checked at the global input-file level, not per country; the 2026 forward-data status is informational and can indicate baseline retention.
+
+Run the extension after generating the PI and residual/COA inputs:
+
+```powershell
+python -m src.intelligence_validation_layer
+```
+
+Tests (synthetic data, no API credentials required):
+
+```powershell
+python -m unittest discover -s tests -v
+```
+
+The dashboard includes a **Validation** tab; the PDF includes a matching evidence-gap and analyst collection section. Source CSV artifacts are generated locally and may be excluded from Git commits by `.gitignore`.
+
+---
+
 ## Severity Calibration Layer
 
 The model includes a bounded severity calibration layer after the initial weighted score.
@@ -1017,6 +1054,7 @@ Dashboard tabs include:
 - City Risk
 - PI Posture
 - Decision Support
+- Validation
 - Intelligence Signal
 - Forward Risk
 - Monitoring
@@ -1058,6 +1096,8 @@ The Decision Support tab includes:
 - Downloadable decision-support output
 
 The dashboard also supports PDF download when the report exists in the configured report path.
+
+The Validation tab shows per-trip coverage checks, stale/absent data flags, source gaps and analyst collection questions, alongside downloadable CSV tables. A coverage index must not be represented as measured reliability.
 
 ---
 
@@ -1106,6 +1146,10 @@ outputs/tables/top_protective_intelligence_priorities.csv
 outputs/tables/protective_intelligence_decision_support.csv
 outputs/tables/top_decision_escalations.csv
 outputs/tables/decision_rule_audit.csv
+outputs/tables/intelligence_confidence_scores.csv
+outputs/tables/source_coverage_gaps.csv
+outputs/tables/validation_requirements.csv
+outputs/tables/analyst_collection_plan.csv
 outputs/tables/model_governance_summary.csv
 outputs/tables/model_assumptions_summary.csv
 outputs/tables/model_diagnostics_summary.csv
@@ -1184,6 +1228,7 @@ The PDF report includes:
 - Airport and Medical Access Proxy Layer
 - Protective Intelligence Exposure and Decision-Support Layer
 - Protective Intelligence COA Decision-Support Layer
+- Intelligence Evidence Coverage and Collection Requirements
 - Energy Exposure, Governance, and Crime Risk
 - Scenario Analysis
 - Sensitivity Analysis
@@ -1286,10 +1331,11 @@ The full pipeline will:
 20. Generate the city-level geospatial risk map
 21. Build the airport and medical access proxy layer
 22. Build protective intelligence exposure and posture scores
-23. Build protective intelligence COA decision-support outputs
-24. Run model diagnostics
-25. Build model governance documentation
-26. Generate the PDF report
+23. Build RPR-1 residual protective risk and COA decision support
+24. Audit intelligence evidence coverage and generate collection requirements
+25. Run model diagnostics
+26. Build model governance documentation
+27. Generate the PDF report
 
 ---
 
@@ -1320,7 +1366,9 @@ python -m src.city_visualization
 python -m src.city_map_generator
 python -m src.access_proxy_layer
 python -m src.protective_intelligence_score
+python -m src.residual_protective_risk
 python -m src.protective_intelligence_decision_layer
+python -m src.intelligence_validation_layer
 python -m src.model_diagnostics
 python -m src.model_governance
 python -m src.report_generator
@@ -1440,6 +1488,10 @@ The Protective Intelligence COA Decision-Support Layer translates scores and tri
 ## Future Enhancements
 
 Potential improvements include:
+
+- Independently validate source quality and country-level WGI records; coverage checks alone are not corroboration
+- Improve freshness enforcement with explicit source-extract timestamps and alerting
+- Test PI city/location join uniqueness, including duplicate names across administrative units
 
 - Add city-level intelligence brief generation
 - Add selected-trip Protective Intelligence brief exports
