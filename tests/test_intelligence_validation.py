@@ -131,15 +131,18 @@ class IntelligenceValidationTests(unittest.TestCase):
 
         called = []
         # Contract style mirrors the existing RPR-1 pipeline-order tests.
+        import inspect
+        # Patch only pipeline functions (not classes such as date/PreflightError),
+        # matching the RPR-1 preflight-aware pipeline-order test.
         names = [key for key, value in vars(pipeline).items()
-                 if callable(value) and key != "main"]
+                 if inspect.isfunction(value) and key != "main"]
         with ExitStack() as stack:
             for name in names:
                 stack.enter_context(patch.object(
                     pipeline, name,
                     side_effect=lambda *args, _name=name, **kwargs: called.append(_name) or "residual.csv",
                 ))
-            pipeline.main()
+            pipeline.main(pipeline.date.today().isoformat())
         self.assertLess(
             called.index("build_decision_support_from_existing_outputs"),
             called.index("run_intelligence_validation_layer"),

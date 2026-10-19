@@ -274,6 +274,8 @@ def load_city_context() -> pd.DataFrame:
 
 
 def calculate_protective_intelligence_scores(trips: pd.DataFrame, context: pd.DataFrame) -> pd.DataFrame:
+    from src.preflight import require_unique_trip_context
+    require_unique_trip_context(trips, context)
     df = trips.merge(context, on=["city_key", "country_key"], how="left")
 
     # Defaults if a city/country does not match the ACLED city output exactly.

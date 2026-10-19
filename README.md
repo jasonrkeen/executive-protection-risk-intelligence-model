@@ -1531,7 +1531,7 @@ It is especially relevant to roles involving:
 ## Author
 
 Jason Keen  
-keenjasonr@gmail.com
+[LinkedIn](https://www.linkedin.com/in/jason-keen-1887b4218)
 
 ---
 
@@ -1542,6 +1542,11 @@ This project is an independent research and portfolio project. It is not affilia
 The model is intended for strategic research, OSINT analysis, and portfolio demonstration purposes only. It does not represent an internal corporate security methodology, proprietary executive protection process, or operational security plan.
 
 ## Replacement residual protective risk integration (RPR-1)
+
+The full pipeline requires an explicit assessment date and a passing
+[preflight evidence gate](docs/PREFLIGHT.md). Use
+`python -m src.main --assessment-date YYYY-MM-DD`; older bare pipeline commands
+below or elsewhere require this argument. This remains experimental research.
 
 The review branch adds an experimental replacement for the unavailable native
 residual integration package. See [the scoring contract, provenance, operation,
