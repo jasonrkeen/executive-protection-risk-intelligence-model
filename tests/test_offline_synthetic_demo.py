@@ -49,6 +49,15 @@ def test_repeated_real_scoring_is_deterministic_and_offline(tmp_path):
     for rel in receipt_1["output_sha256"]:
         assert (first / rel).read_bytes() == (second / rel).read_bytes()
     assert "SYNTHETIC" in (first / "data/raw/acled_events.csv").read_text()
+    for relative in (
+        "data/processed/city_ep_risk_features.csv",
+        "data/processed/city_access_proxy_features.csv",
+        "tables/executive_protection_risk_rankings.csv",
+    ):
+        assert "SYNTHETIC_TEST_ONLY" in (first / relative).read_text()
+    assert "SYNTHETIC_NOT_WORLD_BANK" in (
+        first / "data/processed/worldbank_ep_indicators.csv"
+    ).read_text()
     assert not (first / "data/raw").joinpath(".env").exists()
 
 
