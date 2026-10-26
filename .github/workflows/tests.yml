@@ -24,3 +24,15 @@ jobs:
           test -s "$RUNNER_TEMP/methodology_audit/METHOD_REVIEW.md"
           test -s "$RUNNER_TEMP/methodology_audit/homicide_cohort_dependence.csv"
           test -s "$RUNNER_TEMP/methodology_audit/homicide_missingness_stress.csv"
+      - name: Print synthetic methodological findings
+        run: cat "$RUNNER_TEMP/methodology_audit/METHOD_REVIEW.md"
+      - name: Save reviewer evidence (fictional data only)
+        uses: actions/upload-artifact@v4
+        with:
+          name: executive-protection-synthetic-methodology-audit
+          path: |
+            ${{ runner.temp }}/methodology_audit/
+            ${{ runner.temp }}/offline_research_demo/run_receipt.json
+            ${{ runner.temp }}/offline_research_demo/reports/synthetic_research_demo.pdf
+          if-no-files-found: error
+          retention-days: 30
