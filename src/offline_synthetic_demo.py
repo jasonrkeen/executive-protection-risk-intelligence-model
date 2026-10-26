@@ -13,12 +13,15 @@ from datetime import date
 import hashlib
 import json
 import os
+import platform
 from pathlib import Path
 import shutil
 import tempfile
 
 import numpy as np
 import pandas as pd
+import reportlab
+import sklearn
 from reportlab.lib.pagesizes import letter
 from reportlab.platypus import Paragraph, SimpleDocTemplate
 
@@ -399,6 +402,13 @@ def run_demo(output_dir: Path, fixture_dir: Path = FIXTURES) -> dict:
                 "evidence_audit": VALIDATION_VERSION,
             },
             "data_class": "synthetic",
+            "environment": {
+                "python": platform.python_version(),
+                "pandas": pd.__version__,
+                "numpy": np.__version__,
+                "reportlab": reportlab.Version,
+                "scikit_learn": sklearn.__version__,
+            },
             "model_source_sha256": {
                 path: sha256(ROOT / path) for path in MODEL_SOURCE_FILES
             },
