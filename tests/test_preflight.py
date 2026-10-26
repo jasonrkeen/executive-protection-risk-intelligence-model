@@ -319,6 +319,7 @@ def test_incomplete_field_evidence_blocked(package):
 def test_failed_recheck_stops_downstream_processing():
     import src.main as pipeline
     with patch.object(pipeline, "require_preflight"), \
+         patch.object(pipeline, "require_historical_baseline_coverage"), \
          patch.object(pipeline, "build_worldbank_dataset"), \
          patch.object(pipeline, "fetch_acled_events"), \
          patch.object(pipeline, "verify_package_unchanged", side_effect=PreflightError("changed")), \
