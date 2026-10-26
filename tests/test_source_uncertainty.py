@@ -122,7 +122,12 @@ def test_event_lineage_unique_precise_and_revision_flagged(source_inputs):
     assert len(details) == 20
     assert details["event_id_cnty"].is_unique
     assert len(years) == 14
+    assert years["year"].dtype.kind in ("i", "u")
+    # Exact numeric year grain matters: string years previously produced
+    # fourteen false 'zero-event' cells when reindexed with integer years.
     assert years["event_records"].sum() == 20
+    assert years["event_records"].gt(0).all()
+    assert years["status"].eq("SYNTHETIC_OBSERVATION_PRESENT_NOT_COVERAGE").all()
     assert (details.time_precision > 1).any()
     assert details["revision_state"].eq("synthetic_revision_example").sum() == 2
     assert not years["reporting_completeness_verified"].any()
