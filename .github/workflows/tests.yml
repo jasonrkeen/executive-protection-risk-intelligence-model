@@ -50,6 +50,12 @@ jobs:
               str(folder / "scoring_integrity_candidate" / "SYNTHETIC_CANDIDATE_SCORING_REVIEW.pdf")
           )
           assert len(pdf) >= 1, "No rendered report pages"
+          visible_text = " ".join(
+              pdf[index].get_textpage().get_text_range()
+              for index in range(len(pdf))
+          )
+          assert "WITHHELD" in visible_text, "PDF did not render withheld-data warning"
+          assert "NOT ISSUED" in visible_text, "PDF has no non-authorization status"
           png = folder / "scoring_integrity_preview.png"
           pdf[0].render(scale=1.5).to_pil().save(png)
           assert png.stat().st_size > 1024, "PDF visual rendering is empty"
