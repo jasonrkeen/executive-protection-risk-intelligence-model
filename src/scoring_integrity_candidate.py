@@ -285,9 +285,10 @@ def merge_fictional_evidence(
         if ("country" not in frame or frame["country"].isna().any()
                 or frame["country"].duplicated().any()):
             raise ScoringContractError(f"Duplicate or missing country in {label}")
-    needed = {"country", "source_status", "source_year", "source_ref", "unit"}
-    if not needed.issubset(source) or INDICATOR not in indicators:
-        raise ScoringContractError("Fictional evidence contract is incomplete")
+    needed = ("country", "source_status", "source_year", "source_ref", "unit")
+    if (indicators.columns.duplicated().any() or source.columns.duplicated().any()
+            or not set(needed).issubset(source) or INDICATOR not in indicators):
+        raise ScoringContractError("Fictional evidence contract is incomplete or duplicated")
     if set(source.country) != set(indicators.country):
         raise ScoringContractError("Evidence must cover every candidate country exactly")
     return indicators[["country", INDICATOR]].merge(
