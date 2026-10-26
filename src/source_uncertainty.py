@@ -231,6 +231,13 @@ def require_event_source_ledger(
         ).all()
     ):
         raise SourceEvidenceError("Event/source sidecar date or year disagreement")
+    # Align year grain to integers before joining the year-presence grid.
+    # Otherwise a string "2024" will silently fail to match integer 2024,
+    # producing false zero-event cells despite verified raw records.
+    merged["year"] = pd.to_numeric(merged["year"], errors="raise").astype(int)
+    merged["source_event_year"] = pd.to_numeric(
+        merged["source_event_year"], errors="raise"
+    ).astype(int)
     merged["record_present_not_source_authenticated"] = True
     merged["source_completeness_verified"] = False
     counts = merged.groupby(["country", "year"]).agg(
