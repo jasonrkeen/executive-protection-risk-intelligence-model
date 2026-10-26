@@ -1,7 +1,11 @@
 from src.residual_protective_risk import build_residual_risk
 from datetime import date
 from src.intelligence_validation_layer import run_intelligence_validation_layer
-from src.preflight import PreflightError, require_preflight, verify_package_unchanged
+from src.preflight import (
+    PreflightError, require_preflight, require_historical_baseline_coverage,
+    verify_package_unchanged,
+)
+from src.config import ACLED_RAW_FILE, START_YEAR, END_YEAR
 from src.worldbank_api import build_worldbank_dataset
 from src.acled_api import fetch_acled_events
 from src.acled_processing import build_acled_country_features
@@ -79,7 +83,14 @@ def main(assessment_date: str | None = None):
     if assessment_date != date.today().isoformat():
         raise PreflightError("Live pipeline assessment_date must equal today's local date")
     receipt = require_preflight(assessment_date)
+    # The date/currentness gate alone cannot guarantee 2020-2024 source vintages.
+    # The country baseline filters event records to START_YEAR..END_YEAR.
+    baseline_receipt = require_historical_baseline_coverage(
+        ACLED_RAW_FILE, baseline_start_year=START_YEAR, baseline_end_year=END_YEAR,
+    )
+    verify_package_unchanged(receipt)
     print(receipt)
+    print("Historical source-year coverage (not completeness):", baseline_receipt)
     total_steps = 27
 
     print("=" * 70)
