@@ -240,7 +240,7 @@ def test_candidate_displays_withheld_status_in_streamlit(src_case, tmp_path):
     app = AppTest.from_string(code).run()
     assert len(app.exception) == 0
     assert len(app.warning) >= 1
-    assert "WITHHELD" in app.warning[0].message
+    assert "WITHHELD" in str(app.warning[0].value)
     assert len(app.dataframe) >= 1
 
 
