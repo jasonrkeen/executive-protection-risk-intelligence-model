@@ -106,6 +106,44 @@ def _ids(frame: pd.DataFrame, label: str) -> list[str]:
     return ids.tolist()
 
 
+def require_historical_baseline_coverage(
+    events_path: Path, *, baseline_start_year: int, baseline_end_year: int,
+) -> dict[str, object]:
+    """Block a live run if its raw ACLED file cannot populate the historical model years.
+
+    This is a necessary schema/vintage check, not evidence of complete reporting,
+    geographic coverage, source authenticity, or a current country-level model.
+    """
+    if (
+        type(baseline_start_year) is not int
+        or type(baseline_end_year) is not int
+        or baseline_start_year > baseline_end_year
+    ):
+        raise PreflightError("Invalid historical baseline year range")
+    events = _read(events_path, columns=["year"])
+    years = pd.to_numeric(events["year"], errors="coerce")
+    if years.isna().any() or not years.map(
+        lambda value: math.isfinite(value) and float(value).is_integer()
+    ).all():
+        raise PreflightError("Historical baseline event years must be finite integers")
+    observed = years.astype(int).value_counts()
+    required_years = range(baseline_start_year, baseline_end_year + 1)
+    missing = [year for year in required_years if int(observed.get(year, 0)) == 0]
+    if missing:
+        raise PreflightError(
+            f"Historical ACLED baseline years missing: {missing}. "
+            "The current event extract alone cannot populate the historical country model."
+        )
+    return {
+        "baseline_start_year": baseline_start_year,
+        "baseline_end_year": baseline_end_year,
+        "events_by_baseline_year": {
+            str(year): int(observed.get(year, 0)) for year in required_years
+        },
+        "status": "YEAR_PRESENCE_ONLY_NOT_SOURCE_COMPLETENESS",
+    }
+
+
 def require_unique_trip_context(trips: pd.DataFrame, context: pd.DataFrame) -> None:
     """Use the scorer's normalized city/country join key; reject zero or multiple matches."""
     for column in ("city_key", "country_key"):
