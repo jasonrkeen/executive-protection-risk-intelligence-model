@@ -1690,3 +1690,12 @@ The RPR-1 implementation is an experimental replacement for the unavailable nati
 residual integration package. See [the scoring contract, provenance, operation,
 and validation limits](docs/RESIDUAL_RISK_REPLACEMENT.md). This is a new
 implementation; no historical package equivalence is claimed.
+
+## Real-source provenance verification (research milestone)
+
+See [the dated provider verification record](docs/REAL_SOURCE_PROVENANCE_VERIFICATION.md)
+for independently checked WGI 2026/API mappings, uncertainty fields and ACLED
+access boundaries. The isolated verifier identifies a legacy API configuration
+mismatch without changing the frozen baseline. Real provider metadata, unresolved
+permissions and synthetic tests are explicitly separated; no operational
+readiness is claimed.

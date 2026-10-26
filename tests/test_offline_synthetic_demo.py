@@ -2,6 +2,7 @@
 import csv
 import json
 import shutil
+from pathlib import Path
 from unittest.mock import patch
 
 import pytest
@@ -47,7 +48,7 @@ def test_repeated_real_scoring_is_deterministic_and_offline(tmp_path):
         "python", "numpy", "pandas", "reportlab", "scikit_learn",
     ))
     assert receipt_1["evidence_sha256"]
-    assert "reports/synthetic_research_demo.pdf" in receipt_1["output_sha256"]
+    assert str(Path("reports") / "synthetic_research_demo.pdf") in receipt_1["output_sha256"]
     assert (first / "reports" / "synthetic_research_demo.pdf").read_bytes().startswith(b"%PDF")
     assert (first / "reports" / "synthetic_research_demo.pdf").stat().st_size > 1000
 
