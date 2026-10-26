@@ -235,7 +235,7 @@ def shadow_country_comparison(
         raise ScoringContractError("Historical component weights have changed")
 
     components = original[list(RISK_WEIGHTS)].apply(pd.to_numeric, errors="coerce")
-    if (~np.isfinite(components) | ~components.between(0, 100)).any().any():
+    if (~np.isfinite(components) | ~((components >= 0) & (components <= 100))).any().any():
         raise ScoringContractError("Invalid original component scores")
     recomputed = sum(components[k] * v for k, v in RISK_WEIGHTS.items())
     if not np.allclose(
