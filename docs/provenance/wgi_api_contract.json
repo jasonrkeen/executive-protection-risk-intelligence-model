@@ -1,0 +1,22 @@
+{
+  "source_id": "3",
+  "source_name": "Worldwide Governance Indicators",
+  "dimensions": {
+    "CC": "Control of Corruption",
+    "GE": "Government Effectiveness",
+    "PV": "Political Stability",
+    "RL": "Rule of Law",
+    "RQ": "Regulatory Quality",
+    "VA": "Voice and Accountability"
+  },
+  "fields": {
+    "EST": "Governance estimate (approx. -2.5 to +2.5)",
+    "SC": "Governance score (0-100)",
+    "SC_LB": "Lower bound of the 90% confidence interval for the governance score",
+    "SC_UB": "Upper bound of the 90% confidence interval for the governance score",
+    "SE": "Standard error of the governance estimate",
+    "SR": "Number of sources"
+  },
+  "sample_country": "USA",
+  "observation_year": "2025"
+}

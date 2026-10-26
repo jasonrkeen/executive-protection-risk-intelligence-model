@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "data_class": "real_provider_metadata_verification",
+  "release_attribution": "2026 release documented separately; API date is not a release ID",
+  "source": {
+    "id": "3",
+    "name": "Worldwide Governance Indicators",
+    "lastupdated": "2026-09-25"
+  },
+  "indicators": [
+    {
+      "id": "GOV_WGI_CC.EST",
+      "name": "Control of Corruption - Governance estimate (approx. -2.5 to +2.5)"
+    },
+    {
+      "id": "GOV_WGI_CC.SC",
+      "name": "Control of Corruption - Governance score (0-100)"
+    },
+    {
+      "id": "GOV_WGI_CC.SC_LB",
+      "name": "Control of Corruption - Lower bound of the 90% confidence interval for the governance score"
+    },
+    {
+      "id": "GOV_WGI_CC.SC_UB",
+      "name": "Control of Corruption - Upper bound of the 90% confidence interval for the governance score"
+    },
+    {
+      "id": "GOV_WGI_CC.SE",
+      "name": "Control of Corruption - Standard error of the governance estimate"
+    },
+    {
+      "id": "GOV_WGI_CC.SR",
+      "name": "Control of Corruption - Number of sources"
+    },
+    {
+      "id": "GOV_WGI_GE.EST",
+      "name": "Government Effectiveness - Governance estimate (approx. -2.5 to +2.5)"
+    },
+    {
+      "id": "GOV_WGI_GE.SC",
+      "name": "Government Effectiveness - Governance score (0-100)"
+    },
+    {
+      "id": "GOV_WGI_GE.SC_LB",
+      "name": "Government Effectiveness - Lower bound of the 90% confidence interval for the governance score"
+    },
+    {
+      "id": "GOV_WGI_GE.SC_UB",
+      "name": "Government Effectiveness - Upper bound of the 90% confidence interval for the governance score"
+    },
+    {
+      "id": "GOV_WGI_GE.SE",
+      "name": "Government Effectiveness - Standard error of the governance estimate"
+    },
+    {
+      "id": "GOV_WGI_GE.SR",
+      "name": "Government Effectiveness - Number of sources"
+    },
+    {
+      "id": "GOV_WGI_PV.EST",
+      "name": "Political Stability - Governance estimate (approx. -2.5 to +2.5)"
+    },
+    {
+      "id": "GOV_WGI_PV.SC",
+      "name": "Political Stability - Governance score (0-100)"
+    },
+    {
+      "id": "GOV_WGI_PV.SC_LB",
+      "name": "Political Stability - Lower bound of the 90% confidence interval for the governance score"
+    },
+    {
+      "id": "GOV_WGI_PV.SC_UB",
+      "name": "Political Stability - Upper bound of the 90% confidence interval for the governance score"
+    },
+    {
+      "id": "GOV_WGI_PV.SE",
+      "name": "Political Stability - Standard error of the governance estimate"
+    },
+    {
+      "id": "GOV_WGI_PV.SR",
+      "name": "Political Stability - Number of sources"
+    },
+    {
+      "id": "GOV_WGI_RL.EST",
+      "name": "Rule of Law - Governance estimate (approx. -2.5 to +2.5)"
+    },
+    {
+      "id": "GOV_WGI_RL.SC",
+      "name": "Rule of Law - Governance score (0-100)"
+    },
+    {
+      "id": "GOV_WGI_RL.SC_LB",
+      "name": "Rule of Law - Lower bound of the 90% confidence interval for the governance score"
+    },
+    {
+      "id": "GOV_WGI_RL.SC_UB",
+      "name": "Rule of Law - Upper bound of the 90% confidence interval for the governance score"
+    },
+    {
+      "id": "GOV_WGI_RL.SE",
+      "name": "Rule of Law - Standard error of the governance estimate"
+    },
+    {
+      "id": "GOV_WGI_RL.SR",
+      "name": "Rule of Law - Number of sources"
+    },
+    {
+      "id": "GOV_WGI_RQ.EST",
+      "name": "Regulatory Quality - Governance estimate (approx. -2.5 to +2.5)"
+    },
+    {
+      "id": "GOV_WGI_RQ.SC",
+      "name": "Regulatory Quality - Governance score (0-100)"
+    },
+    {
+      "id": "GOV_WGI_RQ.SC_LB",
+      "name": "Regulatory Quality - Lower bound of the 90% confidence interval for the governance score"
+    },
+    {
+      "id": "GOV_WGI_RQ.SC_UB",
+      "name": "Regulatory Quality - Upper bound of the 90% confidence interval for the governance score"
+    },
+    {
+      "id": "GOV_WGI_RQ.SE",
+      "name": "Regulatory Quality - Standard error of the governance estimate"
+    },
+    {
+      "id": "GOV_WGI_RQ.SR",
+      "name": "Regulatory Quality - Number of sources"
+    },
+    {
+      "id": "GOV_WGI_VA.EST",
+      "name": "Voice and Accountability - Governance estimate (approx. -2.5 to +2.5)"
+    },
+    {
+      "id": "GOV_WGI_VA.SC",
+      "name": "Voice and Accountability - Governance score (0-100)"
+    },
+    {
+      "id": "GOV_WGI_VA.SC_LB",
+      "name": "Voice and Accountability - Lower bound of the 90% confidence interval for the governance score"
+    },
+    {
+      "id": "GOV_WGI_VA.SC_UB",
+      "name": "Voice and Accountability - Upper bound of the 90% confidence interval for the governance score"
+    },
+    {
+      "id": "GOV_WGI_VA.SE",
+      "name": "Voice and Accountability - Standard error of the governance estimate"
+    },
+    {
+      "id": "GOV_WGI_VA.SR",
+      "name": "Voice and Accountability - Number of sources"
+    }
+  ],
+  "sample": {
+    "country": "USA",
+    "observation_year": "2025",
+    "non_null_fields": 36,
+    "status": "SAMPLE_SCHEMA_VERIFIED_NOT_GLOBAL_COVERAGE",
+    "values_published": false
+  },
+  "legacy_source": [
+    {
+      "id": "75",
+      "name": "Environment, Social and Governance (ESG) Data",
+      "lastupdated": "2026-06-24"
+    }
+  ],
+  "legacy_request_error": [
+    {
+      "message": [
+        {
+          "id": "120",
+          "key": "Invalid value",
+          "value": "The provided parameter value is not valid"
+        }
+      ]
+    }
+  ],
+  "acled": {
+    "status": "DOCUMENTATION_ONLY_ENTITLEMENT_UNKNOWN",
+    "data_requested": false
+  },
+  "operational_readiness": "NOT_ESTABLISHED",
+  "requests": [
+    {
+      "name": "source",
+      "url": "https://api.worldbank.org/v2/source/3?format=json",
+      "http_status": 200,
+      "retrieved_at_utc": "2026-10-26T23:35:57.412044+00:00",
+      "sha256": "2362d963b0522279a220709d1c61c862fd78262bf6795dd412c673c78fab3cac",
+      "bytes": 239
+    },
+    {
+      "name": "indicators",
+      "url": "https://api.worldbank.org/v2/source/3/indicator?format=json&per_page=1000",
+      "http_status": 200,
+      "retrieved_at_utc": "2026-10-26T23:35:57.532324+00:00",
+      "sha256": "670b5de01a823d2cfd97b7ec53eec418978cabcda1c11989290b7e193f05a0af",
+      "bytes": 8107
+    },
+    {
+      "name": "sample",
+      "url": "https://api.worldbank.org/v2/country/USA/indicator/GOV_WGI_CC.EST;GOV_WGI_CC.SC;GOV_WGI_CC.SC_LB;GOV_WGI_CC.SC_UB;GOV_WGI_CC.SE;GOV_WGI_CC.SR;GOV_WGI_GE.EST;GOV_WGI_GE.SC;GOV_WGI_GE.SC_LB;GOV_WGI_GE.SC_UB;GOV_WGI_GE.SE;GOV_WGI_GE.SR;GOV_WGI_PV.EST;GOV_WGI_PV.SC;GOV_WGI_PV.SC_LB;GOV_WGI_PV.SC_UB;GOV_WGI_PV.SE;GOV_WGI_PV.SR;GOV_WGI_RL.EST;GOV_WGI_RL.SC;GOV_WGI_RL.SC_LB;GOV_WGI_RL.SC_UB;GOV_WGI_RL.SE;GOV_WGI_RL.SR;GOV_WGI_RQ.EST;GOV_WGI_RQ.SC;GOV_WGI_RQ.SC_LB;GOV_WGI_RQ.SC_UB;GOV_WGI_RQ.SE;GOV_WGI_RQ.SR;GOV_WGI_VA.EST;GOV_WGI_VA.SC;GOV_WGI_VA.SC_LB;GOV_WGI_VA.SC_UB;GOV_WGI_VA.SE;GOV_WGI_VA.SR?source=3&date=2025&format=json&per_page=1000",
+      "http_status": 200,
+      "retrieved_at_utc": "2026-10-26T23:35:57.901610+00:00",
+      "sha256": "b94771edf621ad1a2909215503c7ef13b5fe7f432ee5a9f1447bc664ecfb748b",
+      "bytes": 9234
+    },
+    {
+      "name": "legacy_source",
+      "url": "https://api.worldbank.org/v2/source/75?format=json",
+      "http_status": 200,
+      "retrieved_at_utc": "2026-10-26T23:35:58.002932+00:00",
+      "sha256": "850321211a60d3abf2bb2b2205f5db329ee9ddd0d3890e39df418976f09ce731",
+      "bytes": 254
+    },
+    {
+      "name": "legacy_request",
+      "url": "https://api.worldbank.org/v2/country/USA/indicator/PV.EST?source=75&date=2025&format=json",
+      "http_status": 200,
+      "retrieved_at_utc": "2026-10-26T23:35:58.130827+00:00",
+      "sha256": "f230e5b6d8f652aa544aec29624faa117c27571ce309a7a474584e1cfeb45c1b",
+      "bytes": 102
+    }
+  ]
+}
