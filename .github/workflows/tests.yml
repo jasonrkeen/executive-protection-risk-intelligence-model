@@ -26,6 +26,21 @@ jobs:
           test -s "$RUNNER_TEMP/methodology_audit/homicide_missingness_stress.csv"
       - name: Print synthetic methodological findings
         run: cat "$RUNNER_TEMP/methodology_audit/METHOD_REVIEW.md"
+      - name: Run missingness-aware fixed-reference shadow scoring
+        run: python -m src.scoring_integrity_demo --demo-dir "$RUNNER_TEMP/offline_research_demo" --output-dir "$RUNNER_TEMP/scoring_integrity_candidate"
+      - name: Verify withheld-output receipt and research PDF
+        run: |
+          test -s "$RUNNER_TEMP/scoring_integrity_candidate/scoring_integrity_receipt.json"
+          test -s "$RUNNER_TEMP/scoring_integrity_candidate/SCORING_DECISION_RECORD.md"
+          test -s "$RUNNER_TEMP/scoring_integrity_candidate/SYNTHETIC_CANDIDATE_SCORING_REVIEW.pdf"
+          test -s "$RUNNER_TEMP/scoring_integrity_candidate/candidate_all_missing_shadow.csv"
+          grep -q WITHHELD_REQUIRED_SOURCE_EVIDENCE "$RUNNER_TEMP/scoring_integrity_candidate/candidate_all_missing_shadow.csv"
+          grep -q NOT_ISSUED "$RUNNER_TEMP/scoring_integrity_candidate/candidate_all_missing_shadow.csv"
+      - name: Render first research PDF page for layout smoke check
+        run: |
+          command -v pdftoppm
+          pdftoppm -f 1 -l 1 -singlefile -r 110 -png "$RUNNER_TEMP/scoring_integrity_candidate/SYNTHETIC_CANDIDATE_SCORING_REVIEW.pdf" "$RUNNER_TEMP/scoring_integrity_preview"
+          test -s "$RUNNER_TEMP/scoring_integrity_preview.png"
       - name: Save reviewer evidence (fictional data only)
         uses: actions/upload-artifact@v4
         with:
@@ -34,5 +49,14 @@ jobs:
             ${{ runner.temp }}/methodology_audit/
             ${{ runner.temp }}/offline_research_demo/run_receipt.json
             ${{ runner.temp }}/offline_research_demo/reports/synthetic_research_demo.pdf
+          if-no-files-found: error
+          retention-days: 30
+      - name: Save candidate evidence and PDF (fictional data only)
+        uses: actions/upload-artifact@v4
+        with:
+          name: executive-protection-synthetic-scoring-candidate
+          path: |
+            ${{ runner.temp }}/scoring_integrity_candidate/
+            ${{ runner.temp }}/scoring_integrity_preview.png
           if-no-files-found: error
           retention-days: 30
