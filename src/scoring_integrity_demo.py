@@ -64,7 +64,9 @@ def evidence_scenario(
         source.at[index, "source_year"] = np.nan
         source.at[index, "source_ref"] = ""
     elif scenario == "ONE_STALE":
-        source.at[index, "source_year"] = reference.assessment_year - reference.max_source_age_years - 1
+        source.at[index, "source_year"] = str(
+            reference.assessment_year - reference.max_source_age_years - 1
+        )
     elif scenario == "ONE_CONFLICTING":
         source.at[index, "source_status"] = "conflicting"
     elif scenario == "ONE_IMPUTED":
