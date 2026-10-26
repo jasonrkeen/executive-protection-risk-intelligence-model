@@ -43,6 +43,9 @@ def test_repeated_real_scoring_is_deterministic_and_offline(tmp_path):
     assert receipt_1["input_sha256"]["acled_events.csv"]
     assert len(receipt_1["model_source_sha256"]) >= 10
     assert all(len(digest) == 64 for digest in receipt_1["model_source_sha256"].values())
+    assert all(receipt_1["environment"].get(key) for key in (
+        "python", "numpy", "pandas", "reportlab", "scikit_learn",
+    ))
     assert receipt_1["evidence_sha256"]
     assert "reports/synthetic_research_demo.pdf" in receipt_1["output_sha256"]
     assert (first / "reports" / "synthetic_research_demo.pdf").read_bytes().startswith(b"%PDF")
