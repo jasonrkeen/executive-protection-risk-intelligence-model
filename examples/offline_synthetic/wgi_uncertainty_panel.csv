@@ -1,0 +1,11 @@
+country,indicator,source_year,estimate,standard_error,source_count,estimate_unit,release_id,release_date,retrieved_on,source_ref,data_class
+Testland,political_stability,2024,-1,0.8,4,standard_normal_estimate,SYN-WGI-RELEASE-2026-TOY,2026-09-18,2026-10-17,synthetic://wgi/Testland/political_stability,synthetic
+Testland,rule_of_law,2024,-0.7,0.75,4,standard_normal_estimate,SYN-WGI-RELEASE-2026-TOY,2026-09-18,2026-10-17,synthetic://wgi/Testland/rule_of_law,synthetic
+Testland,control_of_corruption,2024,-0.4,0.65,3,standard_normal_estimate,SYN-WGI-RELEASE-2026-TOY,2026-09-18,2026-10-17,synthetic://wgi/Testland/control_of_corruption,synthetic
+Testland,government_effectiveness,2024,-0.6,0.65,4,standard_normal_estimate,SYN-WGI-RELEASE-2026-TOY,2026-09-18,2026-10-17,synthetic://wgi/Testland/government_effectiveness,synthetic
+Testland,voice_accountability,2024,-0.3,0.7,3,standard_normal_estimate,SYN-WGI-RELEASE-2026-TOY,2026-09-18,2026-10-17,synthetic://wgi/Testland/voice_accountability,synthetic
+Example Republic,political_stability,2024,0.8,0.8,4,standard_normal_estimate,SYN-WGI-RELEASE-2026-TOY,2026-09-18,2026-10-17,synthetic://wgi/Example_Republic/political_stability,synthetic
+Example Republic,rule_of_law,2024,0.6,0.75,5,standard_normal_estimate,SYN-WGI-RELEASE-2026-TOY,2026-09-18,2026-10-17,synthetic://wgi/Example_Republic/rule_of_law,synthetic
+Example Republic,control_of_corruption,2024,0.4,0.7,5,standard_normal_estimate,SYN-WGI-RELEASE-2026-TOY,2026-09-18,2026-10-17,synthetic://wgi/Example_Republic/control_of_corruption,synthetic
+Example Republic,government_effectiveness,2024,0.5,0.65,4,standard_normal_estimate,SYN-WGI-RELEASE-2026-TOY,2026-09-18,2026-10-17,synthetic://wgi/Example_Republic/government_effectiveness,synthetic
+Example Republic,voice_accountability,2024,0.2,0.7,5,standard_normal_estimate,SYN-WGI-RELEASE-2026-TOY,2026-09-18,2026-10-17,synthetic://wgi/Example_Republic/voice_accountability,synthetic
