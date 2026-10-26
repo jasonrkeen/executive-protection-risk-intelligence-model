@@ -157,7 +157,7 @@ def country_features(events: pd.DataFrame) -> pd.DataFrame:
         add_share_features, add_momentum_features, enforce_output_schema,
     ):
         base = fn(base)
-    base["acled_data_source"] = "SYNTHETIC FIXTURE — NOT ACLED OBSERVATIONS"
+    base["acled_data_source"] = "SYNTHETIC FIXTURE - NOT ACLED OBSERVATIONS"
     return base.sort_values(["country", "year"]).reset_index(drop=True)
 
 
@@ -183,6 +183,7 @@ def country_scores(yearly: pd.DataFrame, indicators: pd.DataFrame) -> pd.DataFra
         ["executive_protection_risk_score", "country"], ascending=[False, True],
     ).reset_index(drop=True)
     country.insert(0, "baseline_rank", country.index + 1)
+    country["source_data_class"] = "SYNTHETIC_TEST_ONLY"
     return country
 
 
@@ -192,6 +193,7 @@ def city_and_access(events: pd.DataFrame, airports: pd.DataFrame,
     raw = standardize_acled_columns(events.copy())
     clean = clean_acled_events(raw)
     city = score_city_features(aggregate_city_features(clean))
+    city["source_data_class"] = "SYNTHETIC_TEST_ONLY"
     if city.empty:
         raise ValueError("No synthetic city features created")
     access = calculate_access_adjusted_risk(
@@ -225,7 +227,7 @@ def produce_pdf(path: Path, pi: pd.DataFrame, decision: pd.DataFrame,
     """Use the actual model's protective and validation PDF presentation functions."""
     styles = make_styles()
     story = [
-        Paragraph("SYNTHETIC — OFFLINE RESEARCH DEMONSTRATION", styles["title"]),
+        Paragraph("SYNTHETIC - OFFLINE RESEARCH DEMONSTRATION", styles["title"]),
         Paragraph(
             "All countries, movements, locations, airports, and incidents are fictional. "
             "Country results are anchored to a 2024 historical baseline; city windows "
@@ -299,11 +301,15 @@ def run_demo(output_dir: Path, fixture_dir: Path = FIXTURES) -> dict:
         events = pd.read_csv(raw / "acled_events.csv", dtype={"event_id_cnty": str})
         yearly = country_features(events)
         indicators = pd.read_csv(raw / "country_indicators.csv")
+        indicators["source_data_class"] = "SYNTHETIC_NOT_WORLD_BANK"
         rankings = country_scores(yearly, indicators)
-        city, access = city_and_access(
-            events, pd.read_csv(raw / "airports.csv"),
-            pd.read_csv(raw / "medical_reference.csv"),
-        )
+        airports = pd.read_csv(raw / "airports.csv")
+        medical = pd.read_csv(raw / "medical_reference.csv")
+        if (not airports["name"].astype(str).str.startswith("Synthetic ").all()
+                or set(medical["country_normalized"])
+                != {"testland", "example republic"}):
+            raise ValueError("Support references must be explicitly fictional")
+        city, access = city_and_access(events, airports, medical)
 
         # The production residual/COA and validation readers use these names.
         yearly.to_csv(processed / "acled_country_risk_features.csv", index=False)
