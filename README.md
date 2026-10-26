@@ -1350,6 +1350,30 @@ See [the offline synthetic demonstration guide](docs/OFFLINE_SYNTHETIC_DEMO.md).
 
 ---
 
+## Synthetic Methodological Red Team
+
+An additional **offline synthetic audit** checks exactly how the existing
+country-model mathematics behaves when a weighted component is omitted, a
+fictional extreme comparator is added, or homicide-rate evidence is missing.
+It separately enumerates country-year observation presence (not reporting
+completeness) and the model's additive, partly overlapping severity uplift.
+
+```bash
+python -m src.methodology_red_team \
+  --demo-dir outputs/synthetic_offline_demo \
+  --output-dir outputs/methodology_red_team_demo
+```
+
+The audit first verifies source, output, code and evidence SHA-256 fingerprints
+from the prior demo. It produces CSV diagnostics, a generated Markdown findings
+memo and an independently hashed audit receipt. Its results are **synthetic
+sensitivity evidence, not validated threat probabilities**. The toy cohort has
+two fictional countries, insufficient for meaningful statistical correlation
+analysis or practitioner decision accuracy claims. See the
+[methodology red-team protocol](docs/METHODOLOGY_RED_TEAM.md).
+
+---
+
 ## Running the Pipeline
 
 Stage reviewed, deidentified trip/capacity inputs, the **mixed-vintage** ACLED
