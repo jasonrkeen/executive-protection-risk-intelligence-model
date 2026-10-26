@@ -16,3 +16,23 @@ jobs:
         run: |
           test -s "$RUNNER_TEMP/offline_research_demo/run_receipt.json"
           test -s "$RUNNER_TEMP/offline_research_demo/reports/synthetic_research_demo.pdf"
+      - name: Run synthetic methodological audit from verified receipt
+        run: python -m src.methodology_red_team --demo-dir "$RUNNER_TEMP/offline_research_demo" --output-dir "$RUNNER_TEMP/methodology_audit"
+      - name: Confirm auditable red-team outputs
+        run: |
+          test -s "$RUNNER_TEMP/methodology_audit/methodology_receipt.json"
+          test -s "$RUNNER_TEMP/methodology_audit/METHOD_REVIEW.md"
+          test -s "$RUNNER_TEMP/methodology_audit/homicide_cohort_dependence.csv"
+          test -s "$RUNNER_TEMP/methodology_audit/homicide_missingness_stress.csv"
+      - name: Print synthetic methodological findings
+        run: cat "$RUNNER_TEMP/methodology_audit/METHOD_REVIEW.md"
+      - name: Save reviewer evidence (fictional data only)
+        uses: actions/upload-artifact@v4
+        with:
+          name: executive-protection-synthetic-methodology-audit
+          path: |
+            ${{ runner.temp }}/methodology_audit/
+            ${{ runner.temp }}/offline_research_demo/run_receipt.json
+            ${{ runner.temp }}/offline_research_demo/reports/synthetic_research_demo.pdf
+          if-no-files-found: error
+          retention-days: 30

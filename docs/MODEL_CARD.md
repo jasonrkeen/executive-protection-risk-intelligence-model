@@ -80,10 +80,14 @@ are **illustrations from earlier runs**, not evidence of current conditions.
   authenticated third-party attestations.
 - The baseline-year guard prevents recent-only event extracts from silently
   failing to populate the configured historical country model.
-- CI uses synthetic fixtures and unit/integration tests. The latest observed
-  October 19, 2026 default-branch CI run passed; this does not prove a complete
-  reproducible real-source pipeline run, accuracy, dashboard runtime health, or
-  that all external data providers are available.
+- CI uses synthetic fixtures and unit/integration tests; successful
+  checks do not prove a complete reproducible real-source pipeline run,
+  accuracy, dashboard runtime health, or third-party provider availability.
+- A separate [synthetic methodological red team](METHODOLOGY_RED_TEAM.md)
+  tests cohort normalization sensitivity, homicide missingness, weight-only
+  ablations, historical source-presence gaps and construct overlap. These
+  are diagnostic perturbations on two fictional countries, **not**
+  empirical or predictive validation.
 
 ## Known threats to validity
 
