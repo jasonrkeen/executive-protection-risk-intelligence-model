@@ -1,0 +1,15 @@
+{
+  "reference_id": "FICTIONAL-HOMICIDE-REFERENCE-v1",
+  "indicator": "homicide_rate_per_100k",
+  "unit": "per_100k_population",
+  "baseline_year": 2024,
+  "assessment_year": 2026,
+  "reference_min": 3,
+  "reference_max": 12,
+  "max_source_age_years": 3,
+  "direction": "higher_value_higher_index",
+  "data_class": "synthetic",
+  "anchor_scope": "two fictional countries only; not calibrated or applicable to real countries",
+  "source_vintage_policy": "Fixed synthetic reference; never refit on changed scoring cohort",
+  "outcome_validation": "NONE"
+}
