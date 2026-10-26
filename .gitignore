@@ -92,3 +92,6 @@ outputs/tables/
 !outputs/country_profiles/*.csv
 # Local untrusted synthetic run output must not be committed
 outputs/synthetic_offline_demo*/
+
+# Local synthetic methodology evidence should remain outside Git
+outputs/methodology_red_team_demo*/
