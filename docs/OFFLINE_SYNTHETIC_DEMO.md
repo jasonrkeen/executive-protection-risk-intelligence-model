@@ -80,7 +80,7 @@ The result directory contains:
 | `tables/analyst_collection_plan.csv` | Follow-up collection questions |
 | `tables/synthetic_weight_sensitivity.csv` | 25 runs using the configured fixed seed 42, **not** predictive validation |
 | `reports/synthetic_research_demo.pdf` | Synthetic PI, COA, and evidence-audit report |
-| `run_receipt.json` | Fixed model versions, time windows, row counts, test quality flags, and input/output SHA-256 fingerprints |
+| `run_receipt.json` | Fixed model versions, exact Python/pandas/numpy/ReportLab/scikit-learn versions, source-code SHA-256 hashes, time windows, row counts, quality flags, and input/output SHA-256 fingerprints |
 
 Additional generated tables and the synthetic medical reference are documented
 in the receipt or the input directory.
@@ -90,6 +90,11 @@ country-year records, 2 baseline country records, 2 city records, 2 synthetic
 movements, 2 residual scores, 2 COA rows, and 2 evidence coverage records**.
 
 All receipts state that sources and predictions remain unverified.
+Independent byte-for-byte reproducibility is verified under the **same dependency
+environment**. The repository currently specifies minimum package versions, not
+a frozen cross-platform dependency lockfile; version changes can alter PDF or
+CSV bytes. The exact analysis package versions and exercised source-file digests
+are recorded to make those differences auditable.
 
 ## Failure checks
 
