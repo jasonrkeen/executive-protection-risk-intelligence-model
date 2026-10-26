@@ -90,3 +90,5 @@ outputs/tables/
 !outputs/country_profiles/
 !outputs/country_profiles/*.md
 !outputs/country_profiles/*.csv
+# Local untrusted synthetic run output must not be committed
+outputs/synthetic_offline_demo*/

@@ -1,0 +1,3 @@
+trip_id,principal,city,country,scenario,visibility_level,travel_predictability,venue_exposure,hotel_airport_exposure,online_visibility,reputational_sensitivity,business_sector_sensitivity
+DEMO-001,SYNTHETIC-A,Demo City,Testland,site visit,medium,medium,medium,medium,low,low,energy
+DEMO-002,SYNTHETIC-B,Sample City,Example Republic,public event,high,high,high,high,high,medium,energy

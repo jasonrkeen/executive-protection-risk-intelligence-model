@@ -1,0 +1,3 @@
+rule_id,min_score,max_score,required_condition,coa_level,recommendation,analyst_note
+SYN-COA-001,0,59,none,Validate,Synthetic review example,Not an operational recommendation
+SYN-COA-002,60,100,score_threshold,Security Lead Review,Synthetic review example,Not an operational recommendation

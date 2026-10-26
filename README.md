@@ -1330,6 +1330,26 @@ plotly
 
 ---
 
+## Offline Synthetic Integration Demonstration
+
+A deterministic, network-free **fictional research demonstration** runs real
+country/year scoring, city/access proxy scoring, movement PI and RPR-1 scoring,
+COA decision support, evidence coverage auditing, fixed-seed weight sensitivity,
+and project PDF renderers without accessing live sources or real trip data.
+
+```bash
+python -m src.offline_synthetic_demo --output-dir outputs/synthetic_offline_demo
+```
+
+Use a different output directory for a second run; existing results are never
+overwritten. The runner creates a source-vintage and SHA-256 receipt, tests
+historical input-year presence, and explicitly labels all outputs **synthetic**.
+This is **not** a complete offline run of the 27-stage live pipeline and is
+**not** validation of real-world model accuracy or protective effectiveness.
+See [the offline synthetic demonstration guide](docs/OFFLINE_SYNTHETIC_DEMO.md).
+
+---
+
 ## Running the Pipeline
 
 Stage reviewed, deidentified trip/capacity inputs, the **mixed-vintage** ACLED

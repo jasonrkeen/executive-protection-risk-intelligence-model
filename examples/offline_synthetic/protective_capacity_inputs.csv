@@ -1,0 +1,3 @@
+trip_id,driver_capacity,close_protection_capacity,advance_capacity,intelligence_capacity,medical_capacity,communications_capacity,local_support_capacity,combined_role_load,concurrent_duty_load,transition_load,public_exposure_load,schedule_compression_load
+DEMO-001,75,80,60,70,55,70,75,20,25,25,20,30
+DEMO-002,40,55,25,50,35,40,35,65,70,70,80,60
