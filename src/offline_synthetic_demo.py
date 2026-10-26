@@ -81,6 +81,19 @@ HASHED_INPUTS = {
     "trips": "protective_intelligence_trip_inputs.csv",
     "capacity": "protective_capacity_inputs.csv",
 }
+MODEL_SOURCE_FILES = (
+    "src/offline_synthetic_demo.py",
+    "src/acled_processing.py",
+    "src/acled_city_processing.py",
+    "src/access_proxy_layer.py",
+    "src/risk_scoring.py",
+    "src/protective_intelligence_score.py",
+    "src/residual_protective_risk.py",
+    "src/protective_intelligence_decision_layer.py",
+    "src/intelligence_validation_layer.py",
+    "src/intelligence_validation_views.py",
+    "src/report_generator.py",
+)
 
 
 def sha256(path: Path) -> str:
@@ -386,6 +399,9 @@ def run_demo(output_dir: Path, fixture_dir: Path = FIXTURES) -> dict:
                 "evidence_audit": VALIDATION_VERSION,
             },
             "data_class": "synthetic",
+            "model_source_sha256": {
+                path: sha256(ROOT / path) for path in MODEL_SOURCE_FILES
+            },
             "fictional_countries_only": sorted(set(trips["country"])),
             "assessment_date": DEMO_AS_OF,
             "source_windows": {
