@@ -10,3 +10,9 @@ jobs:
           python-version: '3.11'
       - run: pip install -r requirements-dev.txt
       - run: python -m pytest -q
+      - name: Run offline fictional demonstration without credentials
+        run: python -m src.offline_synthetic_demo --output-dir "$RUNNER_TEMP/offline_research_demo"
+      - name: Confirm reproducibility receipt and PDF are generated
+        run: |
+          test -s "$RUNNER_TEMP/offline_research_demo/run_receipt.json"
+          test -s "$RUNNER_TEMP/offline_research_demo/reports/synthetic_research_demo.pdf"
