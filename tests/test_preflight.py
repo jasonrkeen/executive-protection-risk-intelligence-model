@@ -8,7 +8,10 @@ from unittest.mock import patch
 import pandas as pd
 import pytest
 
-from src.preflight import PreflightError, TRIP_FIELDS, require_preflight, require_unique_trip_context
+from src.preflight import (
+    PreflightError, TRIP_FIELDS, require_preflight,
+    require_historical_baseline_coverage, require_unique_trip_context,
+)
 from src.residual_protective_risk import FIELDS
 
 AS_OF = "2026-10-17"
@@ -136,6 +139,50 @@ def test_failed_gate_prevents_all_pipeline_work():
     with patch.object(pipeline,'require_preflight',side_effect=PreflightError('blocked')), \
          patch.object(pipeline,'build_worldbank_dataset') as first:
         with pytest.raises(PreflightError): pipeline.main(date.today().isoformat())
+        first.assert_not_called()
+
+
+def test_historical_baseline_rejects_current_only_events(package):
+    root, _ = package
+    with pytest.raises(PreflightError, match="Historical ACLED baseline years missing"):
+        require_historical_baseline_coverage(
+            root / "data/raw/acled_events.csv",
+            baseline_start_year=2020, baseline_end_year=2024,
+        )
+
+
+@pytest.mark.parametrize("missing_year", [2020, 2021, 2022, 2023, 2024])
+def test_historical_baseline_detects_missing_year(tmp_path, missing_year):
+    events_path = tmp_path / "events.csv"
+    rows = [{"year": year} for year in range(2020, 2025) if year != missing_year]
+    rows.append({"year": 2026})  # Recent activity cannot stand in for a historical year.
+    pd.DataFrame(rows).to_csv(events_path, index=False)
+    with pytest.raises(PreflightError, match=str(missing_year)):
+        require_historical_baseline_coverage(
+            events_path, baseline_start_year=2020, baseline_end_year=2024,
+        )
+
+
+def test_historical_baseline_receipt_is_explicitly_not_completeness(tmp_path):
+    events_path = tmp_path / "events.csv"
+    pd.DataFrame([{"year": y} for y in range(2020, 2025)] + [
+        {"year": 2026}
+    ]).to_csv(events_path, index=False)
+    result = require_historical_baseline_coverage(
+        events_path, baseline_start_year=2020, baseline_end_year=2024,
+    )
+    assert result["events_by_baseline_year"] == {str(y): 1 for y in range(2020, 2025)}
+    assert result["status"] == "YEAR_PRESENCE_ONLY_NOT_SOURCE_COMPLETENESS"
+
+
+def test_historical_baseline_blocks_network_before_fetch():
+    import src.main as pipeline
+    with patch.object(pipeline, "require_preflight", return_value=object()), \
+         patch.object(pipeline, "require_historical_baseline_coverage",
+                      side_effect=PreflightError("Historical baseline unavailable")), \
+         patch.object(pipeline, "build_worldbank_dataset") as first:
+        with pytest.raises(PreflightError, match="Historical baseline unavailable"):
+            pipeline.main(date.today().isoformat())
         first.assert_not_called()
 
 
@@ -272,6 +319,7 @@ def test_incomplete_field_evidence_blocked(package):
 def test_failed_recheck_stops_downstream_processing():
     import src.main as pipeline
     with patch.object(pipeline, "require_preflight"), \
+         patch.object(pipeline, "require_historical_baseline_coverage"), \
          patch.object(pipeline, "build_worldbank_dataset"), \
          patch.object(pipeline, "fetch_acled_events"), \
          patch.object(pipeline, "verify_package_unchanged", side_effect=PreflightError("changed")), \

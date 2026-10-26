@@ -83,7 +83,7 @@ The final project includes:
 
 - RPR-1 compatible intelligence evidence-coverage auditing and analyst collection requirements
 
-- A fully automated Python pipeline
+- A preflight-gated Python pipeline (reviewed local evidence and source credentials are required; CI is not a live-data certification)
 - ACLED political violence and civil unrest processing
 - World Bank governance, macro, energy, homicide, and health indicator collection
 - Country-level Executive Protection Risk Score
@@ -145,7 +145,9 @@ outputs/screenshots/
 
 ### COA Decision Support
 
-![COA Decision Support](outputs/screenshots/dashboard_decision_support.png)
+The COA decision-support views require compatible local processed inputs. A public
+screenshot is not included in this repository; generated review recommendations
+are not operational travel clearances.
 
 ---
 
@@ -228,6 +230,31 @@ executive-protection-risk-intelligence-model/
 ---
 
 ## Data Sources
+
+### Temporal scope: historical baseline vs. more recent observations
+
+The structural country model is explicitly a **2024 historical baseline**, using
+ACLED country features from **2020–2024** and World Bank indicator vintages
+selected no later than 2024. Its country scores must not be described as current
+2026 risk estimates. The separate 2026 forward-event overlay may use more recent
+ACLED observations, but it retains the historical baseline when target-year data
+are unavailable; this does not update the structural country indicators.
+
+City-level rolling event windows are anchored to the **latest observation in the
+loaded ACLED extract**, not automatically to today's date or to verified
+location-specific reporting coverage. An absence of recent recorded incidents in a
+location does not prove absence of threat or adequate reporting coverage.
+
+The full live pipeline now checks two distinct properties **before its first
+network call**: (1) the reviewed, hash-bound current research package meets the
+provisional 30-day freshness policy and (2) the same staged ACLED file has at
+least one record in **each** configured historical baseline year (2020–2024).
+A present year is necessary for the intended baseline calculation, but **does not
+prove the source is complete, representative, or independently authenticated**.
+Do not substitute recent 2026 records for missing 2020–2024 history.
+
+See the [model card](docs/MODEL_CARD.md) and [preflight contract](docs/PREFLIGHT.md)
+for interpretation and release limits.
 
 ### 1. ACLED Event Data
 
@@ -993,6 +1020,10 @@ Country profiles summarize:
 
 ## Model Governance
 
+See the [research model card](docs/MODEL_CARD.md) for temporal provenance,
+construct-validity limitations, nonprobabilistic score interpretation, and
+release/validation gates.
+
 The project includes a model governance layer that documents intended use, not intended use, data-source dependencies, scoring structure, scenario assumptions, sensitivity design, forward-risk guardrails, city-level model limitations, support-access proxy assumptions, and general limitations.
 
 Outputs include:
@@ -1301,11 +1332,22 @@ plotly
 
 ## Running the Pipeline
 
-Run the full pipeline:
+Stage reviewed, deidentified trip/capacity inputs, the **mixed-vintage** ACLED
+source file (historical baseline **and** recent events), and the approved
+`rpr1_evidence.json` as described in [the preflight guide](docs/PREFLIGHT.md).
+Check the package before running the full pipeline:
 
 ```powershell
-python -m src.main
+python -m src.preflight --assessment-date YYYY-MM-DD
+python -m src.main --assessment-date YYYY-MM-DD
 ```
+
+For the second command, substitute the **actual local date of execution**.
+The read-only preflight command validates the reviewed input package. The full
+pipeline additionally checks historical event-year presence before any network
+request. Neither check attests to source completeness, current country-risk
+calibration, or clearance for protective operations. CI tests do not execute
+the complete authorized-data pipeline.
 
 The full pipeline will:
 
@@ -1548,7 +1590,7 @@ The full pipeline requires an explicit assessment date and a passing
 `python -m src.main --assessment-date YYYY-MM-DD`; older bare pipeline commands
 below or elsewhere require this argument. This remains experimental research.
 
-The review branch adds an experimental replacement for the unavailable native
+The RPR-1 implementation is an experimental replacement for the unavailable native
 residual integration package. See [the scoring contract, provenance, operation,
 and validation limits](docs/RESIDUAL_RISK_REPLACEMENT.md). This is a new
 implementation; no historical package equivalence is claimed.
