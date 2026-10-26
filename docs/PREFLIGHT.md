@@ -1,9 +1,11 @@
 # RPR-1 experimental research preflight
 
 The full pipeline now fails before its first network request or generated output
-unless staged inputs pass an explicit-date gate. There is no bypass switch in
-`src.main`. This is an engineering readiness check, not certification, empirical
-validation, or travel clearance. RPR-1 weights and thresholds remain uncalibrated.
+unless staged inputs pass an explicit-date gate **and** include actual events
+from every configured historical baseline year (currently 2020–2024).
+There is no bypass switch in `src.main`. This is an engineering readiness
+check, not certification, empirical validation, or travel clearance. RPR-1
+weights and thresholds remain uncalibrated.
 
 ## Prepare a reviewed package
 
@@ -52,11 +54,20 @@ approve later input changes.
 python -m src.preflight --assessment-date YYYY-MM-DD
 ```
 
-After a successful check, the full pipeline repeats it:
+After a successful check, the full pipeline repeats it and then checks
+historical source-year presence **before** performing any network fetch:
 
 ```
 python -m src.main --assessment-date YYYY-MM-DD
 ```
+
+The read-only `src.preflight` command does **not** itself check baseline
+year presence. The full `src.main` command checks that each year in
+`src.config.START_YEAR` through `END_YEAR` has at least one raw ACLED event.
+This catches a recent-only extract that would otherwise create an empty or
+incomplete historical country dataset. Year presence is **not** evidence of
+geographic coverage, event completeness, source integrity, or comparability
+across the historical period.
 
 The assessment date is the analyst's explicit reference date, never inferred
 from file modification time or the newest event. Standalone synthetic checking
@@ -94,6 +105,9 @@ accuracy. Event freshness is assessed for the dataset, not each quiet location.
 The caller supplies the reference date; using an old reference date is historical
 research and must never be represented as a current assessment.
 
+Country risk remains anchored to the 2024 historical baseline even with
+a fresh 2026 event tail. City rolling windows are measured relative to the
+dataset's latest observation and do not certify city-specific event coverage.
 Other legacy pipeline sources (country/forward/World Bank) may have different
 vintages, and the full pipeline may fetch revised data. This gate is not a frozen
 snapshot runner or an end-to-end provenance certificate. Preserve final receipts
