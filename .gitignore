@@ -95,3 +95,6 @@ outputs/synthetic_offline_demo*/
 
 # Local synthetic methodology evidence should remain outside Git
 outputs/methodology_red_team_demo*/
+
+# Nonoperational candidate outputs are generated only locally or by CI
+outputs/scoring_integrity_candidate_demo*/

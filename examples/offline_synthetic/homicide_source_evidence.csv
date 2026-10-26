@@ -1,0 +1,3 @@
+country,source_status,source_year,source_ref,unit
+Example Republic,observed,2024,synthetic://homicide-fixture/EXR,per_100k_population
+Testland,observed,2024,synthetic://homicide-fixture/TST,per_100k_population

@@ -88,6 +88,10 @@ are **illustrations from earlier runs**, not evidence of current conditions.
   ablations, historical source-presence gaps and construct overlap. These
   are diagnostic perturbations on two fictional countries, **not**
   empirical or predictive validation.
+- A further [missingness-aware fixed-reference scoring candidate](SCORING_INTEGRITY_CANDIDATE.md)
+  demonstrates when scores should be **WITHHELD**, including an explicit
+  observed-zero state. It is isolated to a fictional research-only shadow
+  calculation and does not alter the existing published scoring methodology.
 
 ## Known threats to validity
 

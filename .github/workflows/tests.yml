@@ -26,6 +26,41 @@ jobs:
           test -s "$RUNNER_TEMP/methodology_audit/homicide_missingness_stress.csv"
       - name: Print synthetic methodological findings
         run: cat "$RUNNER_TEMP/methodology_audit/METHOD_REVIEW.md"
+      - name: Run missingness-aware fixed-reference shadow scoring
+        run: python -m src.scoring_integrity_demo --demo-dir "$RUNNER_TEMP/offline_research_demo" --output-dir "$RUNNER_TEMP/scoring_integrity_candidate"
+      - name: Verify withheld-output receipt and research PDF
+        run: |
+          test -s "$RUNNER_TEMP/scoring_integrity_candidate/scoring_integrity_receipt.json"
+          test -s "$RUNNER_TEMP/scoring_integrity_candidate/SCORING_DECISION_RECORD.md"
+          test -s "$RUNNER_TEMP/scoring_integrity_candidate/SYNTHETIC_CANDIDATE_SCORING_REVIEW.pdf"
+          test -s "$RUNNER_TEMP/scoring_integrity_candidate/candidate_all_missing_shadow.csv"
+          grep -q WITHHELD_REQUIRED_SOURCE_EVIDENCE "$RUNNER_TEMP/scoring_integrity_candidate/candidate_all_missing_shadow.csv"
+          grep -q NOT_ISSUED "$RUNNER_TEMP/scoring_integrity_candidate/candidate_all_missing_shadow.csv"
+      - name: Install independent PDF render verifier
+        run: python -m pip install "pypdfium2>=4.30,<5"
+      - name: Render first research PDF page for layout smoke check
+        run: |
+          python - <<'PY'
+          import os
+          from pathlib import Path
+          import pypdfium2 as pdfium
+
+          folder = Path(os.environ["RUNNER_TEMP"])
+          pdf = pdfium.PdfDocument(
+              str(folder / "scoring_integrity_candidate" / "SYNTHETIC_CANDIDATE_SCORING_REVIEW.pdf")
+          )
+          assert len(pdf) >= 1, "No rendered report pages"
+          visible_text = " ".join(
+              pdf[index].get_textpage().get_text_range()
+              for index in range(len(pdf))
+          )
+          assert "WITHHELD" in visible_text, "PDF did not render withheld-data warning"
+          assert "NOT ISSUED" in visible_text, "PDF has no non-authorization status"
+          png = folder / "scoring_integrity_preview.png"
+          pdf[0].render(scale=1.5).to_pil().save(png)
+          assert png.stat().st_size > 1024, "PDF visual rendering is empty"
+          print(f"Rendered {len(pdf)} report page(s); first page image: {png.stat().st_size} bytes")
+          PY
       - name: Save reviewer evidence (fictional data only)
         uses: actions/upload-artifact@v4
         with:
@@ -34,5 +69,14 @@ jobs:
             ${{ runner.temp }}/methodology_audit/
             ${{ runner.temp }}/offline_research_demo/run_receipt.json
             ${{ runner.temp }}/offline_research_demo/reports/synthetic_research_demo.pdf
+          if-no-files-found: error
+          retention-days: 30
+      - name: Save candidate evidence and PDF (fictional data only)
+        uses: actions/upload-artifact@v4
+        with:
+          name: executive-protection-synthetic-scoring-candidate
+          path: |
+            ${{ runner.temp }}/scoring_integrity_candidate/
+            ${{ runner.temp }}/scoring_integrity_preview.png
           if-no-files-found: error
           retention-days: 30
