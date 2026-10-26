@@ -61,6 +61,19 @@ jobs:
           assert png.stat().st_size > 1024, "PDF visual rendering is empty"
           print(f"Rendered {len(pdf)} report page(s); first page image: {png.stat().st_size} bytes")
           PY
+      - name: Run synthetic source lineage and WGI standard-error stress
+        run: python -m src.source_uncertainty_demo --demo-dir "$RUNNER_TEMP/offline_research_demo" --output-dir "$RUNNER_TEMP/source_uncertainty_demo"
+      - name: Verify missing WGI country dimensions and dated lineage
+        run: |
+          test -s "$RUNNER_TEMP/source_uncertainty_demo/source_uncertainty_receipt.json"
+          test -s "$RUNNER_TEMP/source_uncertainty_demo/SOURCE_UNCERTAINTY_FINDINGS.md"
+          test -s "$RUNNER_TEMP/source_uncertainty_demo/governance_uncertainty_country_reruns.csv"
+          test -s "$RUNNER_TEMP/source_uncertainty_demo/event_country_year_presence.csv"
+          grep -q BLOCKED_MISSING_COUNTRY_DIMENSION "$RUNNER_TEMP/source_uncertainty_demo/wgi_missing_dimension_stress.csv"
+          grep -q WITHHELD_MISSING_OR_INCOMPATIBLE_SOURCE "$RUNNER_TEMP/source_uncertainty_demo/wgi_missing_country_readiness.csv"
+          grep -q TOY_SENSITIVITY_NOT_STATISTICAL_RISK_CI "$RUNNER_TEMP/source_uncertainty_demo/governance_uncertainty_summary.csv"
+      - name: Print toy uncertainty limitations and results
+        run: cat "$RUNNER_TEMP/source_uncertainty_demo/SOURCE_UNCERTAINTY_FINDINGS.md"
       - name: Save reviewer evidence (fictional data only)
         uses: actions/upload-artifact@v4
         with:
@@ -78,5 +91,12 @@ jobs:
           path: |
             ${{ runner.temp }}/scoring_integrity_candidate/
             ${{ runner.temp }}/scoring_integrity_preview.png
+          if-no-files-found: error
+          retention-days: 30
+      - name: Archive fictional WGI and ACLED provenance research
+        uses: actions/upload-artifact@v4
+        with:
+          name: executive-protection-synthetic-source-uncertainty
+          path: ${{ runner.temp }}/source_uncertainty_demo/
           if-no-files-found: error
           retention-days: 30
