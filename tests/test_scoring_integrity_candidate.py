@@ -221,7 +221,7 @@ def test_frozen_legacy_score_cannot_be_changed_silently(src_case):
         shadow_country_comparison(corrupted, candidates)
 
 
-def test_candidate_displays_withheld_status_in_streamlit(src_case):
+def test_candidate_displays_withheld_status_in_streamlit(src_case, tmp_path):
     indicators, baseline, source, ref = src_case
     missing = evidence_scenario(indicators, source, ref, "ALL_MISSING")
     shadow = shadow_country_comparison(baseline, missing)
@@ -229,11 +229,12 @@ def test_candidate_displays_withheld_status_in_streamlit(src_case):
 
     # Exercise the presentation helper itself; it is intentionally not
     # installed in the live protective dashboard.
+    candidate_path = tmp_path / "candidate.csv"
+    shadow.to_csv(candidate_path, index=False)
     code = (
         "import pandas as pd\n"
         "from src.scoring_integrity_views import show_candidate_integrity_tab\n"
-        "from src.scoring_integrity_candidate import shadow_country_comparison\n"
-        f"frame=pd.DataFrame({shadow.to_dict('records')!r})\n"
+        f"frame=pd.read_csv({str(candidate_path)!r})\n"
         "show_candidate_integrity_tab(frame)\n"
     )
     app = AppTest.from_string(code).run()
