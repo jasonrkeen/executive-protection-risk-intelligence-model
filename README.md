@@ -1374,6 +1374,30 @@ analysis or practitioner decision accuracy claims. See the
 
 ---
 
+## Experimental Scoring Integrity Candidate
+
+The fictional [scoring-integrity candidate](docs/SCORING_INTEGRITY_CANDIDATE.md)
+tests a **frozen reference** and explicit source-status policy for the
+historical homicide component. Absent, stale, imputed, conflicting, invalid,
+out-of-reference or future-dated evidence returns **WITHHELD**, not a
+neutral-looking numeric score. Observed zero requires an explicit supporting
+status and source vintage. All outputs remain subject to analyst review.
+
+```bash
+python -m src.scoring_integrity_demo \
+  --demo-dir outputs/synthetic_offline_demo \
+  --output-dir outputs/scoring_integrity_candidate_demo
+```
+
+Outputs include side-by-side original and illustrative shadow tables, a
+statically anchored cohort-sensitivity probe, a missingness stress table,
+a human-readable scoring decision record, PDF with visibly withheld values,
+and a hash-verified run receipt. **This is not a live-model scoring change**:
+the original country scores, 2024 baseline, severity thresholds and operational
+decision support are unchanged. No new risk bands or travel guidance are issued.
+
+---
+
 ## Running the Pipeline
 
 Stage reviewed, deidentified trip/capacity inputs, the **mixed-vintage** ACLED
