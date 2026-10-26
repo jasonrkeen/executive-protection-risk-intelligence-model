@@ -98,3 +98,6 @@ outputs/methodology_red_team_demo*/
 
 # Nonoperational candidate outputs are generated only locally or by CI
 outputs/scoring_integrity_candidate_demo*/
+
+# Generated WGI/ACLED fictional source-vintage audit and uncertainty artifacts
+outputs/synthetic_source_uncertainty*/

@@ -1398,6 +1398,34 @@ decision support are unchanged. No new risk bands or travel guidance are issued.
 
 ---
 
+## Synthetic WGI and ACLED Source-Uncertainty Research
+
+The [source-uncertainty protocol](docs/SOURCE_UNCERTAINTY_RESEARCH.md)
+distinguishes the **2026 WGI data release**, **2024 model observation year**,
+governance **standard-normal estimates**, and the separate fixed-reference
+**0–100 WGI score**. Mixing these scales or release vintages could invalidate
+historical country comparisons.
+
+The network-free, **fictional** research runner checks country-specific
+governance standard-error and source coverage, fake ACLED event IDs,
+time-precision and snapshot lineage, then reruns the actual five-component
+country-scoring and capped severity functions under two toy governance
+uncertainty scenarios. All data remain synthetic and source authenticity
+cannot be concluded from the tests.
+
+```bash
+python -m src.source_uncertainty_demo \
+  --demo-dir outputs/synthetic_offline_demo \
+  --output-dir outputs/synthetic_source_uncertainty
+```
+
+It publishes a hash-backed evidence receipt, detailed fictional country-year
+source coverage, missing-country-source suppression, and a reproducible
+unvalidated governance uncertainty sensitivity table. The existing live
+pipeline, 2024 historical model, and client travel decisions remain unchanged.
+
+---
+
 ## Running the Pipeline
 
 Stage reviewed, deidentified trip/capacity inputs, the **mixed-vintage** ACLED

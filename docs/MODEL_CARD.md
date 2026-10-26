@@ -110,6 +110,26 @@ are **illustrations from earlier runs**, not evidence of current conditions.
 7. **Reproducibility:** raw source snapshots are not checked into Git, and an
    authorized complete live-data run has not yet been independently repeated.
 
+## Source release and uncertainty research (separate, synthetic)
+
+The [WGI / ACLED uncertainty audit](SOURCE_UNCERTAINTY_RESEARCH.md)
+uses fictional country-specific WGI estimate standard errors and
+ACLED-shaped event date/snapshot metadata to test score sensitivity.
+The World Bank's 2026 WGI release includes a revised 1996–2025 historical
+series and both standard-normal governance estimates and a distinct
+fixed-reference 0–100 score. The model must pin source release and
+indicator **units** before any real-source recalculation. Its governance
+uncertainty sensitivity runs only **hypothetical independent** standard-error
+perturbations, not the World Bank's complete covariance model. They rerun
+the five structural country-score components and severity uplift but not
+the full 27-stage operational pipeline.
+
+Event-source IDs, event time precision, and source snapshot versions are
+checked in invented fixtures only. These controls do not verify real
+ACLED source authenticity, event-count completeness, or WGI estimate accuracy.
+No statistically valid risk intervals or real incident probability can
+be inferred from the two-country toy dataset.
+
 ## Required validation before external or commercial use
 
 1. Produce a **fully offline synthetic end-to-end demonstration** with pinned
