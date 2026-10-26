@@ -1,0 +1,21 @@
+event_id_cnty,event_date,year,country,admin1,admin2,location,latitude,longitude,event_type,sub_event_type,fatalities,notes
+SYN-001,2020-03-01,2020,Testland,Test Region,Test District,Demo City,10.0,10.0,Protests,Peaceful protest,0,SYNTHETIC
+SYN-002,2020-06-02,2020,Example Republic,Example Region,Example District,Sample City,20.0,20.0,Protests,Peaceful protest,0,SYNTHETIC
+SYN-003,2021-03-01,2021,Testland,Test Region,Test District,Demo City,10.0,10.0,Riots,Mob violence,0,SYNTHETIC
+SYN-004,2021-04-13,2021,Example Republic,Example Region,Example District,Sample City,20.0,20.0,Protests,Peaceful protest,0,SYNTHETIC
+SYN-005,2022-02-15,2022,Testland,Test Region,Test District,Demo City,10.0,10.0,Battles,Armed clash,2,SYNTHETIC
+SYN-006,2022-08-21,2022,Example Republic,Example Region,Example District,Sample City,20.0,20.0,Riots,Mob violence,0,SYNTHETIC
+SYN-007,2023-01-22,2023,Testland,Test Region,Test District,Demo City,10.0,10.0,Violence against civilians,Attack,1,SYNTHETIC
+SYN-008,2023-09-12,2023,Example Republic,Example Region,Example District,Sample City,20.0,20.0,Protests,Peaceful protest,0,SYNTHETIC
+SYN-009,2024-03-02,2024,Testland,Test Region,Test District,Demo City,10.0,10.0,Explosions/Remote violence,Remote explosive/landmine/IED,4,SYNTHETIC
+SYN-010,2024-06-21,2024,Testland,Test Region,Test District,Demo City,10.0,10.0,Riots,Mob violence,0,SYNTHETIC
+SYN-011,2024-05-14,2024,Example Republic,Example Region,Example District,Sample City,20.0,20.0,Protests,Peaceful protest,0,SYNTHETIC
+SYN-012,2024-11-05,2024,Example Republic,Example Region,Example District,Sample City,20.0,20.0,Riots,Mob violence,0,SYNTHETIC
+SYN-013,2025-06-01,2025,Testland,Test Region,Test District,Demo City,10.0,10.0,Protests,Peaceful protest,0,SYNTHETIC
+SYN-014,2025-09-11,2025,Example Republic,Example Region,Example District,Sample City,20.0,20.0,Protests,Peaceful protest,0,SYNTHETIC
+SYN-015,2026-08-25,2026,Testland,Test Region,Test District,Demo City,10.0,10.0,Protests,Peaceful protest,0,SYNTHETIC
+SYN-016,2026-09-25,2026,Testland,Test Region,Test District,Demo City,10.0,10.0,Riots,Mob violence,0,SYNTHETIC
+SYN-017,2026-10-16,2026,Testland,Test Region,Test District,Demo City,10.0,10.0,Protests,Peaceful protest,0,SYNTHETIC
+SYN-018,2026-10-10,2026,Example Republic,Example Region,Example District,Sample City,20.0,20.0,Battles,Armed clash,3,SYNTHETIC
+SYN-019,2026-10-15,2026,Example Republic,Example Region,Example District,Sample City,20.0,20.0,Violence against civilians,Attack,1,SYNTHETIC
+SYN-020,2026-09-19,2026,Example Republic,Example Region,Example District,Sample City,20.0,20.0,Protests,Peaceful protest,0,SYNTHETIC
