@@ -1,0 +1,3 @@
+country,country_code,political_stability,rule_of_law,control_of_corruption,government_effectiveness,voice_accountability,homicide_rate_per_100k,energy_exposure_raw,energy_rents_pct_gdp,fuel_exports_pct_merchandise_exports,hydrocarbon_rent_share_of_energy_exposure,fuel_export_share_of_energy_exposure
+Testland,TST,-1.0,-0.7,-0.4,-0.6,-0.3,12,45,25,40,0.25,0.10
+Example Republic,EXR,0.8,0.6,0.4,0.5,0.2,3,15,6,10,0.10,0.05
