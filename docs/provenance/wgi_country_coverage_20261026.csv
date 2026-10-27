@@ -1,0 +1,217 @@
+country_code,provider_name,complete_years_in_calendar_window,baseline_end_year,baseline_end_matched_fields,baseline_end_missing_dimensions,baseline_end_scored_dimensions_complete,latest_year,latest_matched_fields,latest_missing_dimensions,latest_scored_dimensions_complete
+ABW,Aruba,22,2024,36,,True,2025,36,,True
+AFG,Afghanistan,27,2024,36,,True,2025,36,,True
+AGO,Angola,27,2024,36,,True,2025,36,,True
+AIA,Anguilla,14,2024,30,VA,True,2025,30,VA,True
+ALB,Albania,27,2024,36,,True,2025,36,,True
+AND,Andorra,27,2024,36,,True,2025,36,,True
+ANT,Netherlands Antilles,14,2024,0,CC;GE;PV;RL;RQ;VA,False,2025,0,CC;GE;PV;RL;RQ;VA,False
+ARE,United Arab Emirates,27,2024,36,,True,2025,36,,True
+ARG,Argentina,27,2024,36,,True,2025,36,,True
+ARM,Armenia,27,2024,36,,True,2025,36,,True
+ASM,American Samoa,20,2024,36,,True,2025,30,VA,True
+ATG,Antigua and Barbuda,27,2024,36,,True,2025,36,,True
+AUS,Australia,27,2024,36,,True,2025,36,,True
+AUT,Austria,27,2024,36,,True,2025,36,,True
+AZE,Azerbaijan,27,2024,36,,True,2025,36,,True
+BDI,Burundi,27,2024,36,,True,2025,36,,True
+BEL,Belgium,27,2024,36,,True,2025,36,,True
+BEN,Benin,27,2024,36,,True,2025,36,,True
+BFA,Burkina Faso,27,2024,36,,True,2025,36,,True
+BGD,Bangladesh,27,2024,36,,True,2025,36,,True
+BGR,Bulgaria,27,2024,36,,True,2025,36,,True
+BHR,Bahrain,27,2024,36,,True,2025,36,,True
+BHS,"Bahamas, The",27,2024,36,,True,2025,36,,True
+BIH,Bosnia and Herzegovina,27,2024,36,,True,2025,36,,True
+BLR,Belarus,27,2024,36,,True,2025,36,,True
+BLZ,Belize,27,2024,36,,True,2025,36,,True
+BMU,Bermuda,19,2024,30,VA,True,2025,30,VA,True
+BOL,Bolivia,27,2024,36,,True,2025,36,,True
+BRA,Brazil,27,2024,36,,True,2025,36,,True
+BRB,Barbados,27,2024,36,,True,2025,36,,True
+BRN,Brunei Darussalam,27,2024,36,,True,2025,36,,True
+BTN,Bhutan,27,2024,36,,True,2025,36,,True
+BWA,Botswana,27,2024,36,,True,2025,36,,True
+CAF,Central African Republic,27,2024,36,,True,2025,36,,True
+CAN,Canada,27,2024,36,,True,2025,36,,True
+CHE,Switzerland,27,2024,36,,True,2025,36,,True
+CHL,Chile,27,2024,36,,True,2025,36,,True
+CHN,China,27,2024,36,,True,2025,36,,True
+CIV,Cote d'Ivoire,27,2024,36,,True,2025,36,,True
+CMR,Cameroon,27,2024,36,,True,2025,36,,True
+COD,"Congo, Dem. Rep.",27,2024,36,,True,2025,36,,True
+COG,"Congo, Rep.",27,2024,36,,True,2025,36,,True
+COK,Cook Islands,10,2024,36,,True,2025,36,,True
+COL,Colombia,27,2024,36,,True,2025,36,,True
+COM,Comoros,27,2024,36,,True,2025,36,,True
+CPV,Cabo Verde,24,2024,36,,True,2025,36,,True
+CRI,Costa Rica,27,2024,36,,True,2025,36,,True
+CUB,Cuba,27,2024,36,,True,2025,36,,True
+CYM,Cayman Islands,27,2024,36,,True,2025,36,,True
+CYP,Cyprus,27,2024,36,,True,2025,36,,True
+CZE,Czechia,27,2024,36,,True,2025,36,,True
+DEU,Germany,27,2024,36,,True,2025,36,,True
+DJI,Djibouti,27,2024,36,,True,2025,36,,True
+DMA,Dominica,27,2024,36,,True,2025,36,,True
+DNK,Denmark,27,2024,36,,True,2025,36,,True
+DOM,Dominican Republic,27,2024,36,,True,2025,36,,True
+DZA,Algeria,27,2024,36,,True,2025,36,,True
+ECU,Ecuador,27,2024,36,,True,2025,36,,True
+EGY,"Egypt, Arab Rep.",27,2024,36,,True,2025,36,,True
+ERI,Eritrea,27,2024,36,,True,2025,36,,True
+ESP,Spain,27,2024,36,,True,2025,36,,True
+EST,Estonia,27,2024,36,,True,2025,36,,True
+ETH,Ethiopia,27,2024,36,,True,2025,36,,True
+FIN,Finland,27,2024,36,,True,2025,36,,True
+FJI,Fiji,27,2024,36,,True,2025,36,,True
+FRA,France,27,2024,36,,True,2025,36,,True
+FSM,"Micronesia, Fed. Sts.",22,2024,36,,True,2025,36,,True
+GAB,Gabon,27,2024,36,,True,2025,36,,True
+GBR,United Kingdom,27,2024,36,,True,2025,36,,True
+GEO,Georgia,27,2024,36,,True,2025,36,,True
+GHA,Ghana,27,2024,36,,True,2025,36,,True
+GIN,Guinea,27,2024,36,,True,2025,36,,True
+GMB,"Gambia, The",27,2024,36,,True,2025,36,,True
+GNB,Guinea-Bissau,27,2024,36,,True,2025,36,,True
+GNQ,Equatorial Guinea,27,2024,36,,True,2025,36,,True
+GRC,Greece,27,2024,36,,True,2025,36,,True
+GRD,Grenada,27,2024,36,,True,2025,36,,True
+GRL,Greenland,17,2024,36,,True,2025,36,,True
+GTM,Guatemala,27,2024,36,,True,2025,36,,True
+GUF,French Guiana,27,2024,36,,True,2025,36,,True
+GUM,Guam,21,2024,36,,True,2025,30,VA,True
+GUY,Guyana,27,2024,36,,True,2025,36,,True
+HKG,"Hong Kong SAR, China",27,2024,36,,True,2025,36,,True
+HND,Honduras,27,2024,36,,True,2025,36,,True
+HRV,Croatia,27,2024,36,,True,2025,36,,True
+HTI,Haiti,27,2024,36,,True,2025,36,,True
+HUN,Hungary,27,2024,36,,True,2025,36,,True
+IDN,Indonesia,27,2024,36,,True,2025,36,,True
+IND,India,27,2024,36,,True,2025,36,,True
+IRL,Ireland,27,2024,36,,True,2025,36,,True
+IRN,"Iran, Islamic Rep.",27,2024,36,,True,2025,36,,True
+IRQ,Iraq,27,2024,36,,True,2025,36,,True
+ISL,Iceland,27,2024,36,,True,2025,36,,True
+ISR,Israel,27,2024,36,,True,2025,36,,True
+ITA,Italy,27,2024,36,,True,2025,36,,True
+JAM,Jamaica,27,2024,36,,True,2025,36,,True
+JEY,Jersey,15,2024,36,,True,2025,36,,True
+JOR,Jordan,27,2024,36,,True,2025,36,,True
+JPN,Japan,27,2024,36,,True,2025,36,,True
+KAZ,Kazakhstan,27,2024,36,,True,2025,36,,True
+KEN,Kenya,27,2024,36,,True,2025,36,,True
+KGZ,Kyrgyz Republic,27,2024,36,,True,2025,36,,True
+KHM,Cambodia,27,2024,36,,True,2025,36,,True
+KIR,Kiribati,22,2024,36,,True,2025,36,,True
+KNA,St. Kitts and Nevis,22,2024,36,,True,2025,36,,True
+KOR,"Korea, Rep.",27,2024,36,,True,2025,36,,True
+KWT,Kuwait,27,2024,36,,True,2025,36,,True
+LAO,Lao PDR,27,2024,36,,True,2025,36,,True
+LBN,Lebanon,27,2024,36,,True,2025,36,,True
+LBR,Liberia,27,2024,36,,True,2025,36,,True
+LBY,Libya,27,2024,36,,True,2025,36,,True
+LCA,St. Lucia,22,2024,36,,True,2025,36,,True
+LIE,Liechtenstein,27,2024,36,,True,2025,36,,True
+LKA,Sri Lanka,27,2024,36,,True,2025,36,,True
+LSO,Lesotho,27,2024,36,,True,2025,36,,True
+LTU,Lithuania,27,2024,36,,True,2025,36,,True
+LUX,Luxembourg,27,2024,36,,True,2025,36,,True
+LVA,Latvia,27,2024,36,,True,2025,36,,True
+MAC,"Macao SAR, China",27,2024,36,,True,2025,36,,True
+MAR,Morocco,27,2024,36,,True,2025,36,,True
+MCO,Monaco,11,2024,36,,True,2025,36,,True
+MDA,Moldova,27,2024,36,,True,2025,36,,True
+MDG,Madagascar,27,2024,36,,True,2025,36,,True
+MDV,Maldives,27,2024,36,,True,2025,36,,True
+MEX,Mexico,27,2024,36,,True,2025,36,,True
+MHL,Marshall Islands,21,2024,36,,True,2025,36,,True
+MKD,North Macedonia,27,2024,36,,True,2025,36,,True
+MLI,Mali,27,2024,36,,True,2025,36,,True
+MLT,Malta,27,2024,36,,True,2025,36,,True
+MMR,Myanmar,27,2024,36,,True,2025,36,,True
+MNE,Montenegro,20,2024,36,,True,2025,36,,True
+MNG,Mongolia,27,2024,36,,True,2025,36,,True
+MOZ,Mozambique,27,2024,36,,True,2025,36,,True
+MRT,Mauritania,27,2024,36,,True,2025,36,,True
+MTQ,Martinique,19,2024,30,VA,True,2025,30,VA,True
+MUS,Mauritius,27,2024,36,,True,2025,36,,True
+MWI,Malawi,27,2024,36,,True,2025,36,,True
+MYS,Malaysia,27,2024,36,,True,2025,36,,True
+NAM,Namibia,27,2024,36,,True,2025,36,,True
+NCL,New Caledonia,0,2024,24,GE;RQ,False,2025,24,GE;RQ,False
+NER,Niger,27,2024,36,,True,2025,36,,True
+NGA,Nigeria,27,2024,36,,True,2025,36,,True
+NIC,Nicaragua,27,2024,36,,True,2025,36,,True
+NIU,Niue,10,2024,36,,True,2025,36,,True
+NLD,Netherlands,27,2024,36,,True,2025,36,,True
+NOR,Norway,27,2024,36,,True,2025,36,,True
+NPL,Nepal,27,2024,36,,True,2025,36,,True
+NRU,Naoero,19,2024,36,,True,2025,36,,True
+NZL,New Zealand,27,2024,36,,True,2025,36,,True
+OMN,Oman,27,2024,36,,True,2025,36,,True
+PAK,Pakistan,27,2024,36,,True,2025,36,,True
+PAN,Panama,27,2024,36,,True,2025,36,,True
+PER,Peru,27,2024,36,,True,2025,36,,True
+PHL,Philippines,27,2024,36,,True,2025,36,,True
+PLW,Palau,18,2024,36,,True,2025,36,,True
+PNG,Papua New Guinea,27,2024,36,,True,2025,36,,True
+POL,Poland,27,2024,36,,True,2025,36,,True
+PRI,Puerto Rico (US),27,2024,36,,True,2025,36,,True
+PRK,"Korea, Dem. People's Rep.",27,2024,36,,True,2025,36,,True
+PRT,Portugal,27,2024,36,,True,2025,36,,True
+PRY,Paraguay,27,2024,36,,True,2025,36,,True
+PSE,West Bank and Gaza,27,2024,36,,True,2025,36,,True
+PYF,French Polynesia,0,2024,24,GE;RQ,False,2025,24,GE;RQ,False
+QAT,Qatar,27,2024,36,,True,2025,36,,True
+REU,Reunion,14,2024,30,VA,True,2025,30,VA,True
+ROU,Romania,27,2024,36,,True,2025,36,,True
+RUS,Russian Federation,27,2024,36,,True,2025,36,,True
+RWA,Rwanda,27,2024,36,,True,2025,36,,True
+SAU,Saudi Arabia,27,2024,36,,True,2025,36,,True
+SDN,Sudan,27,2024,36,,True,2025,36,,True
+SEN,Senegal,27,2024,36,,True,2025,36,,True
+SGP,Singapore,27,2024,36,,True,2025,36,,True
+SLB,Solomon Islands,22,2024,36,,True,2025,36,,True
+SLE,Sierra Leone,27,2024,36,,True,2025,36,,True
+SLV,El Salvador,27,2024,36,,True,2025,36,,True
+SMR,San Marino,11,2024,36,,True,2025,36,,True
+SOM,"Somalia, Fed. Rep.",27,2024,36,,True,2025,36,,True
+SRB,Serbia,27,2024,36,,True,2025,36,,True
+SSD,South Sudan,15,2024,36,,True,2025,36,,True
+STP,Sao Tome and Principe,27,2024,36,,True,2025,36,,True
+SUR,Suriname,27,2024,36,,True,2025,36,,True
+SVK,Slovak Republic,27,2024,36,,True,2025,36,,True
+SVN,Slovenia,27,2024,36,,True,2025,36,,True
+SWE,Sweden,27,2024,36,,True,2025,36,,True
+SWZ,Eswatini,27,2024,36,,True,2025,36,,True
+SYC,Seychelles,27,2024,36,,True,2025,36,,True
+SYR,Syrian Arab Republic,27,2024,36,,True,2025,36,,True
+TCD,Chad,27,2024,36,,True,2025,36,,True
+TGO,Togo,27,2024,36,,True,2025,36,,True
+THA,Thailand,27,2024,36,,True,2025,36,,True
+TJK,Tajikistan,27,2024,36,,True,2025,36,,True
+TKM,Turkmenistan,27,2024,36,,True,2025,36,,True
+TLS,Timor-Leste,24,2024,36,,True,2025,36,,True
+TON,Tonga,22,2024,36,,True,2025,36,,True
+TTO,Trinidad and Tobago,27,2024,36,,True,2025,36,,True
+TUN,Tunisia,27,2024,36,,True,2025,36,,True
+TUR,Turkiye,27,2024,36,,True,2025,36,,True
+TUV,Tuvalu,22,2024,36,,True,2025,36,,True
+TWN,"Taiwan, China",27,2024,36,,True,2025,36,,True
+TZA,Tanzania,27,2024,36,,True,2025,36,,True
+UGA,Uganda,27,2024,36,,True,2025,36,,True
+UKR,Ukraine,27,2024,36,,True,2025,36,,True
+URY,Uruguay,27,2024,36,,True,2025,36,,True
+USA,United States,27,2024,36,,True,2025,36,,True
+UZB,Uzbekistan,27,2024,36,,True,2025,36,,True
+VCT,St. Vincent and the Grenadines,22,2024,36,,True,2025,36,,True
+VEN,"Venezuela, RB",27,2024,36,,True,2025,36,,True
+VIR,Virgin Islands (U.S.),14,2024,30,VA,True,2025,30,VA,True
+VNM,Viet Nam,27,2024,36,,True,2025,36,,True
+VUT,Vanuatu,22,2024,36,,True,2025,36,,True
+WSM,Samoa,27,2024,36,,True,2025,36,,True
+XKX,Kosovo,18,2024,36,,True,2025,36,,True
+YEM,"Yemen, Rep.",27,2024,36,,True,2025,36,,True
+ZAF,South Africa,27,2024,36,,True,2025,36,,True
+ZMB,Zambia,27,2024,36,,True,2025,36,,True
+ZWE,Zimbabwe,27,2024,36,,True,2025,36,,True

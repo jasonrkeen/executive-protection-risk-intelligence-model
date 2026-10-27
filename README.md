@@ -1699,3 +1699,8 @@ access boundaries. The isolated verifier identifies a legacy API configuration
 mismatch without changing the frozen baseline. Real provider metadata, unresolved
 permissions and synthetic tests are explicitly separated; no operational
 readiness is claimed.
+
+The follow-on [WGI workbook/API parity audit](docs/WGI_WORKBOOK_API_PARITY.md)
+compares all six aggregate dimensions for the provider's 216-economy universe,
+reports missing country-years separately, and supports hashed offline replay.
+It leaves the baseline and ACLED integration unchanged.

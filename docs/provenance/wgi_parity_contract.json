@@ -1,0 +1,21 @@
+{
+  "workbook_url": "https://datacatalogfiles.worldbank.org/ddh-published/0038026/DR0095947/WGI%202026%20Governance%20Estimates%20and%20Scores%20%281996-2025%29.xlsx",
+  "catalog_url": "https://datacatalog.worldbank.org/search/dataset/0038026/worldwide-governance-indicators",
+  "release_label": "WGI 2026",
+  "start_year": 1996,
+  "end_year": 2025,
+  "baseline_start": 2020,
+  "baseline_end": 2024,
+  "scored_dimensions": ["PV", "RL", "CC", "GE"],
+  "fetched_dimensions": ["PV", "RL", "CC", "GE", "VA"],
+  "absolute_tolerance": 1e-7,
+  "per_page": 20000,
+  "columns": {
+    "EST": "Governance estimate (approx. -2.5 to +2.5)",
+    "SE": "Standard error (estimate)",
+    "SR": "Number of sources",
+    "SC": "Governance score (0-100)",
+    "SC_LB": "Lower threshold (90% conf. int. score)",
+    "SC_UB": "Upper threshold (90% conf. int. score)"
+  }
+}
