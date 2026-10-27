@@ -1,0 +1,1644 @@
+{
+  "counts": {
+    "BOTH_UNAVAILABLE": 31188,
+    "WITHIN_TOLERANCE": 47817,
+    "EXACT": 154275
+  },
+  "by_indicator": {
+    "GOV_WGI_CC.EST": {
+      "BOTH_UNAVAILABLE": 892,
+      "WITHIN_TOLERANCE": 1626,
+      "EXACT": 3962
+    },
+    "GOV_WGI_CC.SC": {
+      "BOTH_UNAVAILABLE": 892,
+      "EXACT": 3945,
+      "WITHIN_TOLERANCE": 1643
+    },
+    "GOV_WGI_CC.SC_LB": {
+      "BOTH_UNAVAILABLE": 892,
+      "EXACT": 3993,
+      "WITHIN_TOLERANCE": 1595
+    },
+    "GOV_WGI_CC.SC_UB": {
+      "BOTH_UNAVAILABLE": 892,
+      "EXACT": 3900,
+      "WITHIN_TOLERANCE": 1688
+    },
+    "GOV_WGI_CC.SE": {
+      "BOTH_UNAVAILABLE": 892,
+      "EXACT": 4198,
+      "WITHIN_TOLERANCE": 1390
+    },
+    "GOV_WGI_CC.SR": {
+      "BOTH_UNAVAILABLE": 892,
+      "EXACT": 5588
+    },
+    "GOV_WGI_GE.EST": {
+      "BOTH_UNAVAILABLE": 927,
+      "EXACT": 3947,
+      "WITHIN_TOLERANCE": 1606
+    },
+    "GOV_WGI_GE.SC": {
+      "BOTH_UNAVAILABLE": 927,
+      "EXACT": 3910,
+      "WITHIN_TOLERANCE": 1643
+    },
+    "GOV_WGI_GE.SC_LB": {
+      "BOTH_UNAVAILABLE": 927,
+      "EXACT": 3924,
+      "WITHIN_TOLERANCE": 1629
+    },
+    "GOV_WGI_GE.SC_UB": {
+      "BOTH_UNAVAILABLE": 927,
+      "EXACT": 3963,
+      "WITHIN_TOLERANCE": 1590
+    },
+    "GOV_WGI_GE.SE": {
+      "BOTH_UNAVAILABLE": 927,
+      "EXACT": 4381,
+      "WITHIN_TOLERANCE": 1172
+    },
+    "GOV_WGI_GE.SR": {
+      "BOTH_UNAVAILABLE": 927,
+      "EXACT": 5553
+    },
+    "GOV_WGI_PV.EST": {
+      "BOTH_UNAVAILABLE": 836,
+      "EXACT": 4051,
+      "WITHIN_TOLERANCE": 1593
+    },
+    "GOV_WGI_PV.SC": {
+      "BOTH_UNAVAILABLE": 836,
+      "WITHIN_TOLERANCE": 1599,
+      "EXACT": 4045
+    },
+    "GOV_WGI_PV.SC_LB": {
+      "BOTH_UNAVAILABLE": 836,
+      "EXACT": 3991,
+      "WITHIN_TOLERANCE": 1653
+    },
+    "GOV_WGI_PV.SC_UB": {
+      "BOTH_UNAVAILABLE": 836,
+      "EXACT": 4066,
+      "WITHIN_TOLERANCE": 1578
+    },
+    "GOV_WGI_PV.SE": {
+      "BOTH_UNAVAILABLE": 836,
+      "EXACT": 4494,
+      "WITHIN_TOLERANCE": 1150
+    },
+    "GOV_WGI_PV.SR": {
+      "BOTH_UNAVAILABLE": 836,
+      "EXACT": 5644
+    },
+    "GOV_WGI_RL.EST": {
+      "BOTH_UNAVAILABLE": 789,
+      "EXACT": 4073,
+      "WITHIN_TOLERANCE": 1618
+    },
+    "GOV_WGI_RL.SC": {
+      "BOTH_UNAVAILABLE": 789,
+      "WITHIN_TOLERANCE": 1605,
+      "EXACT": 4086
+    },
+    "GOV_WGI_RL.SC_LB": {
+      "BOTH_UNAVAILABLE": 789,
+      "EXACT": 4014,
+      "WITHIN_TOLERANCE": 1677
+    },
+    "GOV_WGI_RL.SC_UB": {
+      "BOTH_UNAVAILABLE": 789,
+      "EXACT": 4019,
+      "WITHIN_TOLERANCE": 1672
+    },
+    "GOV_WGI_RL.SE": {
+      "BOTH_UNAVAILABLE": 789,
+      "EXACT": 4077,
+      "WITHIN_TOLERANCE": 1614
+    },
+    "GOV_WGI_RL.SR": {
+      "BOTH_UNAVAILABLE": 789,
+      "EXACT": 5691
+    },
+    "GOV_WGI_RQ.EST": {
+      "BOTH_UNAVAILABLE": 926,
+      "EXACT": 3853,
+      "WITHIN_TOLERANCE": 1701
+    },
+    "GOV_WGI_RQ.SC": {
+      "BOTH_UNAVAILABLE": 926,
+      "EXACT": 3893,
+      "WITHIN_TOLERANCE": 1661
+    },
+    "GOV_WGI_RQ.SC_LB": {
+      "BOTH_UNAVAILABLE": 926,
+      "EXACT": 3980,
+      "WITHIN_TOLERANCE": 1574
+    },
+    "GOV_WGI_RQ.SC_UB": {
+      "BOTH_UNAVAILABLE": 926,
+      "EXACT": 3866,
+      "WITHIN_TOLERANCE": 1688
+    },
+    "GOV_WGI_RQ.SE": {
+      "BOTH_UNAVAILABLE": 926,
+      "WITHIN_TOLERANCE": 2086,
+      "EXACT": 3468
+    },
+    "GOV_WGI_RQ.SR": {
+      "BOTH_UNAVAILABLE": 926,
+      "EXACT": 5554
+    },
+    "GOV_WGI_VA.EST": {
+      "BOTH_UNAVAILABLE": 828,
+      "EXACT": 4045,
+      "WITHIN_TOLERANCE": 1607
+    },
+    "GOV_WGI_VA.SC": {
+      "BOTH_UNAVAILABLE": 828,
+      "EXACT": 4132,
+      "WITHIN_TOLERANCE": 1520
+    },
+    "GOV_WGI_VA.SC_LB": {
+      "BOTH_UNAVAILABLE": 828,
+      "EXACT": 4049,
+      "WITHIN_TOLERANCE": 1603
+    },
+    "GOV_WGI_VA.SC_UB": {
+      "BOTH_UNAVAILABLE": 828,
+      "WITHIN_TOLERANCE": 1581,
+      "EXACT": 4071
+    },
+    "GOV_WGI_VA.SE": {
+      "BOTH_UNAVAILABLE": 828,
+      "EXACT": 4197,
+      "WITHIN_TOLERANCE": 1455
+    },
+    "GOV_WGI_VA.SR": {
+      "BOTH_UNAVAILABLE": 828,
+      "EXACT": 5652
+    }
+  },
+  "by_year": {
+    "1996": {
+      "BOTH_UNAVAILABLE": 906,
+      "WITHIN_TOLERANCE": 1493,
+      "EXACT": 5377
+    },
+    "1997": {
+      "BOTH_UNAVAILABLE": 7776
+    },
+    "1998": {
+      "BOTH_UNAVAILABLE": 882,
+      "EXACT": 5308,
+      "WITHIN_TOLERANCE": 1586
+    },
+    "1999": {
+      "BOTH_UNAVAILABLE": 7776
+    },
+    "2000": {
+      "BOTH_UNAVAILABLE": 858,
+      "EXACT": 5314,
+      "WITHIN_TOLERANCE": 1604
+    },
+    "2001": {
+      "BOTH_UNAVAILABLE": 7776
+    },
+    "2002": {
+      "BOTH_UNAVAILABLE": 828,
+      "WITHIN_TOLERANCE": 1603,
+      "EXACT": 5345
+    },
+    "2003": {
+      "BOTH_UNAVAILABLE": 768,
+      "EXACT": 5370,
+      "WITHIN_TOLERANCE": 1638
+    },
+    "2004": {
+      "WITHIN_TOLERANCE": 1819,
+      "EXACT": 5591,
+      "BOTH_UNAVAILABLE": 366
+    },
+    "2005": {
+      "EXACT": 5672,
+      "WITHIN_TOLERANCE": 1786,
+      "BOTH_UNAVAILABLE": 318
+    },
+    "2006": {
+      "EXACT": 5639,
+      "WITHIN_TOLERANCE": 1837,
+      "BOTH_UNAVAILABLE": 300
+    },
+    "2007": {
+      "WITHIN_TOLERANCE": 1791,
+      "EXACT": 5703,
+      "BOTH_UNAVAILABLE": 282
+    },
+    "2008": {
+      "EXACT": 5696,
+      "WITHIN_TOLERANCE": 1822,
+      "BOTH_UNAVAILABLE": 258
+    },
+    "2009": {
+      "EXACT": 5651,
+      "WITHIN_TOLERANCE": 1945,
+      "BOTH_UNAVAILABLE": 180
+    },
+    "2010": {
+      "EXACT": 5692,
+      "WITHIN_TOLERANCE": 1910,
+      "BOTH_UNAVAILABLE": 174
+    },
+    "2011": {
+      "EXACT": 5846,
+      "WITHIN_TOLERANCE": 1822,
+      "BOTH_UNAVAILABLE": 108
+    },
+    "2012": {
+      "EXACT": 5883,
+      "WITHIN_TOLERANCE": 1785,
+      "BOTH_UNAVAILABLE": 108
+    },
+    "2013": {
+      "EXACT": 5891,
+      "WITHIN_TOLERANCE": 1777,
+      "BOTH_UNAVAILABLE": 108
+    },
+    "2014": {
+      "WITHIN_TOLERANCE": 1790,
+      "EXACT": 5878,
+      "BOTH_UNAVAILABLE": 108
+    },
+    "2015": {
+      "EXACT": 5944,
+      "WITHIN_TOLERANCE": 1748,
+      "BOTH_UNAVAILABLE": 84
+    },
+    "2016": {
+      "WITHIN_TOLERANCE": 1826,
+      "EXACT": 5806,
+      "BOTH_UNAVAILABLE": 144
+    },
+    "2017": {
+      "EXACT": 5888,
+      "WITHIN_TOLERANCE": 1744,
+      "BOTH_UNAVAILABLE": 144
+    },
+    "2018": {
+      "EXACT": 5813,
+      "WITHIN_TOLERANCE": 1801,
+      "BOTH_UNAVAILABLE": 162
+    },
+    "2019": {
+      "EXACT": 5799,
+      "WITHIN_TOLERANCE": 1839,
+      "BOTH_UNAVAILABLE": 138
+    },
+    "2020": {
+      "EXACT": 5777,
+      "WITHIN_TOLERANCE": 1861,
+      "BOTH_UNAVAILABLE": 138
+    },
+    "2021": {
+      "EXACT": 5875,
+      "WITHIN_TOLERANCE": 1775,
+      "BOTH_UNAVAILABLE": 126
+    },
+    "2022": {
+      "EXACT": 5860,
+      "WITHIN_TOLERANCE": 1826,
+      "BOTH_UNAVAILABLE": 90
+    },
+    "2023": {
+      "EXACT": 5901,
+      "WITHIN_TOLERANCE": 1785,
+      "BOTH_UNAVAILABLE": 90
+    },
+    "2024": {
+      "EXACT": 5878,
+      "WITHIN_TOLERANCE": 1808,
+      "BOTH_UNAVAILABLE": 90
+    },
+    "2025": {
+      "WITHIN_TOLERANCE": 1796,
+      "EXACT": 5878,
+      "BOTH_UNAVAILABLE": 102
+    }
+  },
+  "max_absolute_difference": 1.4210854715202004e-14,
+  "status": "PARITY_ON_AVAILABLE_CELLS",
+  "coverage_complete": false,
+  "data_class": "REAL_PUBLIC_AGGREGATE_COMPARISON_METADATA",
+  "release_label": "WGI 2026",
+  "catalog_url": "https://datacatalog.worldbank.org/search/dataset/0038026/worldwide-governance-indicators",
+  "source": {
+    "id": "3",
+    "name": "Worldwide Governance Indicators",
+    "lastupdated": "2026-09-25"
+  },
+  "country_count": 216,
+  "years": [
+    1996,
+    2025
+  ],
+  "absolute_tolerance": 1e-07,
+  "source_counts_tolerance": 0,
+  "blank_api_codes_resolved_by_source_registry": [
+    {
+      "code": "AIA",
+      "name": "Anguilla"
+    },
+    {
+      "code": "ANT",
+      "name": "Netherlands Antilles"
+    },
+    {
+      "code": "COK",
+      "name": "Cook Islands"
+    },
+    {
+      "code": "GUF",
+      "name": "French Guiana"
+    },
+    {
+      "code": "JEY",
+      "name": "Jersey"
+    },
+    {
+      "code": "MTQ",
+      "name": "Martinique"
+    },
+    {
+      "code": "NIU",
+      "name": "Niue"
+    },
+    {
+      "code": "REU",
+      "name": "Reunion"
+    },
+    {
+      "code": "TWN",
+      "name": "Taiwan, China"
+    }
+  ],
+  "workbook_api_name_differences": [
+    {
+      "code": "ANT",
+      "workbook_name": "Netherlands Antilles (former)",
+      "api_name": "Netherlands Antilles"
+    },
+    {
+      "code": "CIV",
+      "workbook_name": "C\u00f4te d\u2019Ivoire",
+      "api_name": "Cote d'Ivoire"
+    },
+    {
+      "code": "JEY",
+      "workbook_name": "Jersey, Channel Islands",
+      "api_name": "Jersey"
+    },
+    {
+      "code": "NRU",
+      "workbook_name": "Republic of Naoero",
+      "api_name": "Naoero"
+    },
+    {
+      "code": "PRI",
+      "workbook_name": "Puerto Rico (U.S.)",
+      "api_name": "Puerto Rico (US)"
+    },
+    {
+      "code": "REU",
+      "workbook_name": "R\u00e9union",
+      "api_name": "Reunion"
+    },
+    {
+      "code": "SOM",
+      "workbook_name": "Federal Republic of Somalia",
+      "api_name": "Somalia, Fed. Rep."
+    },
+    {
+      "code": "STP",
+      "workbook_name": "S\u00e3o Tom\u00e9 and Pr\u00edncipe",
+      "api_name": "Sao Tome and Principe"
+    },
+    {
+      "code": "TUR",
+      "workbook_name": "T\u00fcrkiye",
+      "api_name": "Turkiye"
+    }
+  ],
+  "exceptions": [],
+  "acled": "DOCUMENTATION_ONLY_NO_REQUESTS",
+  "operational_readiness": "NOT_ESTABLISHED",
+  "requests": [
+    {
+      "file": "workbook.xlsx",
+      "url": "https://datacatalogfiles.worldbank.org/ddh-published/0038026/DR0095947/WGI%202026%20Governance%20Estimates%20and%20Scores%20%281996-2025%29.xlsx",
+      "final_url": "https://datacatalogfiles.worldbank.org/ddh-published/0038026/DR0095947/WGI%202026%20Governance%20Estimates%20and%20Scores%20%281996-2025%29.xlsx",
+      "http_status": 200,
+      "sha256": "8e4754bda8b2be0b36d172c18a4caa634cb36fddd54145d16ab7316d22b3542c",
+      "bytes": 10958369,
+      "retrieved_at_utc": "2026-10-26T23:57:21.227166+00:00"
+    },
+    {
+      "file": "source.json",
+      "url": "https://api.worldbank.org/v2/source/3?format=json",
+      "final_url": "https://api.worldbank.org/v2/source/3?format=json",
+      "http_status": 200,
+      "sha256": "2362d963b0522279a220709d1c61c862fd78262bf6795dd412c673c78fab3cac",
+      "bytes": 239,
+      "retrieved_at_utc": "2026-10-26T23:57:21.342883+00:00"
+    },
+    {
+      "file": "indicators.json",
+      "url": "https://api.worldbank.org/v2/source/3/indicator?format=json&per_page=1000",
+      "final_url": "https://api.worldbank.org/v2/source/3/indicator?format=json&per_page=1000",
+      "http_status": 200,
+      "sha256": "670b5de01a823d2cfd97b7ec53eec418978cabcda1c11989290b7e193f05a0af",
+      "bytes": 8107,
+      "retrieved_at_utc": "2026-10-26T23:57:21.466010+00:00"
+    },
+    {
+      "file": "countries.json",
+      "url": "https://api.worldbank.org/v2/sources/3/country?format=json&per_page=1000",
+      "final_url": "https://api.worldbank.org/v2/sources/3/country?format=json&per_page=1000",
+      "http_status": 200,
+      "sha256": "bb35210839a47cccc78d82d33af0682f333e3c48edd43565a4752993a6bc39db",
+      "bytes": 7382,
+      "retrieved_at_utc": "2026-10-26T23:57:21.567636+00:00"
+    },
+    {
+      "file": "GOV_WGI_CC.EST.json",
+      "url": "https://api.worldbank.org/v2/country/all/indicator/GOV_WGI_CC.EST?source=3&date=1996:2025&format=json&per_page=20000&page=1",
+      "final_url": "https://api.worldbank.org/v2/country/all/indicator/GOV_WGI_CC.EST?source=3&date=1996:2025&format=json&per_page=20000&page=1",
+      "http_status": 200,
+      "sha256": "785d459f0175ef395b6722c55bd332bf0e3db8638d49c8ec190b4244778d2e85",
+      "bytes": 1466324,
+      "retrieved_at_utc": "2026-10-26T23:57:22.898868+00:00"
+    },
+    {
+      "file": "GOV_WGI_CC.SC.json",
+      "url": "https://api.worldbank.org/v2/country/all/indicator/GOV_WGI_CC.SC?source=3&date=1996:2025&format=json&per_page=20000&page=1",
+      "final_url": "https://api.worldbank.org/v2/country/all/indicator/GOV_WGI_CC.SC?source=3&date=1996:2025&format=json&per_page=20000&page=1",
+      "http_status": 200,
+      "sha256": "32da281ab400df0a0d972c5073cc938c2b9277a3e9b548e003d60fe635fef18c",
+      "bytes": 1357960,
+      "retrieved_at_utc": "2026-10-26T23:57:23.992402+00:00"
+    },
+    {
+      "file": "GOV_WGI_CC.SC_LB.json",
+      "url": "https://api.worldbank.org/v2/country/all/indicator/GOV_WGI_CC.SC_LB?source=3&date=1996:2025&format=json&per_page=20000&page=1",
+      "final_url": "https://api.worldbank.org/v2/country/all/indicator/GOV_WGI_CC.SC_LB?source=3&date=1996:2025&format=json&per_page=20000&page=1",
+      "http_status": 200,
+      "sha256": "7af06122c39fc6c6985b9593d653d69ab0dfb651adbb0cafed255d742c62f675",
+      "bytes": 1626020,
+      "retrieved_at_utc": "2026-10-26T23:57:25.199747+00:00"
+    },
+    {
+      "file": "GOV_WGI_CC.SC_UB.json",
+      "url": "https://api.worldbank.org/v2/country/all/indicator/GOV_WGI_CC.SC_UB?source=3&date=1996:2025&format=json&per_page=20000&page=1",
+      "final_url": "https://api.worldbank.org/v2/country/all/indicator/GOV_WGI_CC.SC_UB?source=3&date=1996:2025&format=json&per_page=20000&page=1",
+      "http_status": 200,
+      "sha256": "37956d3a2e5a8fa2f30c9448737228c5620e41e5610a0ea959631f82f3e2e73b",
+      "bytes": 1625839,
+      "retrieved_at_utc": "2026-10-26T23:57:26.421934+00:00"
+    },
+    {
+      "file": "GOV_WGI_CC.SE.json",
+      "url": "https://api.worldbank.org/v2/country/all/indicator/GOV_WGI_CC.SE?source=3&date=1996:2025&format=json&per_page=20000&page=1",
+      "final_url": "https://api.worldbank.org/v2/country/all/indicator/GOV_WGI_CC.SE?source=3&date=1996:2025&format=json&per_page=20000&page=1",
+      "http_status": 200,
+      "sha256": "a1f3a9113af8a67f4fbfd5a017b0b0549e0380326f2baed91d5aad5e1c49893c",
+      "bytes": 1451505,
+      "retrieved_at_utc": "2026-10-26T23:57:27.531746+00:00"
+    },
+    {
+      "file": "GOV_WGI_CC.SR.json",
+      "url": "https://api.worldbank.org/v2/country/all/indicator/GOV_WGI_CC.SR?source=3&date=1996:2025&format=json&per_page=20000&page=1",
+      "final_url": "https://api.worldbank.org/v2/country/all/indicator/GOV_WGI_CC.SR?source=3&date=1996:2025&format=json&per_page=20000&page=1",
+      "http_status": 200,
+      "sha256": "b3b6178499f3033d40e85e2051523154c7209313bea9395053555426cefc904d",
+      "bytes": 1269719,
+      "retrieved_at_utc": "2026-10-26T23:57:28.686614+00:00"
+    },
+    {
+      "file": "GOV_WGI_GE.EST.json",
+      "url": "https://api.worldbank.org/v2/country/all/indicator/GOV_WGI_GE.EST?source=3&date=1996:2025&format=json&per_page=20000&page=1",
+      "final_url": "https://api.worldbank.org/v2/country/all/indicator/GOV_WGI_GE.EST?source=3&date=1996:2025&format=json&per_page=20000&page=1",
+      "http_status": 200,
+      "sha256": "d319ef9e019480f86909fcb6befa40ffb77046e2c69f43905c08421a360b58ef",
+      "bytes": 1483413,
+      "retrieved_at_utc": "2026-10-26T23:57:29.953024+00:00"
+    },
+    {
+      "file": "GOV_WGI_GE.SC.json",
+      "url": "https://api.worldbank.org/v2/country/all/indicator/GOV_WGI_GE.SC?source=3&date=1996:2025&format=json&per_page=20000&page=1",
+      "final_url": "https://api.worldbank.org/v2/country/all/indicator/GOV_WGI_GE.SC?source=3&date=1996:2025&format=json&per_page=20000&page=1",
+      "http_status": 200,
+      "sha256": "6bfb1324c5e7a0a180c7c5ca95b80697fb664f899e1ec590c06abf2d17190f19",
+      "bytes": 1375163,
+      "retrieved_at_utc": "2026-10-26T23:57:31.035967+00:00"
+    },
+    {
+      "file": "GOV_WGI_GE.SC_LB.json",
+      "url": "https://api.worldbank.org/v2/country/all/indicator/GOV_WGI_GE.SC_LB?source=3&date=1996:2025&format=json&per_page=20000&page=1",
+      "final_url": "https://api.worldbank.org/v2/country/all/indicator/GOV_WGI_GE.SC_LB?source=3&date=1996:2025&format=json&per_page=20000&page=1",
+      "http_status": 200,
+      "sha256": "e7d181779bbd732ac275f91deffdee1b33be91c1a97be2a69b0e5cadb85c5758",
+      "bytes": 1642932,
+      "retrieved_at_utc": "2026-10-26T23:57:32.269112+00:00"
+    },
+    {
+      "file": "GOV_WGI_GE.SC_UB.json",
+      "url": "https://api.worldbank.org/v2/country/all/indicator/GOV_WGI_GE.SC_UB?source=3&date=1996:2025&format=json&per_page=20000&page=1",
+      "final_url": "https://api.worldbank.org/v2/country/all/indicator/GOV_WGI_GE.SC_UB?source=3&date=1996:2025&format=json&per_page=20000&page=1",
+      "http_status": 200,
+      "sha256": "68596e4f3ac84593409f0b1cb8be377eb7bf8067534fd3512a0eea30527f3cdb",
+      "bytes": 1642168,
+      "retrieved_at_utc": "2026-10-26T23:57:33.378978+00:00"
+    },
+    {
+      "file": "GOV_WGI_GE.SE.json",
+      "url": "https://api.worldbank.org/v2/country/all/indicator/GOV_WGI_GE.SE?source=3&date=1996:2025&format=json&per_page=20000&page=1",
+      "final_url": "https://api.worldbank.org/v2/country/all/indicator/GOV_WGI_GE.SE?source=3&date=1996:2025&format=json&per_page=20000&page=1",
+      "http_status": 200,
+      "sha256": "293cfc5750af669b9ecaa768d9fba30037436596113b13a949f54935073c6f59",
+      "bytes": 1468996,
+      "retrieved_at_utc": "2026-10-26T23:57:34.505674+00:00"
+    },
+    {
+      "file": "GOV_WGI_GE.SR.json",
+      "url": "https://api.worldbank.org/v2/country/all/indicator/GOV_WGI_GE.SR?source=3&date=1996:2025&format=json&per_page=20000&page=1",
+      "final_url": "https://api.worldbank.org/v2/country/all/indicator/GOV_WGI_GE.SR?source=3&date=1996:2025&format=json&per_page=20000&page=1",
+      "http_status": 200,
+      "sha256": "1612ea19abc547d68f04575c68755c7a2d2aae469cafd6f808be23df16ce168f",
+      "bytes": 1285797,
+      "retrieved_at_utc": "2026-10-26T23:57:35.553875+00:00"
+    },
+    {
+      "file": "GOV_WGI_PV.EST.json",
+      "url": "https://api.worldbank.org/v2/country/all/indicator/GOV_WGI_PV.EST?source=3&date=1996:2025&format=json&per_page=20000&page=1",
+      "final_url": "https://api.worldbank.org/v2/country/all/indicator/GOV_WGI_PV.EST?source=3&date=1996:2025&format=json&per_page=20000&page=1",
+      "http_status": 200,
+      "sha256": "0e2d3751c48a37739ba6bdb1b1cc0646faab0264abcb96b7c644996d296fa145",
+      "bytes": 1454408,
+      "retrieved_at_utc": "2026-10-26T23:57:36.744710+00:00"
+    },
+    {
+      "file": "GOV_WGI_PV.SC.json",
+      "url": "https://api.worldbank.org/v2/country/all/indicator/GOV_WGI_PV.SC?source=3&date=1996:2025&format=json&per_page=20000&page=1",
+      "final_url": "https://api.worldbank.org/v2/country/all/indicator/GOV_WGI_PV.SC?source=3&date=1996:2025&format=json&per_page=20000&page=1",
+      "http_status": 200,
+      "sha256": "652b382d6c0f5655672762e4f0a2067b0b6d344e93a962ed971f58f4d543ce21",
+      "bytes": 1346582,
+      "retrieved_at_utc": "2026-10-26T23:57:37.861269+00:00"
+    },
+    {
+      "file": "GOV_WGI_PV.SC_LB.json",
+      "url": "https://api.worldbank.org/v2/country/all/indicator/GOV_WGI_PV.SC_LB?source=3&date=1996:2025&format=json&per_page=20000&page=1",
+      "final_url": "https://api.worldbank.org/v2/country/all/indicator/GOV_WGI_PV.SC_LB?source=3&date=1996:2025&format=json&per_page=20000&page=1",
+      "http_status": 200,
+      "sha256": "5fde22c3908d5411e4f4ea3e0a047a8506eb641662519bbe7222e6fe8b2446f0",
+      "bytes": 1614881,
+      "retrieved_at_utc": "2026-10-26T23:57:39.031870+00:00"
+    },
+    {
+      "file": "GOV_WGI_PV.SC_UB.json",
+      "url": "https://api.worldbank.org/v2/country/all/indicator/GOV_WGI_PV.SC_UB?source=3&date=1996:2025&format=json&per_page=20000&page=1",
+      "final_url": "https://api.worldbank.org/v2/country/all/indicator/GOV_WGI_PV.SC_UB?source=3&date=1996:2025&format=json&per_page=20000&page=1",
+      "http_status": 200,
+      "sha256": "96b7c650080558416248c32314b5a2a40a0eddfe9e76c836bccb2468f316138c",
+      "bytes": 1613451,
+      "retrieved_at_utc": "2026-10-26T23:57:40.215749+00:00"
+    },
+    {
+      "file": "GOV_WGI_PV.SE.json",
+      "url": "https://api.worldbank.org/v2/country/all/indicator/GOV_WGI_PV.SE?source=3&date=1996:2025&format=json&per_page=20000&page=1",
+      "final_url": "https://api.worldbank.org/v2/country/all/indicator/GOV_WGI_PV.SE?source=3&date=1996:2025&format=json&per_page=20000&page=1",
+      "http_status": 200,
+      "sha256": "a88e40e2dfee95e3b8a112a8f1028c6529f7fd3ce8cc4fd4a97fd6abd435e332",
+      "bytes": 1440148,
+      "retrieved_at_utc": "2026-10-26T23:57:41.356007+00:00"
+    },
+    {
+      "file": "GOV_WGI_PV.SR.json",
+      "url": "https://api.worldbank.org/v2/country/all/indicator/GOV_WGI_PV.SR?source=3&date=1996:2025&format=json&per_page=20000&page=1",
+      "final_url": "https://api.worldbank.org/v2/country/all/indicator/GOV_WGI_PV.SR?source=3&date=1996:2025&format=json&per_page=20000&page=1",
+      "http_status": 200,
+      "sha256": "abda75f7a86f778301b233256ab1300627b8ae0557028e7eab0ec2bfc22fe577",
+      "bytes": 1256540,
+      "retrieved_at_utc": "2026-10-26T23:57:42.346520+00:00"
+    },
+    {
+      "file": "GOV_WGI_RL.EST.json",
+      "url": "https://api.worldbank.org/v2/country/all/indicator/GOV_WGI_RL.EST?source=3&date=1996:2025&format=json&per_page=20000&page=1",
+      "final_url": "https://api.worldbank.org/v2/country/all/indicator/GOV_WGI_RL.EST?source=3&date=1996:2025&format=json&per_page=20000&page=1",
+      "http_status": 200,
+      "sha256": "fc1541725fb019f4baf97c1993c6f66c3b109424d60be9df50af422bd49bef5b",
+      "bytes": 1408417,
+      "retrieved_at_utc": "2026-10-26T23:57:43.505316+00:00"
+    },
+    {
+      "file": "GOV_WGI_RL.SC.json",
+      "url": "https://api.worldbank.org/v2/country/all/indicator/GOV_WGI_RL.SC?source=3&date=1996:2025&format=json&per_page=20000&page=1",
+      "final_url": "https://api.worldbank.org/v2/country/all/indicator/GOV_WGI_RL.SC?source=3&date=1996:2025&format=json&per_page=20000&page=1",
+      "http_status": 200,
+      "sha256": "b5f5cf9ed610414f5ed077acce813668fd5eb09155806e9e391d8b500f518d91",
+      "bytes": 1300208,
+      "retrieved_at_utc": "2026-10-26T23:57:44.637327+00:00"
+    },
+    {
+      "file": "GOV_WGI_RL.SC_LB.json",
+      "url": "https://api.worldbank.org/v2/country/all/indicator/GOV_WGI_RL.SC_LB?source=3&date=1996:2025&format=json&per_page=20000&page=1",
+      "final_url": "https://api.worldbank.org/v2/country/all/indicator/GOV_WGI_RL.SC_LB?source=3&date=1996:2025&format=json&per_page=20000&page=1",
+      "http_status": 200,
+      "sha256": "dbcac5219b757c99498adc5bdd57a6fc152b1ab9894582537711e7094a1db236",
+      "bytes": 1568469,
+      "retrieved_at_utc": "2026-10-26T23:57:45.835708+00:00"
+    },
+    {
+      "file": "GOV_WGI_RL.SC_UB.json",
+      "url": "https://api.worldbank.org/v2/country/all/indicator/GOV_WGI_RL.SC_UB?source=3&date=1996:2025&format=json&per_page=20000&page=1",
+      "final_url": "https://api.worldbank.org/v2/country/all/indicator/GOV_WGI_RL.SC_UB?source=3&date=1996:2025&format=json&per_page=20000&page=1",
+      "http_status": 200,
+      "sha256": "23f529015907973de6c7b0cf567cd8dea60392ece0ca9050279a9a635f8aea57",
+      "bytes": 1568497,
+      "retrieved_at_utc": "2026-10-26T23:57:47.021917+00:00"
+    },
+    {
+      "file": "GOV_WGI_RL.SE.json",
+      "url": "https://api.worldbank.org/v2/country/all/indicator/GOV_WGI_RL.SE?source=3&date=1996:2025&format=json&per_page=20000&page=1",
+      "final_url": "https://api.worldbank.org/v2/country/all/indicator/GOV_WGI_RL.SE?source=3&date=1996:2025&format=json&per_page=20000&page=1",
+      "http_status": 200,
+      "sha256": "e2310f261694a0a6e22b8c3a4d9a8bfced854d85ee371be5fe082dd755c250a0",
+      "bytes": 1393463,
+      "retrieved_at_utc": "2026-10-26T23:57:48.015308+00:00"
+    },
+    {
+      "file": "GOV_WGI_RL.SR.json",
+      "url": "https://api.worldbank.org/v2/country/all/indicator/GOV_WGI_RL.SR?source=3&date=1996:2025&format=json&per_page=20000&page=1",
+      "final_url": "https://api.worldbank.org/v2/country/all/indicator/GOV_WGI_RL.SR?source=3&date=1996:2025&format=json&per_page=20000&page=1",
+      "http_status": 200,
+      "sha256": "0d402bfb58bdfd819150e959194d2e5b9245c54ef8d7b3b145c9d365e64c1ce3",
+      "bytes": 1212123,
+      "retrieved_at_utc": "2026-10-26T23:57:49.111985+00:00"
+    },
+    {
+      "file": "GOV_WGI_RQ.EST.json",
+      "url": "https://api.worldbank.org/v2/country/all/indicator/GOV_WGI_RQ.EST?source=3&date=1996:2025&format=json&per_page=20000&page=1",
+      "final_url": "https://api.worldbank.org/v2/country/all/indicator/GOV_WGI_RQ.EST?source=3&date=1996:2025&format=json&per_page=20000&page=1",
+      "http_status": 200,
+      "sha256": "929e2b1b6ce727aa950815f4c6dbcd6a59690407c9f8634b1ce780148e28c263",
+      "bytes": 1448434,
+      "retrieved_at_utc": "2026-10-26T23:57:50.238589+00:00"
+    },
+    {
+      "file": "GOV_WGI_RQ.SC.json",
+      "url": "https://api.worldbank.org/v2/country/all/indicator/GOV_WGI_RQ.SC?source=3&date=1996:2025&format=json&per_page=20000&page=1",
+      "final_url": "https://api.worldbank.org/v2/country/all/indicator/GOV_WGI_RQ.SC?source=3&date=1996:2025&format=json&per_page=20000&page=1",
+      "http_status": 200,
+      "sha256": "fbce998712c7a0a1109df39d3be946c5336a24fbaad891561f0689e902f37cc8",
+      "bytes": 1340231,
+      "retrieved_at_utc": "2026-10-26T23:57:51.344213+00:00"
+    },
+    {
+      "file": "GOV_WGI_RQ.SC_LB.json",
+      "url": "https://api.worldbank.org/v2/country/all/indicator/GOV_WGI_RQ.SC_LB?source=3&date=1996:2025&format=json&per_page=20000&page=1",
+      "final_url": "https://api.worldbank.org/v2/country/all/indicator/GOV_WGI_RQ.SC_LB?source=3&date=1996:2025&format=json&per_page=20000&page=1",
+      "http_status": 200,
+      "sha256": "afef1ff248da21c0d4eb512ae877ea541a842e2cb7ba6f97b74a79be1d141b1e",
+      "bytes": 1608470,
+      "retrieved_at_utc": "2026-10-26T23:57:52.499883+00:00"
+    },
+    {
+      "file": "GOV_WGI_RQ.SC_UB.json",
+      "url": "https://api.worldbank.org/v2/country/all/indicator/GOV_WGI_RQ.SC_UB?source=3&date=1996:2025&format=json&per_page=20000&page=1",
+      "final_url": "https://api.worldbank.org/v2/country/all/indicator/GOV_WGI_RQ.SC_UB?source=3&date=1996:2025&format=json&per_page=20000&page=1",
+      "http_status": 200,
+      "sha256": "37e93a5d0c942ad916b10a48a3c0ae849cea763d1d9fb2524f4e829b14eb271d",
+      "bytes": 1608407,
+      "retrieved_at_utc": "2026-10-26T23:57:53.646147+00:00"
+    },
+    {
+      "file": "GOV_WGI_RQ.SE.json",
+      "url": "https://api.worldbank.org/v2/country/all/indicator/GOV_WGI_RQ.SE?source=3&date=1996:2025&format=json&per_page=20000&page=1",
+      "final_url": "https://api.worldbank.org/v2/country/all/indicator/GOV_WGI_RQ.SE?source=3&date=1996:2025&format=json&per_page=20000&page=1",
+      "http_status": 200,
+      "sha256": "e664ca8f3c43960badd124e411e2d7ee4baff3e1ffd493f5ce0ede9641ad0ecc",
+      "bytes": 1433963,
+      "retrieved_at_utc": "2026-10-26T23:57:54.832436+00:00"
+    },
+    {
+      "file": "GOV_WGI_RQ.SR.json",
+      "url": "https://api.worldbank.org/v2/country/all/indicator/GOV_WGI_RQ.SR?source=3&date=1996:2025&format=json&per_page=20000&page=1",
+      "final_url": "https://api.worldbank.org/v2/country/all/indicator/GOV_WGI_RQ.SR?source=3&date=1996:2025&format=json&per_page=20000&page=1",
+      "http_status": 200,
+      "sha256": "119f8d1638e083dee86d1c3229d8db6c03138efd5316fdb8a04bfad1bf0d21aa",
+      "bytes": 1250607,
+      "retrieved_at_utc": "2026-10-26T23:57:55.961162+00:00"
+    },
+    {
+      "file": "GOV_WGI_VA.EST.json",
+      "url": "https://api.worldbank.org/v2/country/all/indicator/GOV_WGI_VA.EST?source=3&date=1996:2025&format=json&per_page=20000&page=1",
+      "final_url": "https://api.worldbank.org/v2/country/all/indicator/GOV_WGI_VA.EST?source=3&date=1996:2025&format=json&per_page=20000&page=1",
+      "http_status": 200,
+      "sha256": "57e3e67e2ece10b2aaf9088cadb3896ccf781e4f67c00c919f38ea0c76a1db55",
+      "bytes": 1483599,
+      "retrieved_at_utc": "2026-10-26T23:57:56.903608+00:00"
+    },
+    {
+      "file": "GOV_WGI_VA.SC.json",
+      "url": "https://api.worldbank.org/v2/country/all/indicator/GOV_WGI_VA.SC?source=3&date=1996:2025&format=json&per_page=20000&page=1",
+      "final_url": "https://api.worldbank.org/v2/country/all/indicator/GOV_WGI_VA.SC?source=3&date=1996:2025&format=json&per_page=20000&page=1",
+      "http_status": 200,
+      "sha256": "af901719c7cd9f31ba40fd44651a707b75813075fa05083c18a7c44630e921e2",
+      "bytes": 1375754,
+      "retrieved_at_utc": "2026-10-26T23:57:58.214145+00:00"
+    },
+    {
+      "file": "GOV_WGI_VA.SC_LB.json",
+      "url": "https://api.worldbank.org/v2/country/all/indicator/GOV_WGI_VA.SC_LB?source=3&date=1996:2025&format=json&per_page=20000&page=1",
+      "final_url": "https://api.worldbank.org/v2/country/all/indicator/GOV_WGI_VA.SC_LB?source=3&date=1996:2025&format=json&per_page=20000&page=1",
+      "http_status": 200,
+      "sha256": "b9738081bee165764c5176651d2c57b604590cfbc94213a4624d59fe092c93df",
+      "bytes": 1644036,
+      "retrieved_at_utc": "2026-10-26T23:57:59.521229+00:00"
+    },
+    {
+      "file": "GOV_WGI_VA.SC_UB.json",
+      "url": "https://api.worldbank.org/v2/country/all/indicator/GOV_WGI_VA.SC_UB?source=3&date=1996:2025&format=json&per_page=20000&page=1",
+      "final_url": "https://api.worldbank.org/v2/country/all/indicator/GOV_WGI_VA.SC_UB?source=3&date=1996:2025&format=json&per_page=20000&page=1",
+      "http_status": 200,
+      "sha256": "554864a70e216405ae75e829041dfffa627e61aa86421d001a0a5d03657eebe1",
+      "bytes": 1644067,
+      "retrieved_at_utc": "2026-10-26T23:58:00.743468+00:00"
+    },
+    {
+      "file": "GOV_WGI_VA.SE.json",
+      "url": "https://api.worldbank.org/v2/country/all/indicator/GOV_WGI_VA.SE?source=3&date=1996:2025&format=json&per_page=20000&page=1",
+      "final_url": "https://api.worldbank.org/v2/country/all/indicator/GOV_WGI_VA.SE?source=3&date=1996:2025&format=json&per_page=20000&page=1",
+      "http_status": 200,
+      "sha256": "2867bba230e533e6d902ee2b923ef30f796c3699cd6512155f999a2ec56ca80b",
+      "bytes": 1469316,
+      "retrieved_at_utc": "2026-10-26T23:58:01.983021+00:00"
+    },
+    {
+      "file": "GOV_WGI_VA.SR.json",
+      "url": "https://api.worldbank.org/v2/country/all/indicator/GOV_WGI_VA.SR?source=3&date=1996:2025&format=json&per_page=20000&page=1",
+      "final_url": "https://api.worldbank.org/v2/country/all/indicator/GOV_WGI_VA.SR?source=3&date=1996:2025&format=json&per_page=20000&page=1",
+      "http_status": 200,
+      "sha256": "7072c2601a5a5d495e9bc7188be02be60e5dbab4602d93b5ce42a71d4101ccad",
+      "bytes": 1288162,
+      "retrieved_at_utc": "2026-10-26T23:58:03.005225+00:00"
+    }
+  ],
+  "config_sha256": "68588726a1da64252280fe8d63d57e4ef69ab1db9b3377b9939daad019dafda3",
+  "verifier_sha256": "14c1b065a82ec13851673ce411114f556579ed094526c7112fe8cb1c95de191c",
+  "indicator_contract_sha256": "0831872c3b63ce415cc3e472bbbda3f5431987d953efe74e867804a2fb250791",
+  "provider_verifier_sha256": "b7291c8a9e752c50c609271887a4b59af8b56466431a28b3ab9c38157d670467",
+  "baseline_config_sha256": "3fd8289476865ea011f08517916936944323263ef432408b8c1244eef84cc5a8",
+  "environment": {
+    "python": "3.12.14",
+    "openpyxl": "3.1.5"
+  },
+  "windows": {
+    "baseline": {
+      "years": [
+        2020,
+        2024
+      ],
+      "country_years": 1080,
+      "complete_country_years": 1036,
+      "scored_dimensions_complete_country_years": 1061,
+      "fetched_dimensions_complete_country_years": 1036,
+      "incomplete": [
+        {
+          "country_code": "AIA",
+          "year": 2020,
+          "workbook_non_null": 30,
+          "api_non_null": 30,
+          "matched": 30,
+          "workbook_absent": 6,
+          "api_absent": 0,
+          "workbook_null": 0,
+          "api_null": 6,
+          "complete_36_field_parity": false,
+          "missing_dimensions": "VA",
+          "scored_dimensions_complete": true,
+          "fetched_dimensions_complete": false
+        },
+        {
+          "country_code": "AIA",
+          "year": 2021,
+          "workbook_non_null": 30,
+          "api_non_null": 30,
+          "matched": 30,
+          "workbook_absent": 6,
+          "api_absent": 0,
+          "workbook_null": 0,
+          "api_null": 6,
+          "complete_36_field_parity": false,
+          "missing_dimensions": "VA",
+          "scored_dimensions_complete": true,
+          "fetched_dimensions_complete": false
+        },
+        {
+          "country_code": "AIA",
+          "year": 2022,
+          "workbook_non_null": 30,
+          "api_non_null": 30,
+          "matched": 30,
+          "workbook_absent": 6,
+          "api_absent": 0,
+          "workbook_null": 0,
+          "api_null": 6,
+          "complete_36_field_parity": false,
+          "missing_dimensions": "VA",
+          "scored_dimensions_complete": true,
+          "fetched_dimensions_complete": false
+        },
+        {
+          "country_code": "AIA",
+          "year": 2023,
+          "workbook_non_null": 30,
+          "api_non_null": 30,
+          "matched": 30,
+          "workbook_absent": 6,
+          "api_absent": 0,
+          "workbook_null": 0,
+          "api_null": 6,
+          "complete_36_field_parity": false,
+          "missing_dimensions": "VA",
+          "scored_dimensions_complete": true,
+          "fetched_dimensions_complete": false
+        },
+        {
+          "country_code": "AIA",
+          "year": 2024,
+          "workbook_non_null": 30,
+          "api_non_null": 30,
+          "matched": 30,
+          "workbook_absent": 6,
+          "api_absent": 0,
+          "workbook_null": 0,
+          "api_null": 6,
+          "complete_36_field_parity": false,
+          "missing_dimensions": "VA",
+          "scored_dimensions_complete": true,
+          "fetched_dimensions_complete": false
+        },
+        {
+          "country_code": "ANT",
+          "year": 2020,
+          "workbook_non_null": 0,
+          "api_non_null": 0,
+          "matched": 0,
+          "workbook_absent": 36,
+          "api_absent": 0,
+          "workbook_null": 0,
+          "api_null": 36,
+          "complete_36_field_parity": false,
+          "missing_dimensions": "CC;GE;PV;RL;RQ;VA",
+          "scored_dimensions_complete": false,
+          "fetched_dimensions_complete": false
+        },
+        {
+          "country_code": "ANT",
+          "year": 2021,
+          "workbook_non_null": 0,
+          "api_non_null": 0,
+          "matched": 0,
+          "workbook_absent": 36,
+          "api_absent": 0,
+          "workbook_null": 0,
+          "api_null": 36,
+          "complete_36_field_parity": false,
+          "missing_dimensions": "CC;GE;PV;RL;RQ;VA",
+          "scored_dimensions_complete": false,
+          "fetched_dimensions_complete": false
+        },
+        {
+          "country_code": "ANT",
+          "year": 2022,
+          "workbook_non_null": 0,
+          "api_non_null": 0,
+          "matched": 0,
+          "workbook_absent": 36,
+          "api_absent": 0,
+          "workbook_null": 0,
+          "api_null": 36,
+          "complete_36_field_parity": false,
+          "missing_dimensions": "CC;GE;PV;RL;RQ;VA",
+          "scored_dimensions_complete": false,
+          "fetched_dimensions_complete": false
+        },
+        {
+          "country_code": "ANT",
+          "year": 2023,
+          "workbook_non_null": 0,
+          "api_non_null": 0,
+          "matched": 0,
+          "workbook_absent": 36,
+          "api_absent": 0,
+          "workbook_null": 0,
+          "api_null": 36,
+          "complete_36_field_parity": false,
+          "missing_dimensions": "CC;GE;PV;RL;RQ;VA",
+          "scored_dimensions_complete": false,
+          "fetched_dimensions_complete": false
+        },
+        {
+          "country_code": "ANT",
+          "year": 2024,
+          "workbook_non_null": 0,
+          "api_non_null": 0,
+          "matched": 0,
+          "workbook_absent": 36,
+          "api_absent": 0,
+          "workbook_null": 0,
+          "api_null": 36,
+          "complete_36_field_parity": false,
+          "missing_dimensions": "CC;GE;PV;RL;RQ;VA",
+          "scored_dimensions_complete": false,
+          "fetched_dimensions_complete": false
+        },
+        {
+          "country_code": "BMU",
+          "year": 2020,
+          "workbook_non_null": 30,
+          "api_non_null": 30,
+          "matched": 30,
+          "workbook_absent": 6,
+          "api_absent": 0,
+          "workbook_null": 0,
+          "api_null": 6,
+          "complete_36_field_parity": false,
+          "missing_dimensions": "VA",
+          "scored_dimensions_complete": true,
+          "fetched_dimensions_complete": false
+        },
+        {
+          "country_code": "BMU",
+          "year": 2021,
+          "workbook_non_null": 30,
+          "api_non_null": 30,
+          "matched": 30,
+          "workbook_absent": 6,
+          "api_absent": 0,
+          "workbook_null": 0,
+          "api_null": 6,
+          "complete_36_field_parity": false,
+          "missing_dimensions": "VA",
+          "scored_dimensions_complete": true,
+          "fetched_dimensions_complete": false
+        },
+        {
+          "country_code": "BMU",
+          "year": 2022,
+          "workbook_non_null": 30,
+          "api_non_null": 30,
+          "matched": 30,
+          "workbook_absent": 6,
+          "api_absent": 0,
+          "workbook_null": 0,
+          "api_null": 6,
+          "complete_36_field_parity": false,
+          "missing_dimensions": "VA",
+          "scored_dimensions_complete": true,
+          "fetched_dimensions_complete": false
+        },
+        {
+          "country_code": "BMU",
+          "year": 2023,
+          "workbook_non_null": 30,
+          "api_non_null": 30,
+          "matched": 30,
+          "workbook_absent": 6,
+          "api_absent": 0,
+          "workbook_null": 0,
+          "api_null": 6,
+          "complete_36_field_parity": false,
+          "missing_dimensions": "VA",
+          "scored_dimensions_complete": true,
+          "fetched_dimensions_complete": false
+        },
+        {
+          "country_code": "BMU",
+          "year": 2024,
+          "workbook_non_null": 30,
+          "api_non_null": 30,
+          "matched": 30,
+          "workbook_absent": 6,
+          "api_absent": 0,
+          "workbook_null": 0,
+          "api_null": 6,
+          "complete_36_field_parity": false,
+          "missing_dimensions": "VA",
+          "scored_dimensions_complete": true,
+          "fetched_dimensions_complete": false
+        },
+        {
+          "country_code": "COK",
+          "year": 2020,
+          "workbook_non_null": 18,
+          "api_non_null": 18,
+          "matched": 18,
+          "workbook_absent": 18,
+          "api_absent": 0,
+          "workbook_null": 0,
+          "api_null": 18,
+          "complete_36_field_parity": false,
+          "missing_dimensions": "CC;GE;RQ",
+          "scored_dimensions_complete": false,
+          "fetched_dimensions_complete": false
+        },
+        {
+          "country_code": "COK",
+          "year": 2021,
+          "workbook_non_null": 18,
+          "api_non_null": 18,
+          "matched": 18,
+          "workbook_absent": 18,
+          "api_absent": 0,
+          "workbook_null": 0,
+          "api_null": 18,
+          "complete_36_field_parity": false,
+          "missing_dimensions": "CC;GE;RQ",
+          "scored_dimensions_complete": false,
+          "fetched_dimensions_complete": false
+        },
+        {
+          "country_code": "MTQ",
+          "year": 2020,
+          "workbook_non_null": 30,
+          "api_non_null": 30,
+          "matched": 30,
+          "workbook_absent": 6,
+          "api_absent": 0,
+          "workbook_null": 0,
+          "api_null": 6,
+          "complete_36_field_parity": false,
+          "missing_dimensions": "VA",
+          "scored_dimensions_complete": true,
+          "fetched_dimensions_complete": false
+        },
+        {
+          "country_code": "MTQ",
+          "year": 2021,
+          "workbook_non_null": 30,
+          "api_non_null": 30,
+          "matched": 30,
+          "workbook_absent": 6,
+          "api_absent": 0,
+          "workbook_null": 0,
+          "api_null": 6,
+          "complete_36_field_parity": false,
+          "missing_dimensions": "VA",
+          "scored_dimensions_complete": true,
+          "fetched_dimensions_complete": false
+        },
+        {
+          "country_code": "MTQ",
+          "year": 2022,
+          "workbook_non_null": 30,
+          "api_non_null": 30,
+          "matched": 30,
+          "workbook_absent": 6,
+          "api_absent": 0,
+          "workbook_null": 0,
+          "api_null": 6,
+          "complete_36_field_parity": false,
+          "missing_dimensions": "VA",
+          "scored_dimensions_complete": true,
+          "fetched_dimensions_complete": false
+        },
+        {
+          "country_code": "MTQ",
+          "year": 2023,
+          "workbook_non_null": 30,
+          "api_non_null": 30,
+          "matched": 30,
+          "workbook_absent": 6,
+          "api_absent": 0,
+          "workbook_null": 0,
+          "api_null": 6,
+          "complete_36_field_parity": false,
+          "missing_dimensions": "VA",
+          "scored_dimensions_complete": true,
+          "fetched_dimensions_complete": false
+        },
+        {
+          "country_code": "MTQ",
+          "year": 2024,
+          "workbook_non_null": 30,
+          "api_non_null": 30,
+          "matched": 30,
+          "workbook_absent": 6,
+          "api_absent": 0,
+          "workbook_null": 0,
+          "api_null": 6,
+          "complete_36_field_parity": false,
+          "missing_dimensions": "VA",
+          "scored_dimensions_complete": true,
+          "fetched_dimensions_complete": false
+        },
+        {
+          "country_code": "NCL",
+          "year": 2020,
+          "workbook_non_null": 18,
+          "api_non_null": 18,
+          "matched": 18,
+          "workbook_absent": 18,
+          "api_absent": 0,
+          "workbook_null": 0,
+          "api_null": 18,
+          "complete_36_field_parity": false,
+          "missing_dimensions": "CC;GE;RQ",
+          "scored_dimensions_complete": false,
+          "fetched_dimensions_complete": false
+        },
+        {
+          "country_code": "NCL",
+          "year": 2021,
+          "workbook_non_null": 24,
+          "api_non_null": 24,
+          "matched": 24,
+          "workbook_absent": 12,
+          "api_absent": 0,
+          "workbook_null": 0,
+          "api_null": 12,
+          "complete_36_field_parity": false,
+          "missing_dimensions": "GE;RQ",
+          "scored_dimensions_complete": false,
+          "fetched_dimensions_complete": false
+        },
+        {
+          "country_code": "NCL",
+          "year": 2022,
+          "workbook_non_null": 24,
+          "api_non_null": 24,
+          "matched": 24,
+          "workbook_absent": 12,
+          "api_absent": 0,
+          "workbook_null": 0,
+          "api_null": 12,
+          "complete_36_field_parity": false,
+          "missing_dimensions": "GE;RQ",
+          "scored_dimensions_complete": false,
+          "fetched_dimensions_complete": false
+        },
+        {
+          "country_code": "NCL",
+          "year": 2023,
+          "workbook_non_null": 24,
+          "api_non_null": 24,
+          "matched": 24,
+          "workbook_absent": 12,
+          "api_absent": 0,
+          "workbook_null": 0,
+          "api_null": 12,
+          "complete_36_field_parity": false,
+          "missing_dimensions": "GE;RQ",
+          "scored_dimensions_complete": false,
+          "fetched_dimensions_complete": false
+        },
+        {
+          "country_code": "NCL",
+          "year": 2024,
+          "workbook_non_null": 24,
+          "api_non_null": 24,
+          "matched": 24,
+          "workbook_absent": 12,
+          "api_absent": 0,
+          "workbook_null": 0,
+          "api_null": 12,
+          "complete_36_field_parity": false,
+          "missing_dimensions": "GE;RQ",
+          "scored_dimensions_complete": false,
+          "fetched_dimensions_complete": false
+        },
+        {
+          "country_code": "NIU",
+          "year": 2020,
+          "workbook_non_null": 18,
+          "api_non_null": 18,
+          "matched": 18,
+          "workbook_absent": 18,
+          "api_absent": 0,
+          "workbook_null": 0,
+          "api_null": 18,
+          "complete_36_field_parity": false,
+          "missing_dimensions": "CC;GE;RQ",
+          "scored_dimensions_complete": false,
+          "fetched_dimensions_complete": false
+        },
+        {
+          "country_code": "NIU",
+          "year": 2021,
+          "workbook_non_null": 18,
+          "api_non_null": 18,
+          "matched": 18,
+          "workbook_absent": 18,
+          "api_absent": 0,
+          "workbook_null": 0,
+          "api_null": 18,
+          "complete_36_field_parity": false,
+          "missing_dimensions": "CC;GE;RQ",
+          "scored_dimensions_complete": false,
+          "fetched_dimensions_complete": false
+        },
+        {
+          "country_code": "PYF",
+          "year": 2020,
+          "workbook_non_null": 18,
+          "api_non_null": 18,
+          "matched": 18,
+          "workbook_absent": 18,
+          "api_absent": 0,
+          "workbook_null": 0,
+          "api_null": 18,
+          "complete_36_field_parity": false,
+          "missing_dimensions": "CC;GE;RQ",
+          "scored_dimensions_complete": false,
+          "fetched_dimensions_complete": false
+        },
+        {
+          "country_code": "PYF",
+          "year": 2021,
+          "workbook_non_null": 24,
+          "api_non_null": 24,
+          "matched": 24,
+          "workbook_absent": 12,
+          "api_absent": 0,
+          "workbook_null": 0,
+          "api_null": 12,
+          "complete_36_field_parity": false,
+          "missing_dimensions": "GE;RQ",
+          "scored_dimensions_complete": false,
+          "fetched_dimensions_complete": false
+        },
+        {
+          "country_code": "PYF",
+          "year": 2022,
+          "workbook_non_null": 24,
+          "api_non_null": 24,
+          "matched": 24,
+          "workbook_absent": 12,
+          "api_absent": 0,
+          "workbook_null": 0,
+          "api_null": 12,
+          "complete_36_field_parity": false,
+          "missing_dimensions": "GE;RQ",
+          "scored_dimensions_complete": false,
+          "fetched_dimensions_complete": false
+        },
+        {
+          "country_code": "PYF",
+          "year": 2023,
+          "workbook_non_null": 24,
+          "api_non_null": 24,
+          "matched": 24,
+          "workbook_absent": 12,
+          "api_absent": 0,
+          "workbook_null": 0,
+          "api_null": 12,
+          "complete_36_field_parity": false,
+          "missing_dimensions": "GE;RQ",
+          "scored_dimensions_complete": false,
+          "fetched_dimensions_complete": false
+        },
+        {
+          "country_code": "PYF",
+          "year": 2024,
+          "workbook_non_null": 24,
+          "api_non_null": 24,
+          "matched": 24,
+          "workbook_absent": 12,
+          "api_absent": 0,
+          "workbook_null": 0,
+          "api_null": 12,
+          "complete_36_field_parity": false,
+          "missing_dimensions": "GE;RQ",
+          "scored_dimensions_complete": false,
+          "fetched_dimensions_complete": false
+        },
+        {
+          "country_code": "REU",
+          "year": 2020,
+          "workbook_non_null": 30,
+          "api_non_null": 30,
+          "matched": 30,
+          "workbook_absent": 6,
+          "api_absent": 0,
+          "workbook_null": 0,
+          "api_null": 6,
+          "complete_36_field_parity": false,
+          "missing_dimensions": "VA",
+          "scored_dimensions_complete": true,
+          "fetched_dimensions_complete": false
+        },
+        {
+          "country_code": "REU",
+          "year": 2021,
+          "workbook_non_null": 30,
+          "api_non_null": 30,
+          "matched": 30,
+          "workbook_absent": 6,
+          "api_absent": 0,
+          "workbook_null": 0,
+          "api_null": 6,
+          "complete_36_field_parity": false,
+          "missing_dimensions": "VA",
+          "scored_dimensions_complete": true,
+          "fetched_dimensions_complete": false
+        },
+        {
+          "country_code": "REU",
+          "year": 2022,
+          "workbook_non_null": 30,
+          "api_non_null": 30,
+          "matched": 30,
+          "workbook_absent": 6,
+          "api_absent": 0,
+          "workbook_null": 0,
+          "api_null": 6,
+          "complete_36_field_parity": false,
+          "missing_dimensions": "VA",
+          "scored_dimensions_complete": true,
+          "fetched_dimensions_complete": false
+        },
+        {
+          "country_code": "REU",
+          "year": 2023,
+          "workbook_non_null": 30,
+          "api_non_null": 30,
+          "matched": 30,
+          "workbook_absent": 6,
+          "api_absent": 0,
+          "workbook_null": 0,
+          "api_null": 6,
+          "complete_36_field_parity": false,
+          "missing_dimensions": "VA",
+          "scored_dimensions_complete": true,
+          "fetched_dimensions_complete": false
+        },
+        {
+          "country_code": "REU",
+          "year": 2024,
+          "workbook_non_null": 30,
+          "api_non_null": 30,
+          "matched": 30,
+          "workbook_absent": 6,
+          "api_absent": 0,
+          "workbook_null": 0,
+          "api_null": 6,
+          "complete_36_field_parity": false,
+          "missing_dimensions": "VA",
+          "scored_dimensions_complete": true,
+          "fetched_dimensions_complete": false
+        },
+        {
+          "country_code": "VIR",
+          "year": 2020,
+          "workbook_non_null": 30,
+          "api_non_null": 30,
+          "matched": 30,
+          "workbook_absent": 6,
+          "api_absent": 0,
+          "workbook_null": 0,
+          "api_null": 6,
+          "complete_36_field_parity": false,
+          "missing_dimensions": "VA",
+          "scored_dimensions_complete": true,
+          "fetched_dimensions_complete": false
+        },
+        {
+          "country_code": "VIR",
+          "year": 2021,
+          "workbook_non_null": 30,
+          "api_non_null": 30,
+          "matched": 30,
+          "workbook_absent": 6,
+          "api_absent": 0,
+          "workbook_null": 0,
+          "api_null": 6,
+          "complete_36_field_parity": false,
+          "missing_dimensions": "VA",
+          "scored_dimensions_complete": true,
+          "fetched_dimensions_complete": false
+        },
+        {
+          "country_code": "VIR",
+          "year": 2022,
+          "workbook_non_null": 30,
+          "api_non_null": 30,
+          "matched": 30,
+          "workbook_absent": 6,
+          "api_absent": 0,
+          "workbook_null": 0,
+          "api_null": 6,
+          "complete_36_field_parity": false,
+          "missing_dimensions": "VA",
+          "scored_dimensions_complete": true,
+          "fetched_dimensions_complete": false
+        },
+        {
+          "country_code": "VIR",
+          "year": 2023,
+          "workbook_non_null": 30,
+          "api_non_null": 30,
+          "matched": 30,
+          "workbook_absent": 6,
+          "api_absent": 0,
+          "workbook_null": 0,
+          "api_null": 6,
+          "complete_36_field_parity": false,
+          "missing_dimensions": "VA",
+          "scored_dimensions_complete": true,
+          "fetched_dimensions_complete": false
+        },
+        {
+          "country_code": "VIR",
+          "year": 2024,
+          "workbook_non_null": 30,
+          "api_non_null": 30,
+          "matched": 30,
+          "workbook_absent": 6,
+          "api_absent": 0,
+          "workbook_null": 0,
+          "api_null": 6,
+          "complete_36_field_parity": false,
+          "missing_dimensions": "VA",
+          "scored_dimensions_complete": true,
+          "fetched_dimensions_complete": false
+        }
+      ]
+    },
+    "latest": {
+      "years": [
+        2025,
+        2025
+      ],
+      "country_years": 216,
+      "complete_country_years": 206,
+      "scored_dimensions_complete_country_years": 213,
+      "fetched_dimensions_complete_country_years": 206,
+      "incomplete": [
+        {
+          "country_code": "AIA",
+          "year": 2025,
+          "workbook_non_null": 30,
+          "api_non_null": 30,
+          "matched": 30,
+          "workbook_absent": 6,
+          "api_absent": 0,
+          "workbook_null": 0,
+          "api_null": 6,
+          "complete_36_field_parity": false,
+          "missing_dimensions": "VA",
+          "scored_dimensions_complete": true,
+          "fetched_dimensions_complete": false
+        },
+        {
+          "country_code": "ANT",
+          "year": 2025,
+          "workbook_non_null": 0,
+          "api_non_null": 0,
+          "matched": 0,
+          "workbook_absent": 36,
+          "api_absent": 0,
+          "workbook_null": 0,
+          "api_null": 36,
+          "complete_36_field_parity": false,
+          "missing_dimensions": "CC;GE;PV;RL;RQ;VA",
+          "scored_dimensions_complete": false,
+          "fetched_dimensions_complete": false
+        },
+        {
+          "country_code": "ASM",
+          "year": 2025,
+          "workbook_non_null": 30,
+          "api_non_null": 30,
+          "matched": 30,
+          "workbook_absent": 6,
+          "api_absent": 0,
+          "workbook_null": 0,
+          "api_null": 6,
+          "complete_36_field_parity": false,
+          "missing_dimensions": "VA",
+          "scored_dimensions_complete": true,
+          "fetched_dimensions_complete": false
+        },
+        {
+          "country_code": "BMU",
+          "year": 2025,
+          "workbook_non_null": 30,
+          "api_non_null": 30,
+          "matched": 30,
+          "workbook_absent": 6,
+          "api_absent": 0,
+          "workbook_null": 0,
+          "api_null": 6,
+          "complete_36_field_parity": false,
+          "missing_dimensions": "VA",
+          "scored_dimensions_complete": true,
+          "fetched_dimensions_complete": false
+        },
+        {
+          "country_code": "GUM",
+          "year": 2025,
+          "workbook_non_null": 30,
+          "api_non_null": 30,
+          "matched": 30,
+          "workbook_absent": 6,
+          "api_absent": 0,
+          "workbook_null": 0,
+          "api_null": 6,
+          "complete_36_field_parity": false,
+          "missing_dimensions": "VA",
+          "scored_dimensions_complete": true,
+          "fetched_dimensions_complete": false
+        },
+        {
+          "country_code": "MTQ",
+          "year": 2025,
+          "workbook_non_null": 30,
+          "api_non_null": 30,
+          "matched": 30,
+          "workbook_absent": 6,
+          "api_absent": 0,
+          "workbook_null": 0,
+          "api_null": 6,
+          "complete_36_field_parity": false,
+          "missing_dimensions": "VA",
+          "scored_dimensions_complete": true,
+          "fetched_dimensions_complete": false
+        },
+        {
+          "country_code": "NCL",
+          "year": 2025,
+          "workbook_non_null": 24,
+          "api_non_null": 24,
+          "matched": 24,
+          "workbook_absent": 12,
+          "api_absent": 0,
+          "workbook_null": 0,
+          "api_null": 12,
+          "complete_36_field_parity": false,
+          "missing_dimensions": "GE;RQ",
+          "scored_dimensions_complete": false,
+          "fetched_dimensions_complete": false
+        },
+        {
+          "country_code": "PYF",
+          "year": 2025,
+          "workbook_non_null": 24,
+          "api_non_null": 24,
+          "matched": 24,
+          "workbook_absent": 12,
+          "api_absent": 0,
+          "workbook_null": 0,
+          "api_null": 12,
+          "complete_36_field_parity": false,
+          "missing_dimensions": "GE;RQ",
+          "scored_dimensions_complete": false,
+          "fetched_dimensions_complete": false
+        },
+        {
+          "country_code": "REU",
+          "year": 2025,
+          "workbook_non_null": 30,
+          "api_non_null": 30,
+          "matched": 30,
+          "workbook_absent": 6,
+          "api_absent": 0,
+          "workbook_null": 0,
+          "api_null": 6,
+          "complete_36_field_parity": false,
+          "missing_dimensions": "VA",
+          "scored_dimensions_complete": true,
+          "fetched_dimensions_complete": false
+        },
+        {
+          "country_code": "VIR",
+          "year": 2025,
+          "workbook_non_null": 30,
+          "api_non_null": 30,
+          "matched": 30,
+          "workbook_absent": 6,
+          "api_absent": 0,
+          "workbook_null": 0,
+          "api_null": 6,
+          "complete_36_field_parity": false,
+          "missing_dimensions": "VA",
+          "scored_dimensions_complete": true,
+          "fetched_dimensions_complete": false
+        }
+      ]
+    }
+  },
+  "coverage_csv_sha256": "2aa7e1804d84f7a57f8158f8f48c735f84fcbc3a5d2cde1ad7916c75fa8f449e",
+  "country_summary_sha256": "1e69b5cea50b3a0618006c7739566fdb65f0094151b994edc3e724315bf88494"
+}
