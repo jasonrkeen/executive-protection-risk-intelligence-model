@@ -1,0 +1,21 @@
+{
+  "data_class": "RESEARCH_CONSUMER_VALIDATION_METADATA_ONLY",
+  "adapter_receipt_canonical_sha256": "de487b19798da3e0bd2e0dc024ef9a3ed3b7dc4afa3a0efa58adb6888af445fb",
+  "consumer_config_canonical_sha256": "f54b868a5af1ca6a61f8990aab3eb89803b9bfe1d4b5888bdec6accc0f660dd4",
+  "consumer_module_sha256_lf": "f9d91967a65367291c6d94f5833c8d656149170f16cb3d2eaab3746048481b48",
+  "research_cases_sha256": "dd7bce7c7fdd18257dc6bbd6a4d3c5d5374e500e09c8f0a6d0648736f89b8770",
+  "case_count": 1296,
+  "eligible_cases": 1065,
+  "withheld_cases": 231,
+  "numeric_dimension_bundles": 4260,
+  "decisions": {
+    "RESEARCH_ELIGIBLE_EXACT_YEAR": 852,
+    "RESEARCH_ELIGIBLE_LAGGED": 213,
+    "WITHHELD_NO_COMMON_BUNDLE": 12,
+    "WITHHELD_STALE_COMMON_BUNDLE": 219
+  },
+  "numeric_values_published_in_receipt": false,
+  "production_use_authorized": false,
+  "point_in_time_backtest_validated": false,
+  "acled": "DOCUMENTATION_ONLY_NO_REQUESTS"
+}

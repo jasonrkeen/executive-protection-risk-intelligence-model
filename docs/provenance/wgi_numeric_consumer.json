@@ -1,0 +1,9 @@
+{
+  "adapter_receipt_canonical_sha256": "de487b19798da3e0bd2e0dc024ef9a3ed3b7dc4afa3a0efa58adb6888af445fb",
+  "required_dimensions": [
+    "PV",
+    "RL",
+    "CC",
+    "GE"
+  ]
+}

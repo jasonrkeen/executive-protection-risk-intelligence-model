@@ -1714,3 +1714,9 @@ The isolated [WGI numeric adapter](docs/WGI_NUMERIC_ADAPTER.md) applies that gat
 to retained aggregate API values while preserving estimate/score units,
 uncertainty fields, provenance and observation years. Numeric outputs remain
 local research artifacts and withheld cases export no values.
+
+The isolated [WGI research-only numeric consumer](docs/WGI_NUMERIC_CONSUMER.md)
+retains every adapter decision, represents withheld numeric payloads as null,
+and carries complete eligible dimension records into local research cases.
+It preserves units, uncertainty, observation years and provenance without
+creating an operational score or changing baseline behavior.
