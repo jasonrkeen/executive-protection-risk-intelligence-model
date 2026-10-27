@@ -1709,3 +1709,8 @@ The [WGI missingness and stale-observation policy candidate](docs/WGI_MISSINGNES
 adds an offline common-year coverage gate with strict same-year and explicitly
 lagged research cases. It preserves observation years, withholds incompatible
 bundles, and does not authorize production scoring.
+
+The isolated [WGI numeric adapter](docs/WGI_NUMERIC_ADAPTER.md) applies that gate
+to retained aggregate API values while preserving estimate/score units,
+uncertainty fields, provenance and observation years. Numeric outputs remain
+local research artifacts and withheld cases export no values.
