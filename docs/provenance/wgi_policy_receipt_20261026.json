@@ -1,0 +1,92 @@
+{
+  "data_class": "RESEARCH_POLICY_ON_REAL_COVERAGE_METADATA",
+  "policy_status": "PROPOSED_NOT_PROVIDER_RULE_OR_PRODUCTION_APPROVAL",
+  "assessment_date": "2026-10-26",
+  "policies": [
+    {
+      "name": "STRICT_SAME_YEAR",
+      "max_age_years": 0,
+      "required_dimensions": [
+        "PV",
+        "RL",
+        "CC",
+        "GE"
+      ]
+    },
+    {
+      "name": "ONE_YEAR_LAG_SENSITIVITY",
+      "max_age_years": 1,
+      "required_dimensions": [
+        "PV",
+        "RL",
+        "CC",
+        "GE"
+      ]
+    }
+  ],
+  "summary": [
+    {
+      "policy": "STRICT_SAME_YEAR",
+      "target_year": 2024,
+      "decisions": {
+        "RESEARCH_ELIGIBLE_EXACT_YEAR": 213,
+        "WITHHELD_STALE_COMMON_BUNDLE": 1,
+        "WITHHELD_NO_COMMON_BUNDLE": 2
+      }
+    },
+    {
+      "policy": "STRICT_SAME_YEAR",
+      "target_year": 2025,
+      "decisions": {
+        "RESEARCH_ELIGIBLE_EXACT_YEAR": 213,
+        "WITHHELD_STALE_COMMON_BUNDLE": 1,
+        "WITHHELD_NO_COMMON_BUNDLE": 2
+      }
+    },
+    {
+      "policy": "STRICT_SAME_YEAR",
+      "target_year": 2026,
+      "decisions": {
+        "WITHHELD_STALE_COMMON_BUNDLE": 214,
+        "WITHHELD_NO_COMMON_BUNDLE": 2
+      }
+    },
+    {
+      "policy": "ONE_YEAR_LAG_SENSITIVITY",
+      "target_year": 2024,
+      "decisions": {
+        "RESEARCH_ELIGIBLE_EXACT_YEAR": 213,
+        "WITHHELD_STALE_COMMON_BUNDLE": 1,
+        "WITHHELD_NO_COMMON_BUNDLE": 2
+      }
+    },
+    {
+      "policy": "ONE_YEAR_LAG_SENSITIVITY",
+      "target_year": 2025,
+      "decisions": {
+        "RESEARCH_ELIGIBLE_EXACT_YEAR": 213,
+        "WITHHELD_STALE_COMMON_BUNDLE": 1,
+        "WITHHELD_NO_COMMON_BUNDLE": 2
+      }
+    },
+    {
+      "policy": "ONE_YEAR_LAG_SENSITIVITY",
+      "target_year": 2026,
+      "decisions": {
+        "RESEARCH_ELIGIBLE_LAGGED": 213,
+        "WITHHELD_STALE_COMMON_BUNDLE": 1,
+        "WITHHELD_NO_COMMON_BUNDLE": 2
+      }
+    }
+  ],
+  "parity_receipt_canonical_sha256": "3bf006f49751e56f3b88b292928acdf2a33b711040627048337c93ea9cdd9ca0",
+  "coverage_sha256": "2aa7e1804d84f7a57f8158f8f48c735f84fcbc3a5d2cde1ad7916c75fa8f449e",
+  "config_canonical_sha256": "ae6794c091c8a42761876bc86a54d85d6aa0fec9d56b1c2fe12ba275fc93dee1",
+  "module_sha256_lf": "b9c5c9faaaaacf57447d5215212c9d8178c254c441c975983863569b8ca8dc79",
+  "point_in_time_backtest_validated": false,
+  "acled": "DOCUMENTATION_ONLY_NO_REQUESTS",
+  "numeric_governance_values_exported": false,
+  "production_use_authorized": false,
+  "decision_csv_sha256": "6411d04bb12942793e61deb5f46e637fbf1a9b4ad7f8365c81cca3e8e34be8ae",
+  "summary_csv_sha256": "ab3f9ed305b17dbd93d0f653f9993780489a6811e2bd847bfe8550a4b718046b"
+}

@@ -1,0 +1,25 @@
+{
+  "assessment_date": "2026-10-26",
+  "target_years": [
+    2024,
+    2025,
+    2026
+  ],
+  "required_dimensions": [
+    "PV",
+    "RL",
+    "CC",
+    "GE"
+  ],
+  "policies": [
+    {
+      "name": "STRICT_SAME_YEAR",
+      "max_age_years": 0
+    },
+    {
+      "name": "ONE_YEAR_LAG_SENSITIVITY",
+      "max_age_years": 1
+    }
+  ],
+  "parity_receipt_canonical_sha256": "3bf006f49751e56f3b88b292928acdf2a33b711040627048337c93ea9cdd9ca0"
+}

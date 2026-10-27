@@ -1704,3 +1704,8 @@ The follow-on [WGI workbook/API parity audit](docs/WGI_WORKBOOK_API_PARITY.md)
 compares all six aggregate dimensions for the provider's 216-economy universe,
 reports missing country-years separately, and supports hashed offline replay.
 It leaves the baseline and ACLED integration unchanged.
+
+The [WGI missingness and stale-observation policy candidate](docs/WGI_MISSINGNESS_STALENESS_POLICY.md)
+adds an offline common-year coverage gate with strict same-year and explicitly
+lagged research cases. It preserves observation years, withholds incompatible
+bundles, and does not authorize production scoring.
