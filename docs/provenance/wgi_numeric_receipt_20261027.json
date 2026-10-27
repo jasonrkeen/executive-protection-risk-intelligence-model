@@ -1,0 +1,87 @@
+{
+  "data_class": "NUMERIC_ADAPTER_VALIDATION_METADATA_ONLY",
+  "implementation_date": "2026-10-27",
+  "policy_assessment_date": "2026-10-26",
+  "units": {
+    "EST": "governance_estimate",
+    "SE": "governance_estimate",
+    "SR": "source_count",
+    "SC": "fixed_reference_score_0_100",
+    "SC_LB": "fixed_reference_score_0_100",
+    "SC_UB": "fixed_reference_score_0_100"
+  },
+  "policy_config_canonical_sha256": "ae6794c091c8a42761876bc86a54d85d6aa0fec9d56b1c2fe12ba275fc93dee1",
+  "parity_receipt_canonical_sha256": "3bf006f49751e56f3b88b292928acdf2a33b711040627048337c93ea9cdd9ca0",
+  "coverage_sha256": "2aa7e1804d84f7a57f8158f8f48c735f84fcbc3a5d2cde1ad7916c75fa8f449e",
+  "manifest_canonical_sha256": "b27db2eec360bedaec74faf3da2a8908edff76b074802884a30b1ad1345e573c",
+  "adapter_module_sha256_lf": "1d7fa507e3eaf4436ba2f6ef5cdfbb2dc3f53d3a36f7ec8998624c6759e1491f",
+  "summary": [
+    {
+      "policy": "STRICT_SAME_YEAR",
+      "target_year": 2024,
+      "decisions": {
+        "RESEARCH_ELIGIBLE_EXACT_YEAR": 213,
+        "WITHHELD_STALE_COMMON_BUNDLE": 1,
+        "WITHHELD_NO_COMMON_BUNDLE": 2
+      },
+      "numeric_dimension_bundles": 852
+    },
+    {
+      "policy": "STRICT_SAME_YEAR",
+      "target_year": 2025,
+      "decisions": {
+        "RESEARCH_ELIGIBLE_EXACT_YEAR": 213,
+        "WITHHELD_STALE_COMMON_BUNDLE": 1,
+        "WITHHELD_NO_COMMON_BUNDLE": 2
+      },
+      "numeric_dimension_bundles": 852
+    },
+    {
+      "policy": "STRICT_SAME_YEAR",
+      "target_year": 2026,
+      "decisions": {
+        "WITHHELD_STALE_COMMON_BUNDLE": 214,
+        "WITHHELD_NO_COMMON_BUNDLE": 2
+      },
+      "numeric_dimension_bundles": 0
+    },
+    {
+      "policy": "ONE_YEAR_LAG_SENSITIVITY",
+      "target_year": 2024,
+      "decisions": {
+        "RESEARCH_ELIGIBLE_EXACT_YEAR": 213,
+        "WITHHELD_STALE_COMMON_BUNDLE": 1,
+        "WITHHELD_NO_COMMON_BUNDLE": 2
+      },
+      "numeric_dimension_bundles": 852
+    },
+    {
+      "policy": "ONE_YEAR_LAG_SENSITIVITY",
+      "target_year": 2025,
+      "decisions": {
+        "RESEARCH_ELIGIBLE_EXACT_YEAR": 213,
+        "WITHHELD_STALE_COMMON_BUNDLE": 1,
+        "WITHHELD_NO_COMMON_BUNDLE": 2
+      },
+      "numeric_dimension_bundles": 852
+    },
+    {
+      "policy": "ONE_YEAR_LAG_SENSITIVITY",
+      "target_year": 2026,
+      "decisions": {
+        "RESEARCH_ELIGIBLE_LAGGED": 213,
+        "WITHHELD_STALE_COMMON_BUNDLE": 1,
+        "WITHHELD_NO_COMMON_BUNDLE": 2
+      },
+      "numeric_dimension_bundles": 852
+    }
+  ],
+  "numeric_dimension_bundles": 4260,
+  "country_policy_decisions": 1296,
+  "numeric_values_published_in_receipt": false,
+  "production_use_authorized": false,
+  "point_in_time_backtest_validated": false,
+  "acled": "DOCUMENTATION_ONLY_NO_REQUESTS",
+  "numeric_bundles.jsonl_sha256": "5aa9835f7af9888f5c89afcab8b33ca56cf13803a84c24c64df1e7ee58aa609c",
+  "policy_decisions.jsonl_sha256": "a4fa007cb360d3e4de11895b52d74b95d1cc3c3e346c12b3e29af2fda02f9873"
+}
