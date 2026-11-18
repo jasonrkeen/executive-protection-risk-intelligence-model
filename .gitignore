@@ -90,3 +90,4 @@ outputs/tables/
 !outputs/country_profiles/
 !outputs/country_profiles/*.md
 !outputs/country_profiles/*.csv
+outputs/sample/

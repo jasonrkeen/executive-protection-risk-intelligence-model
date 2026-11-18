@@ -1,0 +1,26 @@
+country,country_code,civil_unrest_political_violence_score,governance_risk_score,violent_crime_score,energy_exposure_score,recent_risk_momentum_score,total_acled_events,total_fatalities,violent_political_events,fatal_events,high_fatality_events,unique_event_locations,unique_coordinate_pairs,recent_event_momentum,recent_fatality_momentum
+Synthetic Jurisdiction 01,SYN01,10,10,10,10,10,0,0,0,0,0,0,0,0,0
+Synthetic Jurisdiction 02,SYN02,17,21,27,29,33,0,0,0,0,0,0,0,0,0
+Synthetic Jurisdiction 03,SYN03,24,32,44,48,56,0,0,0,0,0,0,0,0,0
+Synthetic Jurisdiction 04,SYN04,31,43,61,67,79,0,0,0,0,0,0,0,0,0
+Synthetic Jurisdiction 05,SYN05,38,54,78,86,21,0,0,0,0,0,0,0,0,0
+Synthetic Jurisdiction 06,SYN06,45,65,14,24,44,0,0,0,0,0,0,0,0,0
+Synthetic Jurisdiction 07,SYN07,52,76,31,43,67,0,0,0,0,0,0,0,0,0
+Synthetic Jurisdiction 08,SYN08,59,87,48,62,90,0,0,0,0,0,0,0,0,0
+Synthetic Jurisdiction 09,SYN09,66,17,65,81,32,0,0,0,0,0,0,0,0,0
+Synthetic Jurisdiction 10,SYN10,73,28,82,19,55,0,0,0,0,0,0,0,0,0
+Synthetic Jurisdiction 11,SYN11,80,39,18,38,78,0,0,0,0,0,0,0,0,0
+Synthetic Jurisdiction 12,SYN12,87,50,35,57,20,0,0,0,0,0,0,0,0,0
+Synthetic Jurisdiction 13,SYN13,13,61,52,76,43,0,0,0,0,0,0,0,0,0
+Synthetic Jurisdiction 14,SYN14,20,72,69,14,66,0,0,0,0,0,0,0,0,0
+Synthetic Jurisdiction 15,SYN15,27,83,86,33,89,0,0,0,0,0,0,0,0,0
+Synthetic Jurisdiction 16,SYN16,34,13,22,52,31,0,0,0,0,0,0,0,0,0
+Synthetic Jurisdiction 17,SYN17,41,24,39,71,54,0,0,0,0,0,0,0,0,0
+Synthetic Jurisdiction 18,SYN18,48,35,56,90,77,0,0,0,0,0,0,0,0,0
+Synthetic Jurisdiction 19,SYN19,55,46,73,28,19,0,0,0,0,0,0,0,0,0
+Synthetic Jurisdiction 20,SYN20,62,57,90,47,42,0,0,0,0,0,0,0,0,0
+Synthetic Jurisdiction 21,SYN21,69,68,26,66,65,0,0,0,0,0,0,0,0,0
+Synthetic Jurisdiction 22,SYN22,76,79,43,85,88,0,0,0,0,0,0,0,0,0
+Synthetic Jurisdiction 23,SYN23,83,90,60,23,30,0,0,0,0,0,0,0,0,0
+Synthetic Jurisdiction 24,SYN24,90,20,77,42,53,0,0,0,0,0,0,0,0,0
+Synthetic Jurisdiction 25,SYN25,16,31,13,61,76,0,0,0,0,0,0,0,0,0

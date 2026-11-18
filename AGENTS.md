@@ -30,7 +30,9 @@ python -m src.forward_risk_model
 python -m src.acled_forecast_update --force-refresh
 python -m streamlit run app.py
 ```
-- Tests: 2 Python test file(s) under `tests/`; framework appears to be unittest. Add/update tests with any logic change.
+- Use Python 3.13.5 and pinned requirements. Install `requirements-dev.txt` and run `python -m pytest -q` for all existing and sample tests.
+- Offline fictional country sample: `python sample_run.py`. It does not satisfy or replace trip-level preflight gates.
+- Preserve original model/test/artifact hashes unless changes are explicitly authorized.
 - CI workflows exist in `.github/workflows/`; keep them passing.
 
 ## Conventions observed

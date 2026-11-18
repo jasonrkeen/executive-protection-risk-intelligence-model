@@ -1,0 +1,433 @@
+{
+  "reference_commit": "c818003456b85c26706b7cf6279fcd2b40724d39",
+  "files": {
+    "app.py": {
+      "text_lf": true,
+      "sha256": "d97e79108f0b3d482f2ff1dc247d9effddc0f5e8851080dfd5408094b090b3de"
+    },
+    "data/raw/protective_intelligence_decision_rules.csv": {
+      "text_lf": true,
+      "sha256": "c2258fccfc8a6ab74bf256f408a5e02056bb28648735e9247eba0515576f5f13"
+    },
+    "docs/PREFLIGHT.md": {
+      "text_lf": true,
+      "sha256": "fc28e8e8cfdf48752fedede069db9830c089832e85c2a9e81b4e58dfec20dedb"
+    },
+    "docs/RESIDUAL_RISK_REPLACEMENT.md": {
+      "text_lf": true,
+      "sha256": "e139979fdc3ac6dec9baa2c9d3bc24e48eec1b417ba25917edd0e8f8b4a76d86"
+    },
+    "examples/protective_capacity_inputs_template.csv": {
+      "text_lf": true,
+      "sha256": "dad79132863e59e05c6040e8cd4d7def27996bb088453374a85e07eec475665d"
+    },
+    "examples/protective_trip_inputs_template.csv": {
+      "text_lf": true,
+      "sha256": "e421e3f115373a6481225ae097a438b9450051d0d347a3dde9156145a35ab5b6"
+    },
+    "examples/rpr1_evidence_template.json": {
+      "text_lf": true,
+      "sha256": "3369c4cd94b1ec15421aa13aaca9f6360de3d8211b9d2759f6d30a7dde4d12d2"
+    },
+    "outputs/charts/civil_unrest_vs_ep_risk.png": {
+      "text_lf": false,
+      "sha256": "770a6cfed4a2e9e09f12399fe7e87bc11ba9b0979ba06a8ecad663415bb61b91"
+    },
+    "outputs/charts/energy_exposure_vs_ep_risk.png": {
+      "text_lf": false,
+      "sha256": "c007f9db1af249625e449d046d2683d44e6771a9ecc669621da74324742955de"
+    },
+    "outputs/charts/ep_risk_bucket_distribution.png": {
+      "text_lf": false,
+      "sha256": "51a130a6db9aff191e914f356aef1b78268b081b93c57195798ead074dd19ddd"
+    },
+    "outputs/charts/ep_risk_component_scores.png": {
+      "text_lf": false,
+      "sha256": "f98cd3a3ff1d31dc4c9a5ea21867538743d73247e566598732880ea9875d6856"
+    },
+    "outputs/charts/executive_protection_intelligence_signals.png": {
+      "text_lf": false,
+      "sha256": "3cc574c4a49d1b971b0a70429aab9cec5566846526b05a09e02539d3863e44a0"
+    },
+    "outputs/charts/forward_2026_acled_event_momentum.png": {
+      "text_lf": false,
+      "sha256": "3f13321ef0bc0a181be682a7f8f2720de9d10320d28fc6069f84c69dff78f5d5"
+    },
+    "outputs/charts/forward_2026_bucket_distribution.png": {
+      "text_lf": false,
+      "sha256": "f6c2c31ee04022f7a0618d27c530d8bdee23b8d4e29c9f8de2f6a0c672219128"
+    },
+    "outputs/charts/forward_2026_score_changes.png": {
+      "text_lf": false,
+      "sha256": "fadfe1aadc19068d2305fbfe95c762dd596950dbff70602418745369ae645b6b"
+    },
+    "outputs/charts/forward_2026_top_risk_countries.png": {
+      "text_lf": false,
+      "sha256": "13b6aa0eefe8e88ec5986315d53f82324b66b6cfb19b67665a7b29ebca65bccf"
+    },
+    "outputs/charts/governance_risk_vs_ep_risk.png": {
+      "text_lf": false,
+      "sha256": "583fecbab9b3651728d00755934b21eceb8c90716b52fcfdc93ec349fe4b0455"
+    },
+    "outputs/charts/model_data_coverage_distribution.png": {
+      "text_lf": false,
+      "sha256": "b47478cb33506e45a3a03d73caf771b13c7b58f72394734d939f02471fa17bbc"
+    },
+    "outputs/charts/monte_carlo_score_distribution.png": {
+      "text_lf": false,
+      "sha256": "f7b0780ba57b2e06d353c9ce99f05b3488071a849b3b9c8306cee089f1287f16"
+    },
+    "outputs/charts/monte_carlo_top20_probability.png": {
+      "text_lf": false,
+      "sha256": "49a93db2cf6c48824ecde94ccd6a885d4d461b28520a3d982afec5fa86ba38c8"
+    },
+    "outputs/charts/recent_momentum_vs_ep_risk.png": {
+      "text_lf": false,
+      "sha256": "5e54e5122c5badad1f5c3b4f49a927c9fb3833a3269d08ebfe8d42852375c258"
+    },
+    "outputs/charts/regional_spillover_top_countries.png": {
+      "text_lf": false,
+      "sha256": "516dd6bb3a4bf1f2f2504562a2d0f5558e6cba27e54612df30a6d2aa9c82032d"
+    },
+    "outputs/charts/sensitivity_top20_overlap.png": {
+      "text_lf": false,
+      "sha256": "5b5cbbabe035228ea0b0ea3711973b4d4cf97033e6ebf82475aebacd9dcbd77d"
+    },
+    "outputs/charts/severity_calibration_uplifts.png": {
+      "text_lf": false,
+      "sha256": "f0ba4b5f91578830c86954ea632d4d1b708a757462e1b1bc2acf95bdc4541558"
+    },
+    "outputs/charts/top_15_city_risk_component_breakdown.png": {
+      "text_lf": false,
+      "sha256": "a8570507b58c19e0a2b5c816b0d8032a5e6cf4de2cdb7b56d79c1b6f64751470"
+    },
+    "outputs/charts/top_20_city_ep_risk_rankings.png": {
+      "text_lf": false,
+      "sha256": "7e1dc55b311e91476fa9cf76cab9af95d9055374fd57a74e9bc41ba9187f7a6e"
+    },
+    "outputs/charts/top_acled_event_volume_countries.png": {
+      "text_lf": false,
+      "sha256": "a9a0c9cd98ddb45aab835c64764eabdc087bff14c3a4ca888e1573880bb07202"
+    },
+    "outputs/charts/top_acled_fatality_countries.png": {
+      "text_lf": false,
+      "sha256": "587c009121940be9bef80d85e78410956deaa97616a21f7eecf7e7f64b36fd18"
+    },
+    "outputs/charts/top_ep_risk_countries.png": {
+      "text_lf": false,
+      "sha256": "76c8de8c3d3f8c96e10d59888da9d6d39087aabf8193808e7e719c0e8ba97713"
+    },
+    "outputs/charts/violent_crime_vs_ep_risk.png": {
+      "text_lf": false,
+      "sha256": "148ba2b74532a7dee85793be39d06327423f5f6884f36a68be1b6731cb607d3f"
+    },
+    "outputs/charts/weighted_vs_final_ep_risk_score.png": {
+      "text_lf": false,
+      "sha256": "3487e479838f8c6a9e1a302d1b2750f16b2c68e74f8069b56df0168b73d59aae"
+    },
+    "outputs/maps/city_ep_risk_map.html": {
+      "text_lf": true,
+      "sha256": "b001c5fccbe3d461ba06b86bb3897e911c77870b6a4dcff892e7fc7b4f927e58"
+    },
+    "outputs/reports/country_profiles/angola.md": {
+      "text_lf": true,
+      "sha256": "8454b3d101774b4a25f0ec27d18a9673ec04c4952b5f2e891f3269012d3f4c15"
+    },
+    "outputs/reports/country_profiles/azerbaijan.md": {
+      "text_lf": true,
+      "sha256": "09b0a59f97e8c28b8f8e6348b2bec38db757daf2b7d8132b40eb0bc9fa1a88bc"
+    },
+    "outputs/reports/country_profiles/brazil.md": {
+      "text_lf": true,
+      "sha256": "17a47d99a8a87a1d25603b97c47c0349b948005977d7cb8de63b99e5c0f19d35"
+    },
+    "outputs/reports/country_profiles/colombia.md": {
+      "text_lf": true,
+      "sha256": "9c4aa462ba5bc3be31cc4cec37d18fa87452359391d27c30adb6ac2ef68842ce"
+    },
+    "outputs/reports/country_profiles/congo_rep.md": {
+      "text_lf": true,
+      "sha256": "7ab6d8806de3abe616f8711067b57cdabbbfe9e87aec14aefcbd2cafa5c1b1c8"
+    },
+    "outputs/reports/country_profiles/ecuador.md": {
+      "text_lf": true,
+      "sha256": "1fb9301a19aafd780287f3125babd13c4784b32597dcd62bea6f50077b9bc406"
+    },
+    "outputs/reports/country_profiles/ethiopia.md": {
+      "text_lf": true,
+      "sha256": "7fa4c56bf2faf00a27bc0357a8fba9d8d84377569d7bc3a26fa4410df228bde9"
+    },
+    "outputs/reports/country_profiles/guyana.md": {
+      "text_lf": true,
+      "sha256": "d2502fd7fd1180565ebebba10b7c4c047bbfb8652de4a37e38a6d1de55762247"
+    },
+    "outputs/reports/country_profiles/haiti.md": {
+      "text_lf": true,
+      "sha256": "b43d5444973035ba47737ac4e111be9e4a3ee6f6830acb70b95549efe073863c"
+    },
+    "outputs/reports/country_profiles/india.md": {
+      "text_lf": true,
+      "sha256": "b60e6322e3ca45f0942c277ad3966b77af66dad3d09e87cc39444793c2f93d4a"
+    },
+    "outputs/reports/country_profiles/iran_islamic_rep.md": {
+      "text_lf": true,
+      "sha256": "e7c1a85905633368dca405d4c2cd532d733fbdfef0fe125321e0b0126418f44b"
+    },
+    "outputs/reports/country_profiles/iraq.md": {
+      "text_lf": true,
+      "sha256": "e1ec2222a5b76e929bb9752844cc11ecfd7838cb1a0e054e03569cf755ca6744"
+    },
+    "outputs/reports/country_profiles/lebanon.md": {
+      "text_lf": true,
+      "sha256": "fc3b305df51b3ab423e0da547ade9b8fe5f9f9b58d4d8f145d211266735210b0"
+    },
+    "outputs/reports/country_profiles/libya.md": {
+      "text_lf": true,
+      "sha256": "20b87a5ec24b95d14c6b22d9b37d4f5378c6b25f013ec81b3483645203adc1ed"
+    },
+    "outputs/reports/country_profiles/mexico.md": {
+      "text_lf": true,
+      "sha256": "7c1b21a575312e8c56eeb39c056b66d765b337311f5ac117a0e7d8ef6abc08fc"
+    },
+    "outputs/reports/country_profiles/myanmar.md": {
+      "text_lf": true,
+      "sha256": "10afa466cd6e2ba909ec84560dd8db9f9678dcea0dc8d82cc686b063b9d36f21"
+    },
+    "outputs/reports/country_profiles/niger.md": {
+      "text_lf": true,
+      "sha256": "1ca7a3a03aed033052e90773836c7ef16356399655fbd5b3ac4e4c327c17b86e"
+    },
+    "outputs/reports/country_profiles/nigeria.md": {
+      "text_lf": true,
+      "sha256": "d25e74171647eecb22b62ebc5da4df489ba9cf827d5ce1c2037d8f1de82ebd37"
+    },
+    "outputs/reports/country_profiles/oman.md": {
+      "text_lf": true,
+      "sha256": "27912f7b7a63f4e8881188dcb6c7a4e60e4e182528ca1c8458614b79ca60d629"
+    },
+    "outputs/reports/country_profiles/pakistan.md": {
+      "text_lf": true,
+      "sha256": "14b2e58f4cbaa50ccbb8d09b6a6c3e1637e79ebdfa943a1f550778e2244ba5d3"
+    },
+    "outputs/reports/country_profiles/saudi_arabia.md": {
+      "text_lf": true,
+      "sha256": "670260c0cabc9f91247529265dd24e0fbae159d638b0d3e9f04cccd79635b5ce"
+    },
+    "outputs/reports/country_profiles/sudan.md": {
+      "text_lf": true,
+      "sha256": "44fe437af78e16678cfb56df122f2e495b3913241d6bc72dff6e9ec33e223099"
+    },
+    "outputs/reports/country_profiles/ukraine.md": {
+      "text_lf": true,
+      "sha256": "a3fd4fe2b56377df7d782f6aad4827e77f901aa8c7751f2b695a2d2a6f099db3"
+    },
+    "outputs/reports/executive_protection_risk_intelligence_report.pdf": {
+      "text_lf": false,
+      "sha256": "65fa960e3871032b9f2845f82ba0a878a8f9721a0a82e1333305daac68ac35b5"
+    },
+    "outputs/screenshots/dashboard_access_support_proxy.png": {
+      "text_lf": false,
+      "sha256": "0003b3086ade707fa474adcf41ce1f22d4006294b4b601ee3b294cbd43dac0c3"
+    },
+    "outputs/screenshots/dashboard_city_risk_map.png": {
+      "text_lf": false,
+      "sha256": "efa13ba8e1e139ca19dce19938e905c46e12e2b3b03432dc95b574423ea1ce10"
+    },
+    "outputs/screenshots/dashboard_city_risk_rankings.png": {
+      "text_lf": false,
+      "sha256": "1fe236545077586c9562eae943863fdb78f68ae8c3b81b74d9a206543ad376cf"
+    },
+    "outputs/screenshots/dashboard_country_profile.png": {
+      "text_lf": false,
+      "sha256": "3fd93624bf62fe42accf2825e8135dabb83178d88ee08cab28ce7702490821ad"
+    },
+    "outputs/screenshots/dashboard_forward_risk.png": {
+      "text_lf": false,
+      "sha256": "f6b9de00c850666fb7de673b076dadbd62f30c63cc8acb3afe14d1b3aca800ff"
+    },
+    "outputs/screenshots/dashboard_governance.png": {
+      "text_lf": false,
+      "sha256": "3e5db367f840e9f2da886a357a608cbda78e06858fe8f6b6967ccede41ce58b3"
+    },
+    "outputs/screenshots/dashboard_intelligence_signal.png": {
+      "text_lf": false,
+      "sha256": "57caf7bc9bd611dfb647898abba5332e93abeec095d7e3fd9436b68b04c7fa59"
+    },
+    "outputs/screenshots/dashboard_monte_carlo.png": {
+      "text_lf": false,
+      "sha256": "827fcb2a6c40cbdf2a694563c819ef0dcd5c7d3c9cc24025284b2f3b7c40b458"
+    },
+    "outputs/screenshots/dashboard_overview.png": {
+      "text_lf": false,
+      "sha256": "bda389c619a2c5447700c337e9de415d2828062276f0d2ddf4b4491b2de157c9"
+    },
+    "outputs/screenshots/dashboard_pi_posture.png": {
+      "text_lf": false,
+      "sha256": "558a5c96ec0a1431e054096a64ca23ae531dc80352709176e62c6a6afcbb95ab"
+    },
+    "outputs/screenshots/dashboard_rankings.png": {
+      "text_lf": false,
+      "sha256": "cab3f09ad50f0fb07baaaa4a662b47230fc7030ec757be9e2c0d519a2aa512ba"
+    },
+    "outputs/screenshots/dashboard_spillover.png": {
+      "text_lf": false,
+      "sha256": "33c1f68f49f12ef3b62329480c21667d2552afa2e5231396f017072e7c150265"
+    },
+    "src/__init__.py": {
+      "text_lf": true,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "src/access_proxy_layer.py": {
+      "text_lf": true,
+      "sha256": "fac215fa0c8f782b9cfc1bce36d5329c1af6563444d1862975057d4b2654c806"
+    },
+    "src/acled_api.py": {
+      "text_lf": true,
+      "sha256": "1906d44ba879feaaba9f13d8a7ddf79c846631cdab485a819b4bfac632dd692b"
+    },
+    "src/acled_city_processing.py": {
+      "text_lf": true,
+      "sha256": "82dbf82b7c719ce39525297766531a253ffe55b05ae94c483e50b54c14a484f9"
+    },
+    "src/acled_forecast_update.py": {
+      "text_lf": true,
+      "sha256": "27928db80692196750be84caf580dfdf2ffa91f46e29d2759a52adb037663881"
+    },
+    "src/acled_processing.py": {
+      "text_lf": true,
+      "sha256": "e4d441b32d2042d102bf64430abee0bd016090fab352ba4260be5f702e72032a"
+    },
+    "src/change_detection.py": {
+      "text_lf": true,
+      "sha256": "aab2eb4c930e2874098076368cbc16fdb125deb19848f9b3de6e736e628c9d61"
+    },
+    "src/city_map_generator.py": {
+      "text_lf": true,
+      "sha256": "6acd833bcd10d2b0e79c09423d2f14b89424939afc51538f0a73e36baa16fc86"
+    },
+    "src/city_visualization.py": {
+      "text_lf": true,
+      "sha256": "37aa1457b62e858e3fd26a9fc2253a66a5bb9533349907c4c1f924b4e67de45b"
+    },
+    "src/config.py": {
+      "text_lf": true,
+      "sha256": "6a115414f25bb54a2e4d8aaeb87f32e44b02ee1de69e95a1d8fb47557366906a"
+    },
+    "src/country_profile_generator.py": {
+      "text_lf": true,
+      "sha256": "21f8701e6e36e20fb6ab96118b5202d7bf91a0eecf93d354d75bc7f547a563d4"
+    },
+    "src/crime_data.py": {
+      "text_lf": true,
+      "sha256": "ddedceca2f0a5bec32aea4123df6923e07926a271dcc72c0d1eb16f202ce5625"
+    },
+    "src/data_processing.py": {
+      "text_lf": true,
+      "sha256": "b550cd793ad67b58aaad40a8b63354fd56de4fe7aae6420e946eb2dda8e7928e"
+    },
+    "src/energy_exposure.py": {
+      "text_lf": true,
+      "sha256": "acb51bdea5e8b52a63e10cf59c97a824d8aaa0ed71a589d9beb9a8da2cf8344b"
+    },
+    "src/forward_risk_model.py": {
+      "text_lf": true,
+      "sha256": "c04a92c1ab3ceab2f465ed1f742875bb9995c821ab4f2c56cad7f50bb7e79960"
+    },
+    "src/intelligence_signal.py": {
+      "text_lf": true,
+      "sha256": "80a23a188f351f07e262ea7750a288cc9edc5e0ab5d1b9556e9d73ea6d6900cb"
+    },
+    "src/intelligence_validation_layer.py": {
+      "text_lf": true,
+      "sha256": "885a4d54a5c21b9666f46536ee56792b76039af44a584b56cb830d13c4127fdd"
+    },
+    "src/intelligence_validation_views.py": {
+      "text_lf": true,
+      "sha256": "7815266f0bae450ca4cdaa3b973e3110644b2d4d3de20572582100d1ebbc62d9"
+    },
+    "src/main.py": {
+      "text_lf": true,
+      "sha256": "d8644acb36751a9cea338411798a72c7e5a1f08f034dbb5e2d8bc5310514295c"
+    },
+    "src/model_diagnostics.py": {
+      "text_lf": true,
+      "sha256": "81ff56bab94aab4195245bee9010809b69515c05aabd45320d551af2b62a3c07"
+    },
+    "src/model_governance.py": {
+      "text_lf": true,
+      "sha256": "9aca710a843cebc59b4450f7d3f7eeb5058d47fc7797923969270d276a612b04"
+    },
+    "src/monte_carlo_risk_simulation.py": {
+      "text_lf": true,
+      "sha256": "274cb7844983931cfbf76372007ad8d5136ba3fbe345c63034e0a0f5073f7ed4"
+    },
+    "src/preflight.py": {
+      "text_lf": true,
+      "sha256": "b09de65be46b6ac4b98a9ed62d5970dabd10482352ecd71bb6f25f74ef60d294"
+    },
+    "src/preflight_config.py": {
+      "text_lf": true,
+      "sha256": "00f0623bf57b362d14547bd15ec216d9545e0a9d796637bc9f6b9328ab43d8bc"
+    },
+    "src/protective_intelligence_decision_layer.py": {
+      "text_lf": true,
+      "sha256": "1e6ad8f1c64448e29797abd246f0721c5bcf938a61b6a42bebe801d67490210b"
+    },
+    "src/protective_intelligence_score.py": {
+      "text_lf": true,
+      "sha256": "aea79fc2202c018db8be3b02efffa173508d4260dc2e2c20155bcc4660be6166"
+    },
+    "src/regional_spillover.py": {
+      "text_lf": true,
+      "sha256": "aa820533fdb458a9638f93d5472a682f11f54a8cb7d60d1e836fb27bbf826415"
+    },
+    "src/report_generator.py": {
+      "text_lf": true,
+      "sha256": "4ed7c2a688aedb7a44d0d4810fb8b1c919dcee8924878d375293edb46c821dbc"
+    },
+    "src/residual_protective_risk.py": {
+      "text_lf": true,
+      "sha256": "81de752e43f9e4cd7c2357954aa078d8059b7fe5dc1e4999086eec0930574380"
+    },
+    "src/residual_risk_views.py": {
+      "text_lf": true,
+      "sha256": "eee7f24f5501b493f9b1a22271944a7c32d3b3b736dbaed1d4f3ab462464f625"
+    },
+    "src/risk_scoring.py": {
+      "text_lf": true,
+      "sha256": "97c7f55462086d5a97857f012b8ee139f43241dfb54ddb66eb607bda01764440"
+    },
+    "src/scenario_analysis.py": {
+      "text_lf": true,
+      "sha256": "92ab78fc496bf2539739021bbb9364d431f607fae09244ba92847acf4a44d6a2"
+    },
+    "src/sensitivity_analysis.py": {
+      "text_lf": true,
+      "sha256": "7e1938ad856ff670ccdc763a41dbe86958af0d6090584063e955f734652178e1"
+    },
+    "src/visualization.py": {
+      "text_lf": true,
+      "sha256": "4159463bf48c0c42c71966b1318cb1a31a420783001cae5642c8efce9e8a8db4"
+    },
+    "src/worldbank_api.py": {
+      "text_lf": true,
+      "sha256": "e08df3151db2f8528a0fa5d7187097840e34428454f0a5f03eeee93ad896442a"
+    },
+    "tests/__init__.py": {
+      "text_lf": true,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "tests/test_intelligence_validation.py": {
+      "text_lf": true,
+      "sha256": "486413fabf5f632563dce46a8a6d1d590bc0f4da2069d30208265ce229569906"
+    },
+    "tests/test_preflight.py": {
+      "text_lf": true,
+      "sha256": "3307f651b74ea3b61f416f9add5fb6ed51a608ea90f471453bf2fa0c0e4bac5c"
+    },
+    "tests/test_residual_risk.py": {
+      "text_lf": true,
+      "sha256": "da0270ef59e010d24c148f4679e0fd9839ba08a99e79cf946918cef66d45a03a"
+    }
+  }
+}

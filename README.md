@@ -1,5 +1,26 @@
 # Executive Protection Risk Intelligence Model
 
+## Deterministic offline sample and validation status
+
+Use Python 3.13.5 in an activated virtual environment:
+
+```bash
+python -m pip install -r requirements.txt
+python sample_run.py
+```
+
+This separate country-level demonstration uses [25 fictional component rows](data/sample/README.md), seed 42, and 1,000 weight simulations. It writes four CSVs, an interpretation note, and a provenance/hash manifest to a new `outputs/sample/` directory. Existing destinations are refused; repeat with `python sample_run.py --output-dir outputs/sample/repeat`.
+
+| Item | Status and evidence |
+| --- | --- |
+| Environment | Exact runtime/transitive pins in [requirements.txt](requirements.txt); test tools in [requirements-dev.txt](requirements-dev.txt). Python 3.13.5 is the test target. |
+| Reproduction | Original country composite/severity, scenario, and Monte Carlo functions run on fictional inputs. Same-environment byte repeatability is checked. Cross-platform byte identity is not claimed. |
+| Automated checks | Existing evidence-gate, residual-risk, and dashboard tests plus new arithmetic, seed, repeatability, and preservation checks. [Windows/Ubuntu results](https://github.com/jasonrkeen/executive-protection-risk-intelligence-model/actions/workflows/tests.yml) provide execution evidence and downloadable artifacts. |
+| Preservation | [Hashes](tests/preserved_files.json) protect original model code, dashboard, tracked inputs, outputs, historical documentation, examples, and tests. Model logic, published results, and releases remain unchanged. |
+| Scope limits | No real countries, people, trips, source observations, or operational recommendations. The sample does not satisfy trip-level evidence gates. Ranking shares are not event probabilities. Published-result reproduction and empirical validation are not established. |
+
+Run all checks with `python -m pip install -r requirements-dev.txt`, then `python -m pip check` and `python -m pytest -q`. See the [reproduction guide](docs/offline_reproduction.md) for scope and output details. Existing live workflows below retain their original evidence and credential requirements.
+
 ## A Quantitative OSINT Model for Executive Protection Risk in Global Energy Operations
 
 This project builds a data-driven, open-source intelligence (OSINT) model for estimating executive protection risk in global energy operations. The model combines country-level operating-environment risk scoring, city/location-level ACLED event analysis, geospatial risk visualization, airport access proxies, medical capacity proxies, protective intelligence exposure scoring, COA-oriented decision-support logic, scenario analysis, Monte Carlo robustness testing, regional spillover analysis, and executive-facing intelligence signal scoring.
@@ -1265,6 +1286,8 @@ outputs/screenshots/
 ---
 
 ## Installation
+
+Use Python 3.13.5 with the pinned requirements. For offline verification, use the sample command above. Run live workflows in a separate working copy to preserve existing local outputs.
 
 Create and activate a virtual environment:
 
