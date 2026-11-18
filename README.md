@@ -143,10 +143,6 @@ outputs/screenshots/
 
 ![Protective Intelligence Posture](outputs/screenshots/dashboard_pi_posture.png)
 
-### COA Decision Support
-
-![COA Decision Support](outputs/screenshots/dashboard_decision_support.png)
-
 ---
 
 ## Project Structure
